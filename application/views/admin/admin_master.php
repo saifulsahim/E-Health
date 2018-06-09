@@ -335,6 +335,22 @@
 
 
                     <li>
+                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Diagonstic<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="<?php echo base_url('add-test')?>">Add Test </a>
+                            </li>
+                            <li>
+                                <a href="<?php echo base_url('manage-test')?>">Manage Test</a>
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+
+
+
+
+                    <li>
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Hospital<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
@@ -373,6 +389,17 @@
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
+
+
+
+
+
+
+
+
+
+
+
 
 
 

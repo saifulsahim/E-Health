@@ -61,6 +61,9 @@ $route['delete-admin/(.+)'] = 'admin/delete_admin/$1';
 
 
 
+
+
+
 $route['add-donor'] = 'donor/add_donor';
 $route['save-donor']='donor/save_donor';
 $route['manage-donor']='donor/manage_donor';
@@ -68,6 +71,18 @@ $route['change-donor-status/(.+)/(.+)']='donor/change_donor_status/$1/$2';
 $route['edit-donor/(.+)']= 'donor/edit_donor/$1';
 $route['update-donor']='donor/update_donor';
 $route['delete-donor/(.+)'] = 'donor/delete_donor/$1';
+
+
+
+$route['add-test']= 'test/add_test';
+$route['save-test']='test/save_test';
+$route['manage-test']= 'test/manage_test';
+$route['change-test-status/(.+)/(.+)']='test/change_test_status/$1/$2';
+$route['view-test/(.+)']= 'test/view_test/$1';
+$route['edit-test/(.+)']= 'test/edit_test/$1';
+$route['update-test']='test/update_test';
+$route['delete-test/(.+)'] = 'test/delete_test/$1';
+
 
 
 

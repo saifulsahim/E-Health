@@ -38,7 +38,7 @@ if (isset($message)) {
 
 
                         <div class="form-group">
-                            <label>Donor Image</label>
+                            <label>Doctor Image</label>
                             <input type="file" class="form-control" name="docImage" value="" class="input-file uniform_on" id="fileInput">
                         </div>
 

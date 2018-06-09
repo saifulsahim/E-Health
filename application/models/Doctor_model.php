@@ -155,6 +155,14 @@ class Doctor_model extends CI_Model
         return $result;
     }
 
+    public function get_all_active_doctors_images()
+    {
+        $result = $this->db->select('*')
+            ->from('tbl_doctor')
+            ->where('doc_status',1)
+            ->get()->result();
+        return $result;
+    }
 
 
 
