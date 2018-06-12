@@ -165,5 +165,14 @@ class Doctor_model extends CI_Model
     }
 
 
+    public function get_doctor_record_for_image($doc_image)
+    {
+        return $this->db->where('doc_id', $doc_image)->get('tbl_doctor')->row();
+    }
+
+
+
+
+
 
 }

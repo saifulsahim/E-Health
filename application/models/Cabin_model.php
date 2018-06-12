@@ -96,4 +96,10 @@ class Cabin_model extends CI_Model
 
     }
 
+
+    public function get_cabin_record($cabin_id)
+    {
+        return $this->db->where('cabin_id', $cabin_id)->get('tbl_cabin')->row();
+    }
+
 }

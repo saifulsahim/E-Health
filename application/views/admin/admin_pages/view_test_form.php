@@ -7,6 +7,7 @@
                 <table width="100%" class="table table-striped table-bordered table-hover">
 
 
+
                     <tr>
 
                         <th>ID</th>
@@ -20,6 +21,17 @@
                         <td><?php echo $test_info->test_name?></td>
 
                     </tr>
+
+
+
+                    <tr>
+
+                        <th>Doctor Image</th>
+
+                        <td><?php echo $test_info->doc_image?></td>
+                    </tr>
+
+
 
                     <tr>
 

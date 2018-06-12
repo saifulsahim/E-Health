@@ -42,19 +42,22 @@
 
                     <?php
                     foreach ($test_data as $v_test) {
-
-
-
+                        $doctor = $this->doctor_model->get_doctor_record_for_image($v_test->doc_image);
+                        $doc_name = $this->doctor_model->get_doctor_record_for_image($v_test->doc_name);
+                        $doc_category = $this->doctor_model->get_doctor_record_for_image($v_test->doc_category);
                         ?>
                         <tr>
                             <td><?php echo $v_test->test_id?></td>
                             <td><?php echo $v_test->test_name?></td>
                             <td>
-
-                                <img src="uploads/<?php echo $v_test->doc_image?>">
+                                <?php if($doctor){?>
+                                    <img src="<?php echo $doctor->doc_image;?>" width="50px" height="30px">
+                                <?php } else {
+                                    echo '';
+                                }?>
                             </td>
-                            <td><?php echo $v_test->doc_name?></td>
-                            <td><?php echo $v_test->doc_category?></td>
+                            <td><?php echo $doc_name->doc_name?></td>
+                            <td><?php echo $doc_category->doc_category?></td>
                             <td><?php echo $v_test->test_price?></td>
                             <td><?php echo $v_test->test_desc?></td>
                             <td>

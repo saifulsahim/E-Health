@@ -43,15 +43,26 @@
                     <tbody>
 
                     <?php
-                    foreach ($hospital_data as $v_hospital) {?>
+                    foreach ($hospital_data as $v_hospital) {
+
+                        $doc_name = $this->doctor_model->get_doctor_record_for_image($v_hospital->doctor_name);
+
+                        $doc_category = $this->doctor_model->get_doctor_record_for_image($v_hospital->doctor_category);
+
+                        $cabin_charge =  $this->cabin_model->get_cabin_record($v_hospital->cabin_charge);
+
+
+                        $cabin_desc =  $this->cabin_model->get_cabin_record($v_hospital->cabin_desc);
+
+                        ?>
                         <tr>
                             <td><?php echo $v_hospital->hospital_id?></td>
                             <td><?php echo $v_hospital->hospital_name?></td>
-                            <td><?php echo $v_hospital->doctor_name?></td>
-                            <td><?php echo $v_hospital->doctor_category?></td>
+                            <td><?php echo $doc_name->doc_name?></td>
+                            <td><?php echo $doc_category->doc_category?></td>
                             <td><?php echo $v_hospital->hospital_desc?></td>
-                            <td><?php echo $v_hospital->cabin_desc?></td>
-                            <td><?php echo $v_hospital->cabin_charge?></td>
+                            <td><?php echo $cabin_desc->cabin_desc?></td>
+                            <td><?php echo $cabin_charge->cabin_charge?></td>
                             <td><?php echo $v_hospital->hospital_contact?></td>
                             <td><?php echo $v_hospital->hospital_location?></td>
                             <td>
