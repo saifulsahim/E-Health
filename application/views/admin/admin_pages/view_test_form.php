@@ -6,7 +6,12 @@
                 <h1>Single Test Information</h1>
                 <table width="100%" class="table table-striped table-bordered table-hover">
 
+                    <?php
 
+                    $doctor = $this->doctor_model->view_doctor_details($test_info->doc_name);
+                    $image = $this->doctor_model->get_doctor_record_for_image($test_info->doc_image);
+
+                    ?>
 
                     <tr>
 
@@ -24,12 +29,12 @@
 
 
 
-                    <tr>
-
-                        <th>Doctor Image</th>
-
-                        <td><?php echo $test_info->doc_image?></td>
-                    </tr>
+                    <th>Doctor Image</th>
+                    <?php if($image){?>
+                        <td><img src="<?php echo base_url("$image->doc_image");?>" width="30px" height="30px"></td>
+                    <?php } else {?>
+                        <td></td>
+                    <?php } ?>
 
 
 

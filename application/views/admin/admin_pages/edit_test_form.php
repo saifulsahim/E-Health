@@ -8,7 +8,7 @@ if (isset($message)) {
     echo $message;
     $this->session->unset_userdata('message');
 }
-
+$image = $this->doctor_model->get_doctor_record_for_image($test_info->doc_image);
 ?>
 
 <?php //echo validation_errors()?>
@@ -36,11 +36,15 @@ if (isset($message)) {
                             </div>
 
 
+
+
+
+
                             <div class="form-group">
                                 <label>Doctor Image</label>
                                 <input type="file" name="docImage" value="" class="form-control input-file uniform_on" id="fileInput">
                                 <input type="hidden" name="docOldImage" class="input-file uniform_on" id="fileInput" value="<?php echo $test_info->doc_image?>">
-                                <img src="<?php echo base_url().$test_info->doc_image?>" width="50" height="50">
+                                <img src="<?php echo base_url().$image->doc_image?>" width="50px" height="50px">
                             </div>
 
 
