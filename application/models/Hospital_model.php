@@ -8,6 +8,7 @@ class Hospital_model extends CI_Model
     {
 
         $data['hospital_name'] = $this->input->post('hospitalName',true);
+        $data['doc_image'] =$this->input->post('docImage',true);
         $data['doctor_name'] = $this->input->post('docName',true);
         $data['doctor_category'] = $this->input->post('docCategory',true);
         $data['hospital_desc'] = $this->input->post('hosDesc',true);
@@ -60,10 +61,11 @@ class Hospital_model extends CI_Model
         return $result;
     }
 
-    public function update_hospital()
+    public function update_hospital($doctor_image)
     {
 
         $data['hospital_name'] = $this->input->post('hospitalName',true);
+        $data['doc_image'] =$doctor_image;
         $data['doctor_name'] = $this->input->post('docName',true);
         $data['doctor_category'] = $this->input->post('docCategory',true);
         $data['hospital_desc'] = $this->input->post('hosDesc',true);

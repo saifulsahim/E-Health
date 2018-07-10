@@ -62,10 +62,10 @@ class Test_model extends CI_Model
         return $result;
     }
 
-    public function update_test()
+    public function update_test($doctor_image)
     {
         $data['test_name'] =$this->input->post('testName',true);
-        $data['doc_image'] =$this->input->post('docImage',true);
+        $data['doc_image'] =$doctor_image;
         $data['doc_name'] =$this->input->post('docName',true);
         $data['doc_category'] =$this->input->post('docCategory',true);
         $data['test_price'] =$this->input->post('testPrice',true);

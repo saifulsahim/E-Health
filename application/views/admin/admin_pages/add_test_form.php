@@ -14,7 +14,7 @@ if (isset($message)) {
 <?php //echo validation_errors()?>
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Test  Form</h1>
+        <h1 class="page-header">Test Form</h1>
     </div>
 
 </div>
@@ -27,78 +27,66 @@ if (isset($message)) {
                 <div class="row">
                     <div class="col-lg-6">
                         <!--                        <form role="form">-->
-                        <?php echo form_open('save-test')?>
+                        <?php echo form_open('save-test') ?>
 
                         <div class="form-group">
                             <label>Test Name</label>
-                            <input  type="text" name="testName"  class="form-control" placeholder="Enter Name">
+                            <input type="text" name="testName" class="form-control" placeholder="Enter Name">
                         </div>
-
-
 
 
                         <div class="form-group">
                             <label>Doctor Image</label>
-                            <select name="docImage"  class="form-control">
+                            <select name="docImage" class="form-control">
                                 <option>Select Doctor Image</option>
 
                                 <?php
-                                foreach ($doctor_image as $doctor)
-                                {
+                                foreach ($doctor_image as $doctor) {
 
                                     ?>
-                                    <option value="<?php echo $doctor->doc_id?>"><?php echo $doctor->doc_image?>
-
+                                    <option value="<?php echo $doctor->doc_image; ?>"><?php echo $doctor->doc_image ?>
                                     </option>
                                 <?php } ?>
                             </select>
                         </div>
 
 
-
-
                         <div class="form-group">
                             <label>Doctor Name</label>
-                            <select name="docName"  class="form-control">
+                            <select name="docName" class="form-control">
                                 <option>Select Doctor Name</option>
 
                                 <?php
-                                foreach ($doctor_data as $doctor)
-                                {
+                                foreach ($doctor_data as $doctor) {
 
-                                ?>
-                                <option value="<?php echo $doctor->doc_id?>"><?php echo $doctor->doc_name?></option>
+                                    ?>
+                                    <option value="<?php echo $doctor->doc_id ?>"><?php echo $doctor->doc_name ?></option>
 
                                 <?php } ?>
                             </select>
                         </div>
-
 
 
                         <div class="form-group">
                             <label>Doctor Name</label>
-                            <select name="docCategory"  class="form-control">
+                            <select name="docCategory" class="form-control">
                                 <option>Select Doctor Category</option>
 
                                 <?php
-                                foreach ($doctor_category as $doctor)
-                                {
+                                foreach ($doctor_category as $doctor) {
 
                                     ?>
-                                    <option value="<?php echo $doctor->doc_id?>"><?php echo $doctor->doc_category?></option>
+                                    <option value="<?php echo $doctor->doc_id ?>"><?php echo $doctor->doc_category ?></option>
 
                                 <?php } ?>
                             </select>
                         </div>
-
-
 
 
                         <div class="form-group">
                             <label>Test Price</label>
-                            <input type="text" name="testPrice"  class="form-control" placeholder="Enter Price" required>
+                            <input type="text" name="testPrice" class="form-control" placeholder="Enter Price" required>
                         </div>
-
 
 
                         <div class="form-group">
@@ -107,10 +95,9 @@ if (isset($message)) {
                         </div>
 
 
-
                         <button type="submit" class="btn btn-primary">Submit Button</button>
 
-                        <?php echo form_close()?>
+                        <?php echo form_close() ?>
                     </div>
                     <!-- /.col-lg-6 (nested) -->
 

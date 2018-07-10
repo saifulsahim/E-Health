@@ -37,6 +37,25 @@ if (isset($message)) {
 
 
                         <div class="form-group">
+                            <label>Doctor Image</label>
+                            <select name="docImage"  class="form-control">
+                                <option>Select Doctor Image</option>
+
+                                <?php
+                                foreach ($doctor_image as $doctor)
+                                {
+
+                                    ?>
+                                    <option value="<?php echo $doctor->doc_image?>"><?php echo $doctor->doc_image?>
+
+                                    </option>
+                                <?php } ?>
+                            </select>
+                        </div>
+
+
+
+                        <div class="form-group">
                             <label>Doctor Name</label>
                             <select name="docName"  class="form-control">
                                 <option>Select Doctor Name</option>

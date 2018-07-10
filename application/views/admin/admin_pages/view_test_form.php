@@ -9,7 +9,10 @@
                     <?php
 
                     $doctor = $this->doctor_model->view_doctor_details($test_info->doc_name);
-                    $image = $this->doctor_model->get_doctor_record_for_image($test_info->doc_image);
+                    //print_r( $doctor);
+                    //$image = $this->doctor_model->get_doctor_record_for_image($test_info->doc_image);
+                    //print_r($image);
+
 
                     ?>
 
@@ -30,8 +33,8 @@
 
 
                     <th>Doctor Image</th>
-                    <?php if($image){?>
-                        <td><img src="<?php echo base_url("$image->doc_image");?>" width="30px" height="30px"></td>
+                    <?php if($test_info->doc_image != ''){?>
+                        <td><img src="<?php echo base_url("$test_info->doc_image");?>" width="30px" height="30px"></td>
                     <?php } else {?>
                         <td></td>
                     <?php } ?>
@@ -41,13 +44,13 @@
                     <tr>
 
                         <th>Doctor Name</th>
-                        <td><?php echo $test_info->doc_name?></td>
+                        <td><?php echo $doctor->doc_name?></td>
                     </tr>
 
                     <tr>
 
                         <th>Doctor Catgeoy</th>
-                        <td><?php echo $test_info->doc_category?></td>
+                        <td><?php echo $doctor->doc_category?></td>
 
                     </tr>
 

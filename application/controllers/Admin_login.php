@@ -44,35 +44,40 @@ class Admin_login extends CI_Controller {
 
         $admin_details = $this->admin_model->get_admin_details($admin_email);
 
-        if (password_verify($admin_password, $admin_details->admin_password)) {
+        if($admin_details) {
 
-            if ($admin_details->admin_status == 1) {
+            if (password_verify($admin_password, $admin_details->admin_password)) {
 
-                $session_data['admin_email'] = $admin_details->admin_email;
-                $session_data['admin_id'] = $admin_details->admin_id;
-                $session_data['admin_status'] = $admin_details->admin_status;
+                if ($admin_details->admin_status == 1) {
+
+                    $session_data['admin_email'] = $admin_details->admin_email;
+                    $session_data['admin_id'] = $admin_details->admin_id;
+                    $session_data['admin_status'] = $admin_details->admin_status;
 
 
-                $this->session->set_userdata($session_data);
-                redirect('admin-dashboard');
+                    $this->session->set_userdata($session_data);
+                    redirect('admin-dashboard');
 
-            }
-            else{
+                } else {
 
-                $data['error_message']= 'Not a Valid User';
+                    $data['error_message'] = 'Not a Valid User';
+                    $this->load->view('admin/admin_login', $data);
+                }
+            } else {
+
+                //redirect('admin');
+                $data['error_message'] = 'Incorrect Email or Password';
                 $this->load->view('admin/admin_login', $data);
+
+            }
+        }
+        else {
+                $data['error_message'] = 'Incorrect Email or Password';
+                $this->load->view('master', $data);
             }
         }
 
-    else{
 
-            //redirect('admin');
-            $data['error_message'] = 'Incorrect Email or Password';
-            $this->load->view('admin/admin_login',$data);
-
-        }
-
-    }
 
     public function check_admin_logout()
     {

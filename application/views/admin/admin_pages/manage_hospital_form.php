@@ -28,6 +28,7 @@
                     <tr>
                         <th>Hospital ID</th>
                         <th>Hospital Name</th>
+                        <th>Doctor Image</th>
                         <th>Doctor Name</th>
                         <th>Doctor Category</th>
                         <th>Hospital Description</th>
@@ -45,6 +46,10 @@
                     <?php
                     foreach ($hospital_data as $v_hospital) {
 
+
+                        //$doctor = $this->doctor_model->get_doctor_record_for_image($v_hospital->doc_image);
+
+
                         $doc_name = $this->doctor_model->get_doctor_record_for_image($v_hospital->doctor_name);
 
                         $doc_category = $this->doctor_model->get_doctor_record_for_image($v_hospital->doctor_category);
@@ -58,6 +63,17 @@
                         <tr>
                             <td><?php echo $v_hospital->hospital_id?></td>
                             <td><?php echo $v_hospital->hospital_name?></td>
+
+
+                            <td>
+                                <?php if($v_hospital->doc_image != ''){?>
+                                    <img src="<?php echo $v_hospital->doc_image;?>" width="50px" height="30px">
+                                <?php } else {
+                                    echo '';
+                                }?>
+                            </td>
+
+
                             <td><?php echo $doc_name->doc_name?></td>
                             <td><?php echo $doc_category->doc_category?></td>
                             <td><?php echo $v_hospital->hospital_desc?></td>

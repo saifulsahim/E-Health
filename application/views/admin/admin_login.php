@@ -49,10 +49,10 @@
                     <form  action="<?php echo base_url()?>admin-login" method="post">
                         <fieldset>
                             <div class="form-group">
-                                <input class="form-control" placeholder="E-mail" name="adminEmail" type="email" autofocus>
+                                <input class="form-control" placeholder="E-mail" name="adminEmail" type="email"  required>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Password" name="adminPassword" type="password" value="">
+                                <input class="form-control" placeholder="Password" name="adminPassword" type="password"  required>
                             </div>
                             <div class="checkbox">
                                 <label>

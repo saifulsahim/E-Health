@@ -27,7 +27,7 @@ $image = $this->doctor_model->get_doctor_record_for_image($test_info->doc_image)
                     <div class="row">
                         <div class="col-lg-6">
                             <!--                        <form role="form">-->
-                            <?php echo form_open('update-test')?>
+                            <?php echo form_open_multipart('update-test')?>
 
                             <div class="form-group">
                                 <label>Test Name</label>
@@ -44,7 +44,7 @@ $image = $this->doctor_model->get_doctor_record_for_image($test_info->doc_image)
                                 <label>Doctor Image</label>
                                 <input type="file" name="docImage" value="" class="form-control input-file uniform_on" id="fileInput">
                                 <input type="hidden" name="docOldImage" class="input-file uniform_on" id="fileInput" value="<?php echo $test_info->doc_image?>">
-                                <img src="<?php echo base_url().$image->doc_image?>" width="50px" height="50px">
+                                <img src="<?php echo base_url().$test_info->doc_image?>" width="50px" height="50px">
                             </div>
 
 
