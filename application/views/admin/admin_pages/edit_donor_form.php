@@ -32,7 +32,7 @@
 
                         <div class="form-group">
                             <label>Blood Group</label>
-                            <select  name="donorBloodGroup"  class="form-control" value="<?php echo $donor_data->donor_blood_group?>">
+                            <select  name="donorBloodGroup"  class="form-control select2" value="<?php echo $donor_data->donor_blood_group?>">
 
                                 <?php
                                 if($donor_data->donor_blood_group == 'A+')
@@ -203,6 +203,14 @@
     </div>
     <!-- /.col-lg-12 -->
 </div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
+<script>
+    $(".select2").select2();
+</script>
 <!-- /.row -->
 <!--    </div>-->
 <!-- /#page-wrapper -->

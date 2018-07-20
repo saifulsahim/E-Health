@@ -72,7 +72,7 @@ if (isset($message)) {
 
                         <div class="form-group">
                             <label>Doctor Category</label>
-                            <select name="docCategory"  class="form-control">
+                            <select name="docCategory"  class="form-control select2">
                                 <option>Orthopedics</option>
                                 <option>Medicine</option>
                                 <option>Neurology</option>
@@ -128,6 +128,16 @@ if (isset($message)) {
     </div>
     <!-- /.col-lg-12 -->
 </div>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
+
+<script>
+    $(".select2").select2();
+</script>
 <!-- /.row -->
 <!--    </div>-->
 <!-- /#page-wrapper -->

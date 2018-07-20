@@ -38,7 +38,7 @@ if (isset($message)) {
 
                         <div class="form-group">
                             <label>Doctor Image</label>
-                            <select name="docImage"  class="form-control">
+                            <select name="docImage"  class="form-control select2">
                                 <option>Select Doctor Image</option>
 
                                 <?php
@@ -57,7 +57,7 @@ if (isset($message)) {
 
                         <div class="form-group">
                             <label>Doctor Name</label>
-                            <select name="docName"  class="form-control">
+                            <select name="docName"  class="form-control select2">
                                 <option>Select Doctor Name</option>
 
                                 <?php foreach ($doctor_info as $doctor) { ?>
@@ -73,7 +73,7 @@ if (isset($message)) {
 
                         <div class="form-group">
                             <label>Doctor Category</label>
-                            <select name="docCategory"  class="form-control">
+                            <select name="docCategory"  class="form-control select2">
                                 <option>Select Doctor Category</option>
 
                                 <?php foreach ($doctor_category as $category) { ?>
@@ -97,7 +97,7 @@ if (isset($message)) {
 
                         <div class="form-group">
                             <label>Cabin Description</label>
-                            <select name="cabDesc"  class="form-control">
+                            <select name="cabDesc"  class="form-control select2">
                                 <option>Select Cabin Description</option>
 
                                 <?php foreach ($cabin_info as $cabin) { ?>
@@ -111,7 +111,7 @@ if (isset($message)) {
 
                         <div class="form-group">
                             <label>Cabin Charge</label>
-                            <select name="cabCharge"  class="form-control">
+                            <select name="cabCharge"  class="form-control select2">
                                 <option>Select Cabin Charge</option>
 
                                 <?php foreach ($cabin_charge as $charge) { ?>
@@ -155,6 +155,13 @@ if (isset($message)) {
     </div>
     <!-- /.col-lg-12 -->
 </div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script>
+    $(".select2").select2();
+</script>
 <!-- /.row -->
 <!--    </div>-->
 <!-- /#page-wrapper -->
