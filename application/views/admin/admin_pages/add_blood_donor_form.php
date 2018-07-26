@@ -33,6 +33,7 @@ if(isset($success_message)){
                         <div class="form-group">
                             <label>Blood Group</label>
                             <select name="donorBloodGroup"  class="form-control select2">
+                                <option>Select Blood Group</option>
                                 <option>A+</option>
                                 <option>B+</option>
                                 <option>AB+</option>
@@ -68,7 +69,7 @@ if(isset($success_message)){
                         </div>
 
 
-                        <button type="submit" class="btn btn-primary">Submit Button</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
 
                         <?php echo form_close()?>
                     </div>

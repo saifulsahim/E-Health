@@ -7,6 +7,14 @@
                 <table width="100%" class="table table-striped table-bordered table-hover">
 
 
+                    <?php
+
+
+                    $dept = $this->doctor_model->get_dept_record($doctor_info->doc_category);
+                    $hospital = $this->hospital_model->get_hospital_record($doctor_info->hospital_id);
+
+                    ?>
+
                     <tr>
 
                         <th>ID</th>
@@ -59,7 +67,7 @@
                     <tr>
 
                         <th>Doctor Category</th>
-                        <td><?php echo $doctor_info->doc_category?></td>
+                        <td><?php echo $dept->dept_name?></td>
 
                     </tr>
 
@@ -67,6 +75,15 @@
 
                         <th>Doctor Chamber</th>
                         <td><?php echo $doctor_info->doc_chamber?></td>
+
+                    </tr>
+
+
+
+                    <tr>
+
+                        <th>Hospital Name</th>
+                        <td><?php echo $hospital->hospital_name?></td>
 
                     </tr>
 

@@ -14,7 +14,6 @@
 </div>
 
 
-
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
@@ -35,6 +34,7 @@
                         <th>Doctor Designation</th>
                         <th>Doctor Category</th>
                         <th>Doctor Chamber</th>
+                        <th>Hospital Name</th>
                         <th>Birth Date</th>
                         <th>Join Date</th>
                         <th>Doctor Fees</th>
@@ -45,65 +45,83 @@
                     <tbody>
 
                     <?php
-                    foreach ($doctor_data as $v_doctor) {?>
-                        <tr>
-                            <td><?php echo $v_doctor->doc_id?></td>
-                            <td><?php echo $v_doctor->doc_name?></td>
-                            <td>
-                                <img src="<?php echo base_url(). $v_doctor->doc_image?>" width="100" height="100">
+                    foreach ($doctor_data as $v_doctor) {
 
+
+
+
+                        $dept = $this->doctor_model->get_dept_record($v_doctor->doc_category);
+                        $hospital = $this->hospital_model->get_hospital_record($v_doctor->hospital_id);
+
+                        //print_r($hospital);
+                        //exit();
+
+                        ?>
+                        <tr>
+                            <td><?php echo $v_doctor->doc_id ?></td>
+                            <td><?php echo $v_doctor->doc_name ?></td>
+                            <td>
+                                <img src="<?php echo base_url() . $v_doctor->doc_image ?>" width="100" height="100">
 
 
                             </td>
-                            <td><?php echo $v_doctor->doc_email?></td>
-                            <td><?php echo $v_doctor->doc_mobile_no?></td>
-                            <td><?php echo $v_doctor->doc_qualification?></td>
-                            <td><?php echo $v_doctor->doc_designation?></td>
-                            <td><?php echo $v_doctor->doc_category?></td>
-                            <td><?php echo $v_doctor->doc_chamber?></td>
-                            <td><?php echo $v_doctor->doc_birth_date?></td>
-                            <td><?php echo $v_doctor->doc_join_date?></td>
-                            <td><?php echo $v_doctor->doc_fee?></td>
+                            <td><?php echo $v_doctor->doc_email ?></td>
+                            <td><?php echo $v_doctor->doc_mobile_no ?></td>
+                            <td><?php echo $v_doctor->doc_qualification ?></td>
+                            <td><?php echo $v_doctor->doc_designation ?></td>
+                            <td><?php echo $dept->dept_name?></td>
+                            <td><?php echo $v_doctor->doc_chamber ?></td>
+                            <td><?php echo $hospital->hospital_name ?></td>
+                            <td><?php echo $v_doctor->doc_birth_date ?></td>
+                            <td><?php echo $v_doctor->doc_join_date ?></td>
+                            <td><?php echo $v_doctor->doc_fee ?></td>
 
                             <td>
                                 <?php
-                                if($v_doctor->doc_status ==1){
+                                if ($v_doctor->doc_status == 1) {
 
                                     echo 'Active';
-                                }
-                                elseif($v_doctor->doc_status ==2){
+                                } elseif ($v_doctor->doc_status == 2) {
                                     echo 'Inactive';
                                 }
 
                                 ?>
                             </td>
                             <td>
-                                <?php if($v_doctor->doc_status ==1 ){?>
+                                <?php if ($v_doctor->doc_status == 1) { ?>
 
-                                    <a href="<?php echo base_url("change-doctor-status/$v_doctor->doc_id/2")?>" class='btn btn-primary btn-sm' title="Update Status">
+                                    <a href="<?php echo base_url("change-doctor-status/$v_doctor->doc_id/2") ?>"
+                                       class='btn btn-primary btn-sm' title="Update Status">
                                         <i class="glyphicon glyphicon-thumbs-up"></i>
                                     </a>
 
-                                <?php } elseif($v_doctor->doc_status ==2) { ?>
+                                <?php } elseif ($v_doctor->doc_status == 2) { ?>
 
-                                    <a href="<?php echo base_url("change-doctor-status/$v_doctor->doc_id/1")?>" class='btn btn-primary btn-sm' title="Update Status">
+                                    <a href="<?php echo base_url("change-doctor-status/$v_doctor->doc_id/1") ?>"
+                                       class='btn btn-primary btn-sm' title="Update Status">
                                         <i class="glyphicon glyphicon-thumbs-down"></i>
                                     </a>
 
                                 <?php } ?>
 
 
-                                <a href="<?php echo base_url("view-doctor/$v_doctor->doc_id")?>" class="btn btn-warning" title="View"><span class="glyphicon glyphicon-eye-open"></span></a>
-                                <a href="<?php echo base_url("edit-doctor/$v_doctor->doc_id")?>" class="btn btn-success" title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
-                                <a href="<?php echo base_url("delete-doctor/$v_doctor->doc_id")?>" class="btn btn-danger" title="Delete" onclick="return confirm('Are you sure want to delete!!')"><span class="glyphicon glyphicon-trash"></span></a>
-
+                                <a href="<?php echo base_url("view-doctor/$v_doctor->doc_id") ?>"
+                                   class="btn btn-warning" title="View"><span
+                                            class="glyphicon glyphicon-eye-open"></span></a>
+                                <a href="<?php echo base_url("edit-doctor/$v_doctor->doc_id") ?>"
+                                   class="btn btn-success" title="Edit"><span
+                                            class="glyphicon glyphicon-edit"></span></a>
+                                <a href="<?php echo base_url("delete-doctor/$v_doctor->doc_id") ?>"
+                                   class="btn btn-danger" title="Delete"
+                                   onclick="return confirm('Are you sure want to delete!!')"><span
+                                            class="glyphicon glyphicon-trash"></span></a>
 
 
                             </td>
                         </tr>
 
 
-                    <?php }?>
+                    <?php } ?>
                     </tbody>
                 </table>
 
@@ -117,7 +135,7 @@
 
 <script>
 
-    function confirm_delete(){
+    function confirm_delete() {
         return confirm("Are you sure?");
     }
 

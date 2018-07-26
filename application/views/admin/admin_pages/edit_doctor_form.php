@@ -76,153 +76,54 @@ if (isset($message)) {
 
                         <div class="form-group">
                             <label>Doctor Category</label>
-                            <select name="docCategory"  class="form-control select2" value="<?php echo $doctor_data->doc_category?>">
+                            <select class="form-control select2" name="docCategory" id="selectError3">
+
+                                <option value="">--Select Category---</option>
+
+
                                 <?php
-                                if($doctor_data->doc_category == 'Orthopedics')
+                                foreach ($dept_info as $dept)
+                                    if($doctor_data->doc_category == $dept->dept_id)
+                                    { ?>
 
-                                {
-                                    ?>
-
-                                    <option value="Orthopedics" selected>Orthopedics</option>
-                                    <option value="Medicine">Medicine</option>
-                                    <option value="Neurology">Neurology</option>
-                                    <option value="Cardiology">Cardiology</option>
-                                    <option value="Dermatology">Dermatology</option>
-                                    <option value="Pathology">Pathology</option>
-                                    <option value="Psychiatrist">Psychiatrist</option>
-                                    <option value="Neurosurgeon">Neurosurgeon</option>
-                                    <option value="Dental">Dental</option>
-
-                                <?php } if($doctor_data->doc_category == 'Medicine')
-                                {
-
-                                ?>
-
-                                    <option value="Orthopedics">Orthopedics</option>
-                                    <option value="Medicine" selected>Medicine</option>
-                                    <option value="Neurology">Neurology</option>
-                                    <option value="Cardiology">Cardiology</option>
-                                    <option value="Dermatology">Dermatology</option>
-                                    <option value="Pathology">Pathology</option>
-                                    <option value="Psychiatrist">Psychiatrist</option>
-                                    <option value="Neurosurgeon">Neurosurgeon</option>
-                                    <option value="Dental">Dental</option>
-
-                                <?php } if($doctor_data->doc_category == 'Neurology')
-                                {
-
-                                ?>
-
-                                    <option value="Orthopedics">Orthopedics</option>
-                                    <option value="Medicine">Medicine</option>
-                                    <option value="Neurology" selected>Neurology</option>
-                                    <option value="Cardiology">Cardiology</option>
-                                    <option value="Dermatology">Dermatology</option>
-                                    <option value="Pathology">Pathology</option>
-                                    <option value="Psychiatrist">Psychiatrist</option>
-                                    <option value="Neurosurgeon">Neurosurgeon</option>
-                                    <option value="Dental">Dental</option>
-
-                                    <?php } if($doctor_data->doc_category == 'Cardiology')
-                                {
-
-                                    ?>
-                                    <option value="Orthopedics">Orthopedics</option>
-                                    <option value="Medicine">Medicine</option>
-                                    <option value="Neurology">Neurology</option>
-                                    <option value="Cardiology" selected>Cardiology</option>
-                                    <option value="Dermatology">Dermatology</option>
-                                    <option value="Pathology">Pathology</option>
-                                    <option value="Psychiatrist">Psychiatrist</option>
-                                    <option value="Neurosurgeon">Neurosurgeon</option>
-                                    <option value="Dental">Dental</option>
-
-                                <?php }  if($doctor_data->doc_category == 'Dermatology')
-                                {
-
-                                ?>
-
-                                    <option value="Orthopedics">Orthopedics</option>
-                                    <option value="Medicine">Medicine</option>
-                                    <option value="Neurology">Neurology</option>
-                                    <option value="Cardiology">Cardiology</option>
-                                    <option value="Dermatology" selected>Dermatology</option>
-                                    <option value="Pathology">Pathology</option>
-                                    <option value="Psychiatrist">Psychiatrist</option>
-                                    <option value="Neurosurgeon">Neurosurgeon</option>
-                                    <option value="Dental">Dental</option>
-
-                                <?php } if($doctor_data->doc_category == 'Pathology')
-                                {
-
-                                ?>
-
-                                    <option value="Orthopedics">Orthopedics</option>
-                                    <option value="Medicine">Medicine</option>
-                                    <option value="Neurology">Neurology</option>
-                                    <option value="Cardiology">Cardiology</option>
-                                    <option value="Dermatology">Dermatology</option>
-                                    <option value="Pathology" selected>Pathology</option>
-                                    <option value="Psychiatrist">Psychiatrist</option>
-                                    <option value="Neurosurgeon">Neurosurgeon</option>
-                                    <option value="Dental">Dental</option>
+                                        <option value="<?php echo $dept->dept_id ?>" selected><?php echo $dept->dept_name; ?></option>
 
 
-                                <?php } if($doctor_data->doc_category == 'Psychiatrist')
-                                {
-
-                                    ?>
-
-                                    <option value="Orthopedics">Orthopedics</option>
-                                    <option value="Medicine">Medicine</option>
-                                    <option value="Neurology">Neurology</option>
-                                    <option value="Cardiology">Cardiology</option>
-                                    <option value="Dermatology">Dermatology</option>
-                                    <option value="Pathology">Pathology</option>
-                                    <option value="Psychiatrist" selected>Psychiatrist</option>
-                                    <option value="Neurosurgeon">Neurosurgeon</option>
-                                    <option value="Dental">Dental</option>
+                                    <?php } else {?>
+                                        <option value="<?php echo $dept->dept_id ?>"><?php echo $dept->dept_name; ?></option>
 
 
-
-                                <?php } if($doctor_data->doc_category == 'Neurosurgeon')
-                                {
-
-                                    ?>
-
-                                    <option value="Orthopedics">Orthopedics</option>
-                                    <option value="Medicine">Medicine</option>
-                                    <option value="Neurology">Neurology</option>
-                                    <option value="Cardiology">Cardiology</option>
-                                    <option value="Dermatology">Dermatology</option>
-                                    <option value="Pathology">Pathology</option>
-                                    <option value="Psychiatrist">Psychiatrist</option>
-                                    <option value="Neurosurgeon" selected>Neurosurgeon</option>
-                                    <option value="Dental">Dental</option>
-
-
-
-
-                                <?php } if($doctor_data->doc_category == 'Dental')
-                                {
-
-                                    ?>
-
-                                    <option value="Orthopedics">Orthopedics</option>
-                                    <option value="Medicine">Medicine</option>
-                                    <option value="Neurology">Neurology</option>
-                                    <option value="Cardiology">Cardiology</option>
-                                    <option value="Dermatology">Dermatology</option>
-                                    <option value="Pathology">Pathology</option>
-                                    <option value="Psychiatrist">Psychiatrist</option>
-                                    <option value="Neurosurgeon">Neurosurgeon</option>
-                                    <option value="Dental" selected>Dental</option>
-
-                                <?php } ?>
-
+                                    <?php }  ?>
                             </select>
+                        </div>
 
-<!--                                    <option value="Orthopedics">Orthopedics</option>-->
+
+
+                        <div class="form-group">
+                            <label>Hospital Name</label>
+                            <select class="form-control select2" name="hosName" id="selectError3">
+
+                                <option value="">--Select Hospital Name---</option>
+
+
+                                <?php
+                                foreach ($hospital_info as $hospital)
+                                    if($doctor_data->hospital_id == $hospital->hospital_id)
+                                    { ?>
+
+                                        <option value="<?php echo $hospital->hospital_id ?>" selected><?php echo $hospital->hospital_name; ?></option>
+
+
+                                    <?php } else {?>
+                                        <option value="<?php echo $hospital->hospital_id ?>"><?php echo $hospital->hospital_name; ?></option>
+
+
+                                    <?php }  ?>
+                            </select>
+                        </div>
+
+
+                        <!--                                    <option value="Orthopedics">Orthopedics</option>-->
 <!--                                    <option value="Medicine">Medicine</option>-->
 <!--                                    <option value="Neurology">Neurology</option>-->
 <!--                                    <option value="Cardiology">Cardiology</option>-->
@@ -231,7 +132,7 @@ if (isset($message)) {
 <!--                                    <option value="Psychiatrist">Psychiatrist</option>-->
 <!--                                    <option value="Neurosurgeon">Neurosurgeon</option>-->
 <!--                                    <option value="Dental">Dental</option>-->
-                        </div>
+
 
 
                         <div class="form-group">
@@ -272,7 +173,7 @@ if (isset($message)) {
 <!--                        </div>-->
 
 
-                        <button type="submit" class="btn btn-primary">Submit Button</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
 
                         <?php echo form_close()?>
                     </div>

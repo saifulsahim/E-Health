@@ -8,7 +8,7 @@ if (isset($message)) {
     echo $message;
     $this->session->unset_userdata('message');
 }
-$image = $this->doctor_model->get_doctor_record_for_image($test_info->doc_image);
+//$image = $this->doctor_model->get_doctor_record_for_image($test_info->doc_image);
 ?>
 
 <?php //echo validation_errors()?>
@@ -27,7 +27,7 @@ $image = $this->doctor_model->get_doctor_record_for_image($test_info->doc_image)
                     <div class="row">
                         <div class="col-lg-6">
                             <!--                        <form role="form">-->
-                            <?php echo form_open_multipart('update-test')?>
+                            <?php echo form_open('update-test')?>
 
                             <div class="form-group">
                                 <label>Test Name</label>
@@ -40,15 +40,15 @@ $image = $this->doctor_model->get_doctor_record_for_image($test_info->doc_image)
 
 
 
-                            <div class="form-group">
-                                <label>Doctor Image</label>
-                                <input type="file" name="docImage" value="" class="form-control input-file uniform_on" id="fileInput">
-                                <input type="hidden" name="docOldImage" class="input-file uniform_on" id="fileInput" value="<?php echo $test_info->doc_image?>">
-                                <img src="<?php echo base_url().$test_info->doc_image?>" width="50px" height="50px">
-                            </div>
-
-
-
+<!--                            <div class="form-group">-->
+<!--                                <label>Doctor Image</label>-->
+<!--                                <input type="file" name="docImage" value="" class="form-control input-file uniform_on" id="fileInput">-->
+<!--                                <input type="hidden" name="docOldImage" class="input-file uniform_on" id="fileInput" value="--><?php //echo $test_info->doc_image?><!--">-->
+<!--                                <img src="--><?php //echo base_url().$test_info->doc_image?><!--" width="50px" height="50px">-->
+<!--                            </div>-->
+<!---->
+<!---->
+<!---->
                             <div class="form-group">
                                 <label>Doctor Name</label>
                                 <select name="docName" class="form-control">
@@ -58,7 +58,7 @@ $image = $this->doctor_model->get_doctor_record_for_image($test_info->doc_image)
                                     <?php
 
                                     foreach ($doctor_info as $v_doctor)
-                                        if($test_info->doc_name == $v_doctor->doc_id)
+                                        if($test_info->doc_id == $v_doctor->doc_id)
                                         {
 
                                             ?>
@@ -71,32 +71,32 @@ $image = $this->doctor_model->get_doctor_record_for_image($test_info->doc_image)
                                 </select>
 
                             </div>
-
-
-
-
-                            <div class="form-group">
-                                <label>Doctor Category</label>
-                                <select name="docCategory" class="form-control">
-
-                                    <option value="">--Select Doctor Category---</option>
-
-                                    <?php
-
-                                    foreach ($doctor_category as $v_category)
-                                        if($test_info->doc_category == $v_category->doc_id)
-                                        {
-
-                                            ?>
-                                            <option value="<?php echo $v_category->doc_id?>" selected><?php echo $v_category->doc_category?></option>
-
-                                        <?php } else {?>
-                                            <option value="<?php echo $v_category->doc_id?>"><?php echo $v_category->doc_category?></option>
-
-                                        <?php } ?>
-                                </select>
-
-                            </div>
+<!---->
+<!---->
+<!---->
+<!---->
+<!--                            <div class="form-group">-->
+<!--                                <label>Doctor Category</label>-->
+<!--                                <select name="docCategory" class="form-control">-->
+<!---->
+<!--                                    <option value="">--Select Doctor Category---</option>-->
+<!---->
+<!--                                    --><?php
+//
+//                                    foreach ($doctor_category as $v_category)
+//                                        if($test_info->doc_category == $v_category->doc_id)
+//                                        {
+//
+//                                            ?>
+<!--                                            <option value="--><?php //echo $v_category->doc_id?><!--" selected>--><?php //echo $v_category->doc_category?><!--</option>-->
+<!---->
+<!--                                        --><?php //} else {?>
+<!--                                            <option value="--><?php //echo $v_category->doc_id?><!--">--><?php //echo $v_category->doc_category?><!--</option>-->
+<!---->
+<!--                                        --><?php //} ?>
+<!--                                </select>-->
+<!---->
+<!--                            </div>-->
 
 
 
@@ -116,7 +116,7 @@ $image = $this->doctor_model->get_doctor_record_for_image($test_info->doc_image)
 
 
 
-                            <button type="submit" class="btn btn-primary">Submit Button</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
 
                             <?php echo form_close()?>
                         </div>

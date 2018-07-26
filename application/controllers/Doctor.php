@@ -15,10 +15,72 @@ class Doctor extends CI_Controller
     }
 
 
+
+    public function add_department()
+    {
+
+        $data = array();
+        $data['dashboard'] = $this->load->view('admin/admin_pages/add_department_form', '', true);
+        $this->load->view('admin/admin_master', $data);
+
+    }
+
+
+    public function save_department()
+    {
+        $this->doctor_model->save_department();
+
+        $this->session->set_userdata('message', 'Department saved successfully');
+        redirect('add-department');
+    }
+
+
+    public function manage_department()
+    {
+        $data = array();
+        $data['dept_data'] = $this->doctor_model->select_all_depts();
+        $data['dashboard'] = $this->load->view('admin/admin_pages/manage_dept_form', $data, true);
+        $this->load->view('admin/admin_master', $data);
+    }
+
+    public function change_dept_status($dept_id,$status)
+    {
+        $this->doctor_model->change_dept_status($dept_id,$status);
+        redirect('doctor/manage_department');
+    }
+
+
+
+    public function edit_dept($dept_id)
+    {
+        $data['dept_data'] = $this->doctor_model->edit_dept_details($dept_id);
+        $data['dashboard'] = $this->load->view('admin/admin_pages/edit_dept_form', $data, true);
+        $this->load->view('admin/admin_master', $data);
+
+    }
+
+
+    public function update_dept()
+    {
+        $this->doctor_model->update_dept();
+
+        $sdata =array();
+        $sdata['message'] = "Update Department Information Successfully !";
+        $this->session->set_userdata($sdata);
+        $dept_id = $this->input->post('deptId',true);
+        redirect('edit-dept/'.$dept_id);
+    }
+
+
     public function add_doctor()
     {
         $data = array();
-        $data['dashboard'] = $this->load->view('admin/admin_pages/add_doctor_form', '', true);
+        $data['dept_info'] = $this->doctor_model->get_all_active_depts();
+        $data['hospital_info'] = $this->hospital_model->get_all_active_hospitals();
+//        echo '<pre>';
+//        print_r($data);
+//        exit();
+        $data['dashboard'] = $this->load->view('admin/admin_pages/add_doctor_form', $data, true);
         $this->load->view('admin/admin_master', $data);
     }
 
@@ -57,6 +119,9 @@ class Doctor extends CI_Controller
 
         $data = array();
         $data['doctor_data'] = $this->doctor_model->select_all_doctors();
+//        echo '<pre>';
+//        print_r($data);
+//        exit();
         $data['dashboard'] = $this->load->view('admin/admin_pages/manage_doctor_form', $data, true);
         $this->load->view('admin/admin_master', $data);
 
@@ -80,6 +145,8 @@ class Doctor extends CI_Controller
     public function edit_doctor($doctor_id)
     {
         $data['doctor_data'] = $this->doctor_model->edit_doctor_details($doctor_id);
+        $data['dept_info'] = $this->doctor_model->get_all_active_depts();
+        $data['hospital_info'] = $this->hospital_model->get_all_active_hospitals();
         $data['dashboard'] = $this->load->view('admin/admin_pages/edit_doctor_form', $data, true);
         $this->load->view('admin/admin_master', $data);
     }

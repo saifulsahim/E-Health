@@ -35,25 +35,25 @@ if (isset($message)) {
                         </div>
 
 
-                        <div class="form-group">
-                            <label>Doctor Image</label>
-                            <select name="docImage" class="form-control">
-                                <option>Select Doctor Image</option>
-
-                                <?php
-                                foreach ($doctor_image as $doctor) {
-
-                                    ?>
-                                    <option value="<?php echo $doctor->doc_image; ?>"><?php echo $doctor->doc_image ?>
-                                    </option>
-                                <?php } ?>
-                            </select>
-                        </div>
+<!--                        <div class="form-group">-->
+<!--                            <label>Doctor Image</label>-->
+<!--                            <select name="docImage" class="form-control">-->
+<!--                                <option>Select Doctor Image</option>-->
+<!---->
+<!--                                --><?php
+//                                foreach ($doctor_image as $doctor) {
+//
+//                                    ?>
+<!--                                    <option value="--><?php //echo $doctor->doc_image; ?><!--">--><?php //echo $doctor->doc_image ?>
+<!--                                    </option>-->
+<!--                                --><?php //} ?>
+<!--                            </select>-->
+<!--                        </div>-->
 
 
                         <div class="form-group">
                             <label>Doctor Name</label>
-                            <select name="docName" class="form-control">
+                            <select name="docName" class="form-control select2">
                                 <option>Select Doctor Name</option>
 
                                 <?php
@@ -67,20 +67,20 @@ if (isset($message)) {
                         </div>
 
 
-                        <div class="form-group">
-                            <label>Doctor Name</label>
-                            <select name="docCategory" class="form-control">
-                                <option>Select Doctor Category</option>
-
-                                <?php
-                                foreach ($doctor_category as $doctor) {
-
-                                    ?>
-                                    <option value="<?php echo $doctor->doc_id ?>"><?php echo $doctor->doc_category ?></option>
-
-                                <?php } ?>
-                            </select>
-                        </div>
+<!--                        <div class="form-group">-->
+<!--                            <label>Doctor Name</label>-->
+<!--                            <select name="docCategory" class="form-control">-->
+<!--                                <option>Select Doctor Category</option>-->
+<!---->
+<!--                                --><?php
+//                                foreach ($doctor_category as $doctor) {
+//
+//                                    ?>
+<!--                                    <option value="--><?php //echo $doctor->doc_id ?><!--">--><?php //echo $doctor->doc_category ?><!--</option>-->
+<!---->
+<!--                                --><?php //} ?>
+<!--                            </select>-->
+<!--                        </div>-->
 
 
                         <div class="form-group">
@@ -95,7 +95,7 @@ if (isset($message)) {
                         </div>
 
 
-                        <button type="submit" class="btn btn-primary">Submit Button</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
 
                         <?php echo form_close() ?>
                     </div>
@@ -111,6 +111,15 @@ if (isset($message)) {
     </div>
     <!-- /.col-lg-12 -->
 </div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
+
+<script>
+    $(".select2").select2();
+</script>
 <!-- /.row -->
 <!--    </div>-->
 <!-- /#page-wrapper -->

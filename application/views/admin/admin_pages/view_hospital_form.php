@@ -9,10 +9,10 @@
 
                     <?php
 
-                    $doctor = $this->doctor_model->view_doctor_details($hospital_info->doctor_name);
-                    $cabin= $this->cabin_model->view_cabin($hospital_info->cabin_desc);
-                    //$image = $this->doctor_model->get_doctor_record_for_image($hospital_info->doc_image);
-                    //print_r($image);
+                    //$doctor = $this->doctor_model->view_doctor_details($hospital_info->doc_id);
+                    $cabin= $this->cabin_model->view_cabin($hospital_info->cabin_id);
+                    ////$image = $this->doctor_model->get_doctor_record_for_image($hospital_info->doc_image);
+                    ////print_r($image);
 
                     ?>
 
@@ -33,27 +33,27 @@
 
 
 
-                    <th>Doctor Image</th>
-                    <?php if($hospital_info->doc_image != ''){?>
-                        <td><img src="<?php echo base_url("$hospital_info->doc_image");?>" width="30px" height="30px"></td>
-                    <?php } else {?>
-                        <td></td>
-                    <?php } ?>
+<!--                    <th>Doctor Image</th>-->
+<!--                    --><?php //if($hospital_info->doc_image != ''){?>
+<!--                        <td><img src="--><?php //echo base_url("$hospital_info->doc_image");?><!--" width="30px" height="30px"></td>-->
+<!--                    --><?php //} else {?>
+<!--                        <td></td>-->
+<!--                    --><?php //} ?>
 
 
 
-                    <tr>
+<!--                    <tr>-->
+<!---->
+<!--                        <th>Doctor Name</th>-->
+<!--                        <td>--><?php //echo $doctor->doc_name?><!--</td>-->
+<!--                    </tr>-->
 
-                        <th>Doctor Name</th>
-                        <td><?php echo $doctor->doc_name?></td>
-                    </tr>
-
-                    <tr>
-
-                        <th>Doctor Category</th>
-                        <td><?php echo $doctor->doc_category?></td>
-
-                    </tr>
+<!--                    <tr>-->
+<!---->
+<!--                        <th>Doctor Category</th>-->
+<!--                        <td>--><?php //echo $doctor->doc_category?><!--</td>-->
+<!---->
+<!--                    </tr>-->
 
                     <tr>
 
@@ -68,14 +68,14 @@
                         <td><?php echo $cabin->cabin_desc?></td>
 
                     </tr>
-
-
-                    <tr>
-
-                        <th>Cabin Charge</th>
-                        <td><?php echo $cabin->cabin_charge?></td>
-
-                    </tr>
+<!---->
+<!---->
+<!--                    <tr>-->
+<!---->
+<!--                        <th>Cabin Charge</th>-->
+<!--                        <td>--><?php //echo $cabin->cabin_charge?><!--</td>-->
+<!---->
+<!--                    </tr>-->
 
                     <tr>
 

@@ -8,10 +8,11 @@
 
                     <?php
 
-                    $doctor = $this->doctor_model->view_doctor_details($test_info->doc_name);
-                    //print_r( $doctor);
-                    //$image = $this->doctor_model->get_doctor_record_for_image($test_info->doc_image);
-                    //print_r($image);
+                    $doc_name = $this->doctor_model->get_doctor_record_for_image($test_info->doc_id);
+                    //$doctor = $this->doctor_model->view_doctor_details($test_info->doc_name);
+                    ////print_r( $doctor);
+                    ////$image = $this->doctor_model->get_doctor_record_for_image($test_info->doc_image);
+                    ////print_r($image);
 
 
                     ?>
@@ -31,28 +32,54 @@
                     </tr>
 
 
-
-                    <th>Doctor Image</th>
-                    <?php if($test_info->doc_image != ''){?>
-                        <td><img src="<?php echo base_url("$test_info->doc_image");?>" width="30px" height="30px"></td>
-                    <?php } else {?>
-                        <td></td>
-                    <?php } ?>
-
-
-
                     <tr>
 
                         <th>Doctor Name</th>
-                        <td><?php echo $doctor->doc_name?></td>
+                        <td><?php echo $doc_name->doc_name?></td>
+
                     </tr>
+
 
                     <tr>
 
-                        <th>Doctor Catgeoy</th>
-                        <td><?php echo $doctor->doc_category?></td>
+                        <th>Test Price</th>
+                        <td><?php echo $test_info->test_price?></td>
 
                     </tr>
+
+
+
+                    <tr>
+
+                        <th>Test Description</th>
+                        <td><?php echo $test_info->test_desc?></td>
+
+                    </tr>
+
+
+
+
+<!--                    <th>Doctor Image</th>-->
+<!--                    --><?php //if($test_info->doc_image != ''){?>
+<!--                        <td><img src="--><?php //echo base_url("$test_info->doc_image");?><!--" width="30px" height="30px"></td>-->
+<!--                    --><?php //} else {?>
+<!--                        <td></td>-->
+<!--                    --><?php //} ?>
+<!---->
+<!---->
+<!---->
+<!--                    <tr>-->
+<!---->
+<!--                        <th>Doctor Name</th>-->
+<!--                        <td>--><?php //echo $doctor->doc_name?><!--</td>-->
+<!--                    </tr>-->
+<!---->
+<!--                    <tr>-->
+<!---->
+<!--                        <th>Doctor Catgeoy</th>-->
+<!--                        <td>--><?php //echo $doctor->doc_category?><!--</td>-->
+<!---->
+<!--                    </tr>-->
 
 
                     <tr>

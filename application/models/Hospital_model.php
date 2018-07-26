@@ -8,12 +8,12 @@ class Hospital_model extends CI_Model
     {
 
         $data['hospital_name'] = $this->input->post('hospitalName',true);
-        $data['doc_image'] =$this->input->post('docImage',true);
-        $data['doctor_name'] = $this->input->post('docName',true);
-        $data['doctor_category'] = $this->input->post('docCategory',true);
+        //$data['doc_image'] =$this->input->post('docImage',true);
+        //$data['doc_id'] = $this->input->post('docName',true);
+        //$data['doctor_category'] = $this->input->post('docCategory',true);
         $data['hospital_desc'] = $this->input->post('hosDesc',true);
-        $data['cabin_desc'] = $this->input->post('cabDesc',true);
-        $data['cabin_charge'] = $this->input->post('cabCharge',true);
+        $data['cabin_id'] = $this->input->post('cabDesc',true);
+        //$data['cabin_charge'] = $this->input->post('cabCharge',true);
         $data['hospital_contact'] = $this->input->post('hosContact',true);
         $data['hospital_location'] = $this->input->post('hosLoc',true);
         $data['hospital_status'] = 1;
@@ -61,16 +61,16 @@ class Hospital_model extends CI_Model
         return $result;
     }
 
-    public function update_hospital($doctor_image)
+    public function update_hospital()
     {
 
         $data['hospital_name'] = $this->input->post('hospitalName',true);
-        $data['doc_image'] =$doctor_image;
-        $data['doctor_name'] = $this->input->post('docName',true);
-        $data['doctor_category'] = $this->input->post('docCategory',true);
+        //$data['doc_image'] =$doctor_image;
+        //$data['doc_id'] = $this->input->post('docName',true);
+        //$data['doctor_category'] = $this->input->post('docCategory',true);
         $data['hospital_desc'] = $this->input->post('hosDesc',true);
-        $data['cabin_desc'] = $this->input->post('cabDesc',true);
-        $data['cabin_charge'] = $this->input->post('cabCharge',true);
+        $data['cabin_id'] = $this->input->post('cabDesc',true);
+        //$data['cabin_charge'] = $this->input->post('cabCharge',true);
         $data['hospital_contact'] = $this->input->post('hosContact',true);
         $data['hospital_location'] = $this->input->post('hosLoc',true);
 
@@ -87,6 +87,21 @@ class Hospital_model extends CI_Model
     {
         $this->db->where('hospital_id',$hospital_id)
             ->delete('tbl_hospital');
+    }
+
+
+    public function get_all_active_hospitals()
+    {
+        $result = $this->db->select('*')
+            ->from('tbl_hospital')
+            ->where('hospital_status',1)
+            ->get()->result();
+        return $result;
+    }
+
+    public function get_hospital_record($hospital_id)
+    {
+        return $this->db->where('hospital_id', $hospital_id)->get('tbl_hospital')->row();
     }
 
 }

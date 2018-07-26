@@ -8,7 +8,7 @@ if (isset($message)) {
     echo $message;
     $this->session->unset_userdata('message');
 }
-$image = $this->doctor_model->get_doctor_record_for_image($hospital_info->doc_image);
+//$image = $this->doctor_model->get_doctor_record_for_image($hospital_info->doc_image);
 ?>
 
 <?php //echo validation_errors()?>
@@ -27,7 +27,7 @@ $image = $this->doctor_model->get_doctor_record_for_image($hospital_info->doc_im
                 <div class="row">
                     <div class="col-lg-6">
                         <!--                        <form role="form">-->
-                        <?php echo form_open_multipart('update-hospital')?>
+                        <?php echo form_open('update-hospital')?>
 
                         <div class="form-group">
                             <label>Hospital Name</label>
@@ -38,63 +38,63 @@ $image = $this->doctor_model->get_doctor_record_for_image($hospital_info->doc_im
 
 
 
-                        <div class="form-group">
-                            <label>Doctor Image</label>
-                            <input type="file" name="docImage" value="" class="form-control input-file uniform_on" id="fileInput">
-                            <input type="hidden" name="docOldImage" class="input-file uniform_on" id="fileInput" value="<?php echo $hospital_info->doc_image?>">
-                            <img src="<?php echo base_url().$hospital_info->doc_image?>" width="50px" height="50px">
-                        </div>
+<!--                        <div class="form-group">-->
+<!--                            <label>Doctor Image</label>-->
+<!--                            <input type="file" name="docImage" value="" class="form-control input-file uniform_on" id="fileInput">-->
+<!--                            <input type="hidden" name="docOldImage" class="input-file uniform_on" id="fileInput" value="--><?php //echo $hospital_info->doc_image?><!--">-->
+<!--                            <img src="--><?php //echo base_url().$hospital_info->doc_image?><!--" width="50px" height="50px">-->
+<!--                        </div>-->
 
 
 
-                        <div class="form-group">
-                            <label>Doctor Name</label>
-                            <select name="docName" class="form-control select2">
-                                <option value="">--Select Doctor Name---</option>
+<!--                        <div class="form-group">-->
+<!--                            <label>Doctor Name</label>-->
+<!--                            <select name="docName" class="form-control select2">-->
+<!--                                <option value="">--Select Doctor Name---</option>-->
+<!---->
+<!--                                --><?php
+//
+//                                foreach ($doctor_info as $doctor)
+//
+//                                    if($hospital_info->doc_id == $doctor->doc_id)
+//                                    {
+//
+//                                ?>
+<!--                                <option value="--><?php //echo $doctor->doc_id?><!--" selected >--><?php //echo $doctor->doc_name?><!--</option>-->
+<!---->
+<!--                                --><?php //} else {?>
+<!---->
+<!--                                <option value="--><?php //echo $doctor->doc_id?><!--">--><?php //echo $doctor->doc_name?><!--</option>-->
+<!---->
+<!--                                --><?php //} ?>
+<!---->
+<!--                            </select>-->
+<!---->
+<!---->
+<!--                        </div>-->
 
-                                <?php
 
-                                foreach ($doctor_info as $doctor)
-
-                                    if($hospital_info->doctor_name == $doctor->doc_id)
-                                    {
-
-                                ?>
-                                <option value="<?php echo $doctor->doc_id?>" selected ><?php echo $doctor->doc_name?></option>
-
-                                <?php } else {?>
-
-                                <option value="<?php echo $doctor->doc_id?>"><?php echo $doctor->doc_name?></option>
-
-                                <?php } ?>
-
-                            </select>
-
-
-                        </div>
-
-
-                        <div class="form-group">
-                            <label>Doctor Category</label>
-                            <select name="docCategory" class="form-control select2">
-                                <option value="">--Select Category---</option>
-
-                                <?php
-
-                                foreach ($doctor_category as $category)
-                                    if($hospital_info->doctor_category == $category->doc_id)
-                                    {
-
-                                ?>
-                                <option value="<?php echo $category->doc_id?>" selected><?php echo $category->doc_category?></option>
-
-                                <?php } else {?>
-
-                                <option value="<?php echo $category->doc_id?>"><?php echo $category->doc_category?></option>
-                                <?php } ?>
-                            </select>
-
-                        </div>
+<!--                        <div class="form-group">-->
+<!--                            <label>Doctor Category</label>-->
+<!--                            <select name="docCategory" class="form-control select2">-->
+<!--                                <option value="">--Select Category---</option>-->
+<!---->
+<!--                                --><?php
+//
+//                                foreach ($doctor_category as $category)
+//                                    if($hospital_info->doctor_category == $category->doc_id)
+//                                    {
+//
+//                                ?>
+<!--                                <option value="--><?php //echo $category->doc_id?><!--" selected>--><?php //echo $category->doc_category?><!--</option>-->
+<!---->
+<!--                                --><?php //} else {?>
+<!---->
+<!--                                <option value="--><?php //echo $category->doc_id?><!--">--><?php //echo $category->doc_category?><!--</option>-->
+<!--                                --><?php //} ?>
+<!--                            </select>-->
+<!---->
+<!--                        </div>-->
 
 
 
@@ -117,7 +117,7 @@ $image = $this->doctor_model->get_doctor_record_for_image($hospital_info->doc_im
                                 <?php
 
                                 foreach ($cabin_info as $v_cabin)
-                                    if($hospital_info->cabin_desc == $v_cabin->cabin_id)
+                                    if($hospital_info->cabin_id == $v_cabin->cabin_id)
                                     {
 
                                 ?>
@@ -130,34 +130,34 @@ $image = $this->doctor_model->get_doctor_record_for_image($hospital_info->doc_im
                             </select>
 
                         </div>
-
-
-                        <div class="form-group">
-                            <label>Cabin Charge</label>
-                            <select name="cabCharge" class="form-control select2">
-
-                                <option value="">--Select Cabin Charge---</option>
-                                <?php
-
-                                foreach ($cabin_charge as $v_cabin_charge)
-                                    if($hospital_info->cabin_charge == $v_cabin_charge->cabin_id)
-                                    {
-
-                                ?>
-
-                                <option value="<?php echo $v_cabin_charge->cabin_id?>" selected><?php echo $v_cabin_charge->cabin_charge?></option>
-
-                                <?php } else {?>
-
-
-                                <option value="<?php echo $v_cabin_charge->cabin_id?>"><?php echo $v_cabin_charge->cabin_charge?></option>
-
-                                <?php } ?>
-
-
-                            </select>
-
-                        </div>
+<!---->
+<!---->
+<!--                        <div class="form-group">-->
+<!--                            <label>Cabin Charge</label>-->
+<!--                            <select name="cabCharge" class="form-control select2">-->
+<!---->
+<!--                                <option value="">--Select Cabin Charge---</option>-->
+<!--                                --><?php
+//
+//                                foreach ($cabin_charge as $v_cabin_charge)
+//                                    if($hospital_info->cabin_charge == $v_cabin_charge->cabin_id)
+//                                    {
+//
+//                                ?>
+<!---->
+<!--                                <option value="--><?php //echo $v_cabin_charge->cabin_id?><!--" selected>--><?php //echo $v_cabin_charge->cabin_charge?><!--</option>-->
+<!---->
+<!--                                --><?php //} else {?>
+<!---->
+<!---->
+<!--                                <option value="--><?php //echo $v_cabin_charge->cabin_id?><!--">--><?php //echo $v_cabin_charge->cabin_charge?><!--</option>-->
+<!---->
+<!--                                --><?php //} ?>
+<!---->
+<!---->
+<!--                            </select>-->
+<!---->
+<!--                        </div>-->
 
                         <div class="form-group">
                             <label>Hospital Contact</label>
@@ -171,7 +171,7 @@ $image = $this->doctor_model->get_doctor_record_for_image($hospital_info->doc_im
                         </div>
 
 
-                        <button type="submit" class="btn btn-primary">Submit Button</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
 
                         <?php echo form_close()?>
                     </div>

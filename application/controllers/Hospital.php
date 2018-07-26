@@ -17,11 +17,11 @@ class Hospital extends CI_Controller
     public function add_hospital()
     {
         $data = array();
-        $data['doctor_image']= $this->doctor_model->get_all_active_doctors_images();
-        $data['cabin_charge'] = $this->cabin_model->get_all_active_charges();
+        //$data['doctor_image']= $this->doctor_model->get_all_active_doctors_images();
+        //$data['cabin_charge'] = $this->cabin_model->get_all_active_charges();
         $data['cabin_info'] =$this->cabin_model->get_all_active_cabins();
         $data['doctor_info'] = $this->doctor_model->get_all_active_doctors();
-        $data['doctor_category'] = $this->doctor_model->get_all_doctor_categories();
+        //$data['doctor_category'] = $this->doctor_model->get_all_doctor_categories();
 //        echo '<pre>';
 //        print_r($data);
 //        exit();
@@ -99,28 +99,38 @@ class Hospital extends CI_Controller
 
     public function update_hospital()
     {
-        if ($_FILES['docImage']['name'] ==  '' || $_FILES['docImage']['size'] == 0)
-        {
-            $doctor_image =$this->input->post('docOldImage',true);
-            $this->hospital_model->update_hospital($doctor_image);
-            $sdata =array();
-            $sdata['message'] = "Update Hospital Information Successfully !";
-            $this->session->set_userdata($sdata);
-            $hospital_id = $this->input->post('hospitalId',true);
-            redirect('edit-hospital/'.$hospital_id);
 
-        }
-        else{
+        $this->hospital_model->update_hospital();
+        $sdata =array();
+        $sdata['message'] = "Update Hospital Information Successfully !";
+        $this->session->set_userdata($sdata);
+        $hospital_id = $this->input->post('hospitalId',true);
+        redirect('edit-hospital/'.$hospital_id);
 
-            $doctor_image = $this->upload_doctor_image();
-            $this->hospital_model->update_hospital($doctor_image);
-            unlink($this->input->post('docOldImage',true));
-            $sdata =array();
-            $sdata['message'] = "Update Hospital Information Successfully !";
-            $this->session->set_userdata($sdata);
-            $hospital_id = $this->input->post('hospitalId',true);
-            redirect('edit-hospital/'.$hospital_id);
-        }
+
+
+//        if ($_FILES['docImage']['name'] ==  '' || $_FILES['docImage']['size'] == 0)
+//        {
+//            $doctor_image =$this->input->post('docOldImage',true);
+//            $this->hospital_model->update_hospital($doctor_image);
+//            $sdata =array();
+//            $sdata['message'] = "Update Hospital Information Successfully !";
+//            $this->session->set_userdata($sdata);
+//            $hospital_id = $this->input->post('hospitalId',true);
+//            redirect('edit-hospital/'.$hospital_id);
+//
+//        }
+//        else{
+//
+//            $doctor_image = $this->upload_doctor_image();
+//            $this->hospital_model->update_hospital($doctor_image);
+//            unlink($this->input->post('docOldImage',true));
+//            $sdata =array();
+//            $sdata['message'] = "Update Hospital Information Successfully !";
+//            $this->session->set_userdata($sdata);
+//            $hospital_id = $this->input->post('hospitalId',true);
+//            redirect('edit-hospital/'.$hospital_id);
+//        }
 
 
     }

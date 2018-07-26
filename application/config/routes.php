@@ -85,6 +85,14 @@ $route['delete-test/(.+)'] = 'test/delete_test/$1';
 
 
 
+$route['add-department'] = 'doctor/add_department';
+$route['save-department']='doctor/save_department';
+$route['manage-department']='doctor/manage_department';
+$route['change-dept-status/(.+)/(.+)'] ='doctor/change_dept_status/$1/$2';
+$route['edit-dept/(.+)'] = 'doctor/edit_dept/$1';
+$route['update-dept']='doctor/update_dept';
+
+
 
 
 $route['add-doctor']='doctor/add_doctor';

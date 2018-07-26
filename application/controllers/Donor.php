@@ -14,6 +14,9 @@ class Donor extends CI_Controller{
     }
 
 
+
+
+
     public function add_donor()
     {
         $data = array();

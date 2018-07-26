@@ -21,6 +21,9 @@
     <link rel="stylesheet" href="<?php echo base_url()?>asset/admin_asset/datepicker/css/bootstrap-datepicker3.css">
 
 
+    <!--Timepicker-->
+    <link rel="stylesheet" href="<?php echo base_url()?>asset/timepicker/jquery.timepicker.min.css">
+
     <!-- DataTables CSS -->
     <link href="<?php echo base_url()?>asset/admin_asset/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
 
@@ -117,6 +120,23 @@
 <!--                    <li>-->
 <!--                        <a href="--><?php //echo base_url('register-admin')?><!--"><i class="fa fa-table fa-fw"></i>Register Admin</a>-->
 <!--                    </li>-->
+
+                    <li>
+                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Departments<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="<?php echo base_url()?>add-department">Add Department</a>
+                            </li>
+                            <li>
+                                <a href="<?php echo base_url('manage-department')?>">Manage Department</a>
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+
+
+
+
                     <li>
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Doctors<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
@@ -194,7 +214,7 @@
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Appointment<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="<?php echo base_url('')?>">Manage Appointment</a>
+                                <a href="<?php echo base_url('appointment/manage_appointment')?>">Manage Appointment</a>
                             </li>
 
                         </ul>
@@ -214,36 +234,7 @@
 
 
 
-                    <li>
-                        <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="#">Second Level Item</a>
-                            </li>
-                            <li>
-                                <a href="#">Second Level Item</a>
-                            </li>
-                            <li>
-                                <a href="#">Third Level <span class="fa arrow"></span></a>
-                                <ul class="nav nav-third-level">
-                                    <li>
-                                        <a href="#">Third Level Item</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Third Level Item</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Third Level Item</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Third Level Item</a>
-                                    </li>
-                                </ul>
-                                <!-- /.nav-third-level -->
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
+
                     <li>
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Ambulance<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
@@ -284,6 +275,10 @@
 <!--Datepicker JS-->
 <script src="<?php echo base_url()?>asset/admin_asset/datepicker/js/bootstrap-datepicker.js"></script>
 
+
+<!-- TimePicker JS-->
+<script src="<?php echo base_url()?>asset/timepicker/jquery.timepicker.min.js"></script>
+
 <!-- Morris Charts JavaScript -->
 <script src="<?php echo base_url()?>asset/admin_asset/vendor/raphael/raphael.min.js"></script>
 <script src="<?php echo base_url()?>asset/admin_asset/vendor/morrisjs/morris.min.js"></script>
@@ -314,6 +309,13 @@
     $(function () {
         $(".datepicker").datepicker()
 
+    });
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('input.timepicker').timepicker({});
     });
 
 </script>

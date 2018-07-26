@@ -72,24 +72,47 @@ if (isset($message)) {
 
                         <div class="form-group">
                             <label>Doctor Category</label>
-                            <select name="docCategory"  class="form-control select2">
-                                <option>Orthopedics</option>
-                                <option>Medicine</option>
-                                <option>Neurology</option>
-                                <option>Cardiology</option>
-                                <option>Dermatology</option>
-                                <option>Pathology</option>
-                                <option>Psychiatrist</option>
-                                <option>Neurosurgeon</option>
-                                <option>Dental</option>
+                            <select class="form-control select2" name="docCategory" id="selectError3">
+
+                                <option>--Select Category---</option>
+
+                                <?php foreach ($dept_info as $dept) { ?>
+
+                                    <option value="<?php echo $dept->dept_id ?>"><?php echo $dept->dept_name; ?></option>
+
+
+                                <?php } ?>
+
+                                ?>
 
                             </select>
+
                         </div>
 
 
                         <div class="form-group">
                             <label>Doctor Chamber</label>
                             <input type="text" name="docChamber"  class="form-control" placeholder="Enter Chamber Location">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Hospital Name</label>
+                            <select class="form-control select2" name="hosName" id="selectError3">
+
+                                <option>--Select Hospital Name---</option>
+
+                                <?php foreach ($hospital_info as $hospital) { ?>
+
+                                    <option value="<?php echo $hospital->hospital_id ?>"><?php echo $hospital->hospital_name; ?></option>
+
+
+                                <?php } ?>
+
+                                ?>
+
+                            </select>
+
                         </div>
 
 
@@ -112,7 +135,7 @@ if (isset($message)) {
                         </div>
 
 
-                        <button type="submit" class="btn btn-primary">Submit Button</button>
+                        <button type="submit" class="btn btn-primary">Submit </button>
 
                         <?php echo form_close()?>
                     </div>

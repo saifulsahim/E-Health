@@ -28,12 +28,12 @@
                     <tr>
                         <th>Hospital ID</th>
                         <th>Hospital Name</th>
-                        <th>Doctor Image</th>
-                        <th>Doctor Name</th>
-                        <th>Doctor Category</th>
+<!--                        <th>Doctor Image</th>-->
+<!--                        <th>Doctor Name</th>-->
+<!--                        <th>Doctor Category</th>-->
                         <th>Hospital Description</th>
                         <th>Cabin Description</th>
-                        <th>Cabin Charge</th>
+<!--                        <th>Cabin Charge</th>-->
                         <th>Hospital Contact</th>
                         <th>Hospital Location</th>
                         <th>Hospital Status</th>
@@ -47,17 +47,17 @@
                     foreach ($hospital_data as $v_hospital) {
 
 
-                        //$doctor = $this->doctor_model->get_doctor_record_for_image($v_hospital->doc_image);
+                        ////$doctor = $this->doctor_model->get_doctor_record_for_image($v_hospital->doc_image);
 
 
-                        $doc_name = $this->doctor_model->get_doctor_record_for_image($v_hospital->doctor_name);
-
-                        $doc_category = $this->doctor_model->get_doctor_record_for_image($v_hospital->doctor_category);
-
-                        $cabin_charge =  $this->cabin_model->get_cabin_record($v_hospital->cabin_charge);
-
-
-                        $cabin_desc =  $this->cabin_model->get_cabin_record($v_hospital->cabin_desc);
+                        //$doc_name = $this->doctor_model->get_doctor_record_for_image($v_hospital->doc_id);
+//
+//                        $doc_category = $this->doctor_model->get_doctor_record_for_image($v_hospital->doctor_category);
+//
+//                        $cabin_charge =  $this->cabin_model->get_cabin_record($v_hospital->cabin_charge);
+//
+//
+                        $cabin_desc =  $this->cabin_model->get_cabin_record($v_hospital->cabin_id);
 
                         ?>
                         <tr>
@@ -65,20 +65,20 @@
                             <td><?php echo $v_hospital->hospital_name?></td>
 
 
-                            <td>
-                                <?php if($v_hospital->doc_image != ''){?>
-                                    <img src="<?php echo $v_hospital->doc_image;?>" width="50px" height="30px">
-                                <?php } else {
-                                    echo '';
-                                }?>
-                            </td>
+<!--                            <td>-->
+<!--                                --><?php //if($v_hospital->doc_image != ''){?>
+<!--                                    <img src="--><?php //echo $v_hospital->doc_image;?><!--" width="50px" height="30px">-->
+<!--                                --><?php //} else {
+//                                    echo '';
+//                                }?>
+<!--                            </td>-->
 
 
-                            <td><?php echo $doc_name->doc_name?></td>
-                            <td><?php echo $doc_category->doc_category?></td>
+<!--                            <td>--><?php //echo $doc_name->doc_name?><!--</td>-->
+<!--                            <td>--><?php //echo $doc_category->doc_category?><!--</td>-->
                             <td><?php echo $v_hospital->hospital_desc?></td>
                             <td><?php echo $cabin_desc->cabin_desc?></td>
-                            <td><?php echo $cabin_charge->cabin_charge?></td>
+<!--                            <td>--><?php //echo $cabin_charge->cabin_charge?><!--</td>-->
                             <td><?php echo $v_hospital->hospital_contact?></td>
                             <td><?php echo $v_hospital->hospital_location?></td>
                             <td>

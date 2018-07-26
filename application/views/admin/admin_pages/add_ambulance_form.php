@@ -46,7 +46,7 @@ if(isset($success_message)){
 
 
 
-                        <button type="submit" class="btn btn-primary">Submit Button</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
 
                         <?php echo form_close()?>
                     </div>

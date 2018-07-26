@@ -5,6 +5,69 @@ class Doctor_model extends CI_Model
 
 
 
+    public function save_department()
+    {
+        $data['dept_name'] = $this->input->post('deptName',true);
+        $data['dept_desc'] = $this->input->post('deptDesc',true);
+        $data['dept_status'] = 1;
+
+        $this->db->insert('tbl_dept',$data);
+    }
+
+
+    public function select_all_depts()
+    {
+
+        $result= $this->db->select('*')
+            ->from('tbl_dept')
+            ->get()
+            ->result();
+
+        return $result;
+    }
+
+    public function change_dept_status($dept_id,$status)
+    {
+        $data['dept_status'] = $status;
+        $this->db->where('dept_id',$dept_id);
+        $this->db->update('tbl_dept',$data);
+    }
+
+
+    public function edit_dept_details($dept_id)
+    {
+
+        $result = $this->db->select('*')
+            ->from('tbl_dept')
+            ->where('dept_id', $dept_id)
+            ->get()
+            ->row();
+        return $result;
+
+    }
+
+
+    public function update_dept()
+    {
+        $data['dept_name'] = $this->input->post('deptName',true);
+        $data['dept_desc'] = $this->input->post('deptDesc',true);
+
+        $dept_id = $this->input->post('deptId');
+
+        $this->db->where('dept_id',$dept_id)
+            ->update('tbl_dept',$data);
+    }
+
+    public function get_all_active_depts()
+    {
+
+        $result = $this->db->select('*')
+            ->from('tbl_dept')
+            ->where('dept_status',1)
+            ->get()->result();
+        return $result;
+    }
+
 //    public function upload_doctor_image(){
 //
 //        $config['upload_path']   = './uploads/';
@@ -26,6 +89,13 @@ class Doctor_model extends CI_Model
 //        }
 //    }
 
+
+
+
+
+
+
+
     public function save_doctor($doctor_image)
     {
 
@@ -38,6 +108,7 @@ class Doctor_model extends CI_Model
         $doctor_data['doc_category'] =$this->input->post('docCategory',true);
         $doctor_data['doc_chamber']=$this->input->post('docChamber',true);
         $doctor_data['doc_birth_date'] =$this->input->post('docBirthDate',true);
+        $doctor_data['hospital_id'] =$this->input->post('hosName',true);
         $doctor_data['doc_fee'] =$this->input->post('docFees',true);
         $doctor_data['doc_join_date'] =$this->input->post('docJoinDate',true);
         $doctor_data['doc_status'] =1;
@@ -109,6 +180,7 @@ class Doctor_model extends CI_Model
         $doctor_data['doc_designation'] =$this->input->post('docDesignation',true);
         $doctor_data['doc_category'] =$this->input->post('docCategory',true);
         $doctor_data['doc_chamber']=$this->input->post('docChamber',true);
+        $doctor_data['hospital_id'] =$this->input->post('hosName',true);
         $doctor_data['doc_birth_date'] =$this->input->post('docBirthDate',true);
         $doctor_data['doc_fee'] =$this->input->post('docFees',true);
         $doctor_data['doc_join_date'] =$this->input->post('docJoinDate',true);
@@ -171,6 +243,10 @@ class Doctor_model extends CI_Model
     }
 
 
+    public function get_dept_record($dept_id)
+    {
+        return $this->db->where('dept_id', $dept_id)->get('tbl_dept')->row();
+    }
 
 
 
