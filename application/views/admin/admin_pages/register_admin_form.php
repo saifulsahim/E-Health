@@ -20,7 +20,7 @@ if(isset($success_message)){
                 <div class="row">
                     <div class="col-lg-6">
 <!--                        <form role="form">-->
-                        <?php echo form_open('admin/register_new_admin')?>
+                        <?php echo form_open_multipart('admin/register_new_admin')?>
 
                             <div class="form-group">
                                 <label>Admin Name</label>
@@ -28,6 +28,25 @@ if(isset($success_message)){
                             </div>
 
                             <?php echo form_error('adminName')?>
+
+
+                        <div class="form-group">
+                            <label>Admin Image</label>
+                            <input type="file" class="form-control" name="adminImage" value="" class="input-file uniform_on" id="fileInput">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Admin Role</label>
+                            <select class="form-control" name="adminRole" id="adminRole">
+                                <option>Select Role</option>
+                                <option value="Admin">Admin</option>
+                                <option value="Doctor">Doctor</option>
+                                <option value="Moderator">Moderator</option>
+                            </select>
+
+                        </div>
+
 
                             <div class="form-group">
                                 <label>Admin Email</label>

@@ -28,6 +28,7 @@
                     <tr>
                         <th>Admin ID</th>
                         <th>Admin Name</th>
+                        <th>Admin Image</th>
                         <th>Admin E-mail</th>
                         <th>Admin Status</th>
                         <th>Action Buttons</th>
@@ -40,6 +41,10 @@
                         <tr>
                             <td><?php echo $v_admin->admin_id?></td>
                             <td><?php echo $v_admin->admin_name?></td>
+                            <td>
+                                <img src="<?php echo base_url() . $v_admin->admin_image ?>" width="100"
+                                     height="100">
+                            </td>
                             <td><?php echo $v_admin->admin_email?></td>
 
                             <td>

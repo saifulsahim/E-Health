@@ -1,3 +1,15 @@
+<?php
+
+
+$id = $this->session->userdata("admin_id");
+$details = $this->admin_model->get_record($id);
+//echo '<pre>';
+//print_r($details);
+//exit();
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -122,6 +134,7 @@
 <!--                    </li>-->
 
                     <li>
+
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Departments<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
@@ -136,7 +149,7 @@
 
 
 
-
+                    <?php if (($details->admin_role == "Admin") || ($details->admin_role == "Moderator")) { ?>
                     <li>
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Doctors<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
@@ -149,7 +162,12 @@
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
+                    <?php } ?>
 
+
+
+
+                    <?php if (($details->admin_role == "Admin") || ($details->admin_role == "Moderator")) { ?>
                     <li>
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Blood Donor<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
@@ -163,8 +181,11 @@
                         <!-- /.nav-second-level -->
                     </li>
 
+                    <?php } ?>
 
 
+
+                    <?php if (($details->admin_role == "Admin") || ($details->admin_role == "Moderator")) { ?>
                     <li>
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Diagonstic<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
@@ -178,9 +199,11 @@
                         <!-- /.nav-second-level -->
                     </li>
 
+                    <?php } ?>
 
 
 
+                    <?php if (($details->admin_role == "Admin") || ($details->admin_role == "Moderator")) { ?>
                     <li>
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Hospital<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
@@ -194,7 +217,10 @@
                         <!-- /.nav-second-level -->
                     </li>
 
+                    <?php } ?>
 
+
+                    <?php if (($details->admin_role == "Admin") || ($details->admin_role == "Moderator")) { ?>
                     <li>
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Cabin<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
@@ -208,7 +234,10 @@
                         <!-- /.nav-second-level -->
                     </li>
 
+                    <?php } ?>
 
+
+                    <?php if (($details->admin_role == "Admin") || ($details->admin_role == "Moderator")) { ?>
 
                     <li>
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Appointment<span class="fa arrow"></span></a>
@@ -221,6 +250,7 @@
                         <!-- /.nav-second-level -->
                     </li>
 
+                    <?php } ?>
 
 
 
@@ -233,7 +263,7 @@
 
 
 
-
+                    <?php if (($details->admin_role == "Admin") || ($details->admin_role == "Moderator")) { ?>
 
                     <li>
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Ambulance<span class="fa arrow"></span></a>
@@ -247,6 +277,8 @@
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
+
+                    <?php } ?>
                 </ul>
             </div>
             <!-- /.sidebar-collapse -->

@@ -27,7 +27,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#"><img src="<?php echo base_url() ?>asset/img/logo.png"
+                        <a class="navbar-brand" href="<?php echo base_url()?>"><img src="<?php echo base_url() ?>asset/img/logo.png"
                                                               class="img-responsive"
                                                               style="width: 140px; margin-top: -16px;"></a>
                     </div>
@@ -57,7 +57,7 @@
                         <h1 class="white">Healthcare at your desk!!</h1>
                         <p>Find your doctor, hospital or blood donor easily with a minimum of effort. We've kept
                             everything organised for you..</p>
-                        <a href="doctorlist.html" class="btn btn-appoint">Make an Appointment.</a>
+                        <a href="<?php echo base_url('welcome/add_doctor_master')?>" class="btn btn-appoint">Make an Appointment.</a>
                     </div>
                     <div class="overlay-detail text-center">
                         <a href="#cta-3"><i class="fa fa-angle-down"></i></a>
@@ -81,6 +81,7 @@
                 <th scope="col">Doctor Image</th>
                 <th scope="col">Qualification</th>
                 <th scope="col">Designation</th>
+                <th scope="col">Specialist</th>
                 <th scope="col">Mobile no</th>
                 <th scope="col">Address</th>
                 <th scope="col">Appoinment</th>
@@ -93,6 +94,7 @@
 
             foreach ($hospital_doctor_list as $doctor) {
 
+                $dept = $this->doctor_model->get_dept_record($doctor->doc_category);
                 ?>
                 <tr>
                     <th scope="row"><?php echo $i++; ?></th>
@@ -102,6 +104,7 @@
                     </td>
                     <td><?php echo $doctor->doc_qualification ?></td>
                     <td><?php echo $doctor->doc_designation ?></td>
+                    <td><?php echo $dept->dept_name ?></td>
                     <td><?php echo $doctor->doc_mobile_no ?></td>
                     <td><?php echo $doctor->doc_chamber ?></td>
                     <td>

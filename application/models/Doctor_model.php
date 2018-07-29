@@ -4,6 +4,21 @@ class Doctor_model extends CI_Model
 {
 
 
+    public function get_doctor_details($doc_email)
+    {
+
+        $doctor_details = $this->db->select('*')
+            ->from('tbl_doctor')
+            ->where('doc_email', $doc_email)
+            ->get()
+            ->row();
+
+
+        return $doctor_details;
+
+    }
+
+
 
     public function save_department()
     {
@@ -99,14 +114,17 @@ class Doctor_model extends CI_Model
     public function save_doctor($doctor_image)
     {
 
+        //$id = $this->session->userdata('admin_id');
+        // $doctor_data['admin_id'] = $id;
         $doctor_data['doc_name'] =$this->input->post('docName',true);
 
         $doctor_data['doc_email'] =$this->input->post('docEmail',true);
+       // $doctor_data['doc_password'] =$this->input->post('docPassword',true);
         $doctor_data['doc_mobile_no'] =$this->input->post('docMobileNo',true);
         $doctor_data['doc_qualification'] = $this->input->post('docQual',true);
         $doctor_data['doc_designation'] =$this->input->post('docDesignation',true);
         $doctor_data['doc_category'] =$this->input->post('docCategory',true);
-        $doctor_data['doc_chamber']=$this->input->post('docChamber',true);
+        //$doctor_data['doc_chamber']=$this->input->post('docChamber',true);
         $doctor_data['doc_birth_date'] =$this->input->post('docBirthDate',true);
         $doctor_data['hospital_id'] =$this->input->post('hosName',true);
         $doctor_data['doc_fee'] =$this->input->post('docFees',true);
@@ -115,8 +133,19 @@ class Doctor_model extends CI_Model
 
         $doctor_data['doc_birth_date'] = date('Y-m-d', strtotime($doctor_data['doc_birth_date']));
         $doctor_data['doc_join_date'] = date('Y-m-d', strtotime($doctor_data['doc_join_date']));
+
+
+        $doc_password =$this->input->post('docPassword',true);
+        $encrypted_password = password_hash($doc_password,PASSWORD_DEFAULT);
+        $doctor_data['doc_password']= $encrypted_password;
         //$tDate = date('Y-m-d', strtotime($toDate));
 
+
+//        if($this->session->userdata('admin_role')=='Admin'){
+//            $doctor_data['admin_id']=$this->input->post('admin_id',true);
+//        }else{
+//            $doctor_data['admin_id'] = $this->session->userdata('admin_id');
+//        }
 
         $doctor_data['doc_image'] =$doctor_image;
 
@@ -126,6 +155,16 @@ class Doctor_model extends CI_Model
 //        print_r($doctor_data);
 //        exit();
 
+    }
+
+    public function get_data_by_user($id)
+    {
+        $result = $this->db->select('*')->where('admin_id', $id)
+            ->from('tbl_doctor')
+            ->get()
+            ->result();
+
+        return $result;
     }
 
     public function select_all_doctors()

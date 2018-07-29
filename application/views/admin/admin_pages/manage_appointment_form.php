@@ -27,6 +27,7 @@
                     <tr>
                         <th>Appointment ID</th>
                         <th>Patient Name</th>
+                        <th>Doctor Name</th>
                         <th>Phone Number</th>
                         <th>Gender</th>
                         <th>Appointment Date</th>
@@ -39,10 +40,16 @@
                     <tbody>
 
                     <?php
-                    foreach ($app_data as $v_app) { ?>
+                    foreach ($app_data as $v_app) {
+
+
+                        $doc_name = $this->doctor_model->get_doctor_record_for_image($v_app->doc_id);
+
+                        ?>
                         <tr>
                             <td><?php echo $v_app->appointment_id ?></td>
                             <td><?php echo $v_app->patient_name ?></td>
+                            <td><?php echo $doc_name->doc_name ?></td>
                             <td><?php echo $v_app->phone_number ?></td>
                             <td><?php echo $v_app->gender ?></td>
                             <td><?php echo $v_app->appointment_date ?></td>

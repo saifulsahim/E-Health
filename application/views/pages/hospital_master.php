@@ -27,7 +27,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#"><img src="<?php echo base_url()?>asset/img/logo.png" class="img-responsive" style="width: 140px; margin-top: -16px;"></a>
+                        <a class="navbar-brand" href="<?php echo base_url()?>"><img src="<?php echo base_url()?>asset/img/logo.png" class="img-responsive" style="width: 140px; margin-top: -16px;"></a>
                     </div>
                     <div class="collapse navbar-collapse navbar-right" id="myNavbar">
                         <ul class="nav navbar-nav">
@@ -53,7 +53,7 @@
                     <div class="banner-text text-center">
                         <h1 class="white">Healthcare at your desk!!</h1>
                         <p>Find your doctor, hospital or blood donor easily with a minimum of effort. We've kept everything organised for you..</p>
-                        <a href="doctorlist.html" class="btn btn-appoint">Make an Appointment.</a>
+                        <a href="<?php echo base_url('welcome/add_doctor_master')?>" class="btn btn-appoint">Make an Appointment.</a>
                     </div>
                     <div class="overlay-detail text-center">
                         <a href="#cta-3"><i class="fa fa-angle-down"></i></a>

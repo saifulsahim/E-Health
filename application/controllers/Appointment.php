@@ -15,6 +15,10 @@ class Appointment extends CI_Controller{
     {
         $this->appointment_model->save_appointment();
         $this->session->set_userdata('message', 'Appointment saved successfully');
+        $id = $this->input->post('docId',true);
+        redirect('welcome/add_doc_profile/'.$id);
+
+
         //$this->load->view('pages/doctor_profile');
     }
 

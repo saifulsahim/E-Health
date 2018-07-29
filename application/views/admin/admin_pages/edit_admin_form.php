@@ -8,6 +8,14 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">Edit Admin  Form</h1>
+
+        <?php if(isset($this->session->message)) {?>
+            <div class="text text-center text-success">
+                <?php
+                echo $this->session->message;
+                ?>
+            </div>
+        <?php } ?>
     </div>
 
 </div>
@@ -20,7 +28,7 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <!--                        <form role="form">-->
-                        <?php echo form_open('update-admin')?>
+                        <?php echo form_open_multipart('update-admin')?>
 
                         <div class="form-group">
                             <label>Admin Name</label>
@@ -34,6 +42,37 @@
                             <label>Admin Email</label>
                             <input type="email" name="adminEmail" value="<?php echo $admin_data->admin_email?>" class="form-control" placeholder="Enter your mail" required>
                         </div>
+
+                        <div class="form-group">
+                            <label>Admin Image</label>
+                            <input type="file" name="adminImage" value="" class="form-control input-file uniform_on" id="fileInput">
+                            <input type="hidden" name="adminOldImage" class="input-file uniform_on" id="fileInput" value="<?php echo $admin_data->admin_image?>">
+                            <img src="<?php echo base_url().$admin_data->admin_image?>" width="50" height="50">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Admin Role</label>
+
+                            <select class="form-control select2" name="adminRole" id="Admin Role" value="<?php echo $admin_data->admin_role ?>">
+                                <option>Select Role</option>
+                                <?php
+                                if ($admin_data->admin_role == 'Admin') {
+                                    ?>
+                                    <option value="Admin" selected>Admin</option>
+                                    <option value="Doctor">Doctor</option>
+                                    <option value="Moderator">Moderator</option>
+                                <?php } else if($admin_data->admin_role == 'Doctor') { ?>
+                                    <option value="Admin">Admin</option>
+                                    <option value="Doctor" selected>Doctor</option>
+                                    <option value="Moderator">Moderator</option>
+                                <?php }else{ ?>
+                                    <option value="Admin">Admin</option>
+                                    <option value="Doctor">Doctor</option>
+                                    <option value="Moderator" selected>Moderator</option>
+                                <?php } ?>
+                            </select>
+                        </div>
+
 
 
                         <div class="form-group">

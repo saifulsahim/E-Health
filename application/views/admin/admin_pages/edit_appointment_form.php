@@ -72,6 +72,8 @@ if (isset($message)) {
                                    class="form-control timepicker" placeholder="Enter Join Date">
                         </div>
 
+                        <input type="hidden" name="docId" value="<?=$app_data->doc_id;?>">
+
 
                         <button type="submit" class="btn btn-primary">Submit</button>
 

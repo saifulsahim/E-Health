@@ -5,6 +5,18 @@ class Welcome_model extends CI_Model{
 
 
 
+    public function ajax_email_address_check($email_address)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_doctor');
+        $this->db->where('doc_email', $email_address);
+        $query_result = $this->db->get();
+        $result = $query_result->result();
+        return $result;
+
+    }
+
+
     public function all_active_doctors($doc_category)
     {
 

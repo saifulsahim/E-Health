@@ -16,10 +16,13 @@ class Admin_model extends CI_Model{
 
     }
 
-    public function register_new_admin()
+    public function register_new_admin($admin_image)
     {
         $data['admin_name'] =$this->input->post('adminName',true);
         $data['admin_email'] =$this->input->post('adminEmail',true);
+        $data['admin_role'] = $this->input->post('adminRole', true);
+        $data['admin_image'] = $admin_image;
+
         $admin_password =$this->input->post('adminPassword',true);
         $encrypted_password = password_hash($admin_password,PASSWORD_DEFAULT);
         $data['admin_password']= $encrypted_password;
@@ -61,22 +64,47 @@ class Admin_model extends CI_Model{
 
     }
 
-    public function update_admin()
+    public function update_admin($admin_image)
     {
         $data = array();
-        $data['admin_name'] = $this->input->post('adminName',true);
-        $data['admin_email'] = $this->input->post('adminEmail',true);
-        $password = $this->input->post('adminPassword',true);
-        $confirm_password = $this->input->post('confirmPassword',true);
-        if($password == $confirm_password) {
-            $data['admin_password'] = password_hash($this->input->post('adminPassword', true), PASSWORD_DEFAULT);
-            $admin_id = $this->input->post('adminId');
+        $data['admin_name'] = $this->input->post('adminName', true);
+        $data['admin_email'] = $this->input->post('adminEmail', true);
+        $data['admin_role'] = $this->input->post('adminRole', true);
+        $data['admin_image'] = $admin_image;
+        $password = $this->input->post('adminPassword', true);
 
-            $this->db->where('admin_id',$admin_id)
-                ->update('tbl_admin',$data);
+        $confirm_password = $this->input->post('confirmPassword', true);
+        $admin_id = $this->input->post('adminId');
+
+
+        // print_r($password);
+        // print_r($admin_id);
+        // exit();
+
+
+
+
+
+
+        if (!empty($password)) {
+            if ($password == $confirm_password) {
+                $data['admin_password'] = password_hash($password, PASSWORD_DEFAULT);
+                $this->db->where('admin_id', $admin_id);
+                $this->db->update('tbl_admin', $data);
+            } else {
+                $this->session->set_flashdata('message', 'Password and Confirm password do not match');
+                redirect("admin/edit_admin/$admin_id");
+            }
         } else {
-            redirect('admin');
+            $admin_password = $this->db->select('admin_password')->from('tbl_admin')->where('admin_id', $admin_id)->get()->row();
+            $data['admin_password'] = $admin_password->admin_password;
         }
+
+        // print_r($data['admin_password']);
+        // exit();
+        $this->db->where('admin_id', $admin_id)
+            ->update('tbl_admin', $data);
+
 
     }
 
@@ -86,4 +114,9 @@ class Admin_model extends CI_Model{
                  ->delete('tbl_admin');
 
     }
+    public function get_record($id)
+    {
+        return $this->db->where('admin_id', $id)->get('tbl_admin')->row();
+    }
+
 }

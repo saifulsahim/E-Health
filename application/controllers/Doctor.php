@@ -15,6 +15,65 @@ class Doctor extends CI_Controller
     }
 
 
+    public function doc_login_check()
+    {
+
+        $doc_email = $this->input->post('docEmail', true);
+//        echo $doc_email;
+//        exit();
+
+        $doc_password = $this->input->post('docPassword', true);
+//        echo $doc_password;
+//        exit();
+//        $encrypted_password = password_hash($doc_password,PASSWORD_DEFAULT);
+//        $data['doc_password']= $encrypted_password;
+
+//        $encrypt_password = password_hash($encrypted_password, PASSWORD_DEFAULT);
+//        echo $encrypt_password;
+//        exit();
+
+
+        $doctor_details = $this->doctor_model->get_doctor_details($doc_email);
+
+
+//        echo '<pre>';
+//        print_r($doctor_details);
+//        exit();
+
+        if ($doctor_details) {
+            if (password_verify($doc_password, $doctor_details->doc_password)) {
+                $session_data['doc_email'] = $doctor_details->doc_email;
+                $session_data['doc_id'] = $doctor_details->doc_id;
+                $session_data['doc_status'] = $doctor_details->doc_status;
+                //$session_data['admin_role'] = $admin_details->admin_role;
+
+
+                $this->session->set_userdata($session_data);
+
+                redirect('doctor/manage_doctor');
+
+//
+//                $data = array();
+//                $data['dashboard'] = $this->load->view('dashboard', '', true);
+//                $this->load->view('admin_master', $data);
+
+
+            } else {
+                $data['error_message'] = 'Incorrect Email or Password';
+                //redirect('doctor/doc_login_check');
+                $this->load->view('pages/doc_login_signup', $data);
+            }
+        }
+
+
+         else {
+            echo 'Data not found! Please register';
+
+        }
+//        }
+
+    }
+
 
     public function add_department()
     {
@@ -109,7 +168,7 @@ class Doctor extends CI_Controller
     {
         $doctor_image = $this->upload_doctor_image();
         $this->doctor_model->save_doctor($doctor_image);
-        $this->session->set_userdata('message', 'Doctor saved successfully');
+        $this->session->set_userdata('message', "<div class='alert alert-success'>Record Insert Successfully</div>");
         redirect('add-doctor');
 
     }
@@ -117,8 +176,17 @@ class Doctor extends CI_Controller
     public function manage_doctor()
     {
 
+        $role = $this->session->userdata('admin_role');
+        $id = $this->session->userdata('admin_id');
         $data = array();
-        $data['doctor_data'] = $this->doctor_model->select_all_doctors();
+
+        if(($role == "Admin") || ($role == "Moderator")) {
+            $data['doctor_data'] = $this->doctor_model->select_all_doctors();
+        }
+        else{
+
+            $data['doctor_data'] = $this->doctor_model->get_data_by_user($id);
+        }
 //        echo '<pre>';
 //        print_r($data);
 //        exit();

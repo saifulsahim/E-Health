@@ -186,5 +186,64 @@ class Welcome extends CI_Controller {
 
     }
 
+    public function add_login_signup()
+    {
+        $data = array();
+        $data['dept_info'] = $this->doctor_model->get_all_active_depts();
+        $data['hospital_info'] = $this->hospital_model->get_all_active_hospitals();
+//        echo '<pre>';
+//        print_r($data);
+//        exit();
+        $this->load->view('pages/doc_login_signup',$data);
+    }
+
+
+    private function upload_doctor_image(){
+
+        $config['upload_path']   = './uploads/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size']      = '10000';//kb
+        $config['max_width']     = '2024';
+        $config['max_height']    = '1000';
+
+
+        $this->load->library('upload',$config);
+        if($this->upload->do_upload('docImage')){
+            $data = $this->upload->data();
+            $image_path= "uploads/$data[file_name]";
+            return $image_path;
+
+        }else{
+            $error=  $this->upload->display_errors();
+            print_r($error);
+        }
+    }
+
+    public function save_doctor()
+    {
+        $doctor_image = $this->upload_doctor_image();
+        $this->doctor_model->save_doctor($doctor_image);
+        $this->session->set_userdata('message', "<div class='alert alert-success'>Record Insert Successfully</div>");
+        redirect('welcome/add_login_signup');
+    }
+
+
+    public function ajax_email_check($email_address = null)
+    {
+        if ($email_address == NULL) {
+            echo "Email Address Required";
+            return;
+
+        }
+        $result = $this->welcome_model->ajax_email_address_check($email_address);
+        if ($result) {
+            echo "Already Exists !";
+
+        } else {
+
+            echo "Available";
+        }
+    }
+
 
 }

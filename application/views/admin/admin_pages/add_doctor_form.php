@@ -90,10 +90,10 @@ if (isset($message)) {
                         </div>
 
 
-                        <div class="form-group">
-                            <label>Doctor Chamber</label>
-                            <input type="text" name="docChamber"  class="form-control" placeholder="Enter Chamber Location">
-                        </div>
+<!--                        <div class="form-group">-->
+<!--                            <label>Doctor Chamber</label>-->
+<!--                            <input type="text" name="docChamber"  class="form-control" placeholder="Enter Chamber Location">-->
+<!--                        </div>-->
 
 
                         <div class="form-group">
@@ -132,6 +132,18 @@ if (isset($message)) {
                         <div class="form-group">
                             <label>Doctor Fees</label>
                             <input type="text" name="docFees"  class="form-control" placeholder="Enter Fees">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" name="docPassword"  class="form-control" placeholder="Enter Password">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Confirm Password</label>
+                            <input type="password" name="confirmPassword"  class="form-control" placeholder="Enter Password">
                         </div>
 
 
