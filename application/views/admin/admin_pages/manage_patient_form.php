@@ -8,7 +8,7 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">View All Appointments</h1>
+        <h1 class="page-header">View All Patients</h1>
     </div>
     <!-- /.col-lg-12 -->
 </div>
@@ -61,11 +61,11 @@
 
                                 <a href="<?php echo base_url("appointment/edi_appointment/$v_app->appointment_id") ?>"
                                    class="btn btn-success" title="Edit"><span
-                                            class="glyphicon glyphicon-edit"></span></a>
+                                        class="glyphicon glyphicon-edit"></span></a>
                                 <a href="<?php echo base_url("appointment/delete_appointment/$v_app->appointment_id") ?>"
                                    class="btn btn-danger" title="Delete"
                                    onclick="return confirm('Are you sure want to delete!!')"><span
-                                            class="glyphicon glyphicon-trash"></span></a>
+                                        class="glyphicon glyphicon-trash"></span></a>
 
 
                             </td>

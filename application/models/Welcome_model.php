@@ -20,11 +20,23 @@ class Welcome_model extends CI_Model{
     public function all_active_doctors($doc_category)
     {
 
-        $result = $this->db->select('*')
-            ->from('tbl_doctor')
-            ->where(array('doc_status' => 1, 'doc_category' => $doc_category))
-            ->get()
-            ->result();
+//        $result = $this->db->select('*')
+//            ->from('tbl_doctor')
+//            ->where(array('doc_status' => 1, 'doc_category' => $doc_category))
+//            ->get()
+//            ->result();
+
+        $result = $this->db->query("SELECT
+    IFNULL(AVG(tbl_rating.value), 0) AS rating,
+    tbl_doctor.*
+FROM
+    tbl_doctor
+LEFT JOIN tbl_rating ON tbl_rating.doc_id = tbl_doctor.doc_id
+WHERE
+    tbl_doctor.doc_category = $doc_category
+GROUP BY
+    tbl_doctor.doc_id
+ORDER BY rating DESC")->result();
 
 
         return $result;

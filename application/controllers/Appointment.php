@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Appointment extends CI_Controller{
+class Appointment extends CI_Controller
+{
 
     public function __construct()
     {
@@ -10,13 +11,13 @@ class Appointment extends CI_Controller{
     }
 
 
-
     public function save_appointment()
     {
-        $this->appointment_model->save_appointment();
-        $this->session->set_userdata('message', 'Appointment saved successfully');
-        $id = $this->input->post('docId',true);
-        redirect('welcome/add_doc_profile/'.$id);
+
+        $message = $this->appointment_model->save_appointment();
+        $this->session->set_userdata('message', $message);
+        $id = $this->input->post('docId', true);
+        redirect('welcome/add_doc_profile/' . $id);
 
 
         //$this->load->view('pages/doctor_profile');
@@ -45,11 +46,11 @@ class Appointment extends CI_Controller{
     {
         $this->appointment_model->update_appointment();
 
-        $sdata =array();
+        $sdata = array();
         $sdata['message'] = "Update Appointment Information Successfully !";
         $this->session->set_userdata($sdata);
-        $id = $this->input->post('appId',true);
-        redirect('appointment/edi_appointment/'.$id);
+        $id = $this->input->post('appId', true);
+        redirect('appointment/edi_appointment/' . $id);
 
         //redirect('appointment/manage_appointment');
     }

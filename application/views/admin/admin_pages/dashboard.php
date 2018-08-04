@@ -1,9 +1,7 @@
 <?php
-//
-//echo '<pre>';
-//print_r($this->session->all_userdata());
-//echo '</pre>';
 
+$id = $this->session->userdata("admin_id");
+$details = $this->admin_model->get_record($id);
 
 ?>
 
@@ -18,6 +16,8 @@
     </div>
     <!-- /.row -->
     <div class="row">
+
+
         <div class="col-lg-3 col-md-6">
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -26,7 +26,11 @@
                             <i class="fa  fa-user-md     fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge"><?php  echo $this->db->count_all_results('tbl_doctor');?></div>
+                            <?php if($this->session->userdata('admin_role')==='Doctor'){ ?>
+                                <div class="huge"><?php  //echo $this->doctor_model->get_all_lists_by_id($this->session->userdata('doc_id'));?></div>
+                            <?php }else{ ?>
+                                <div class="huge"><?php  echo $this->db->count_all_results('tbl_doctor');?></div>
+                            <?php } ?>
                             <div>Doctors!</div>
                         </div>
                     </div>
@@ -40,6 +44,11 @@
                 </a>
             </div>
         </div>
+
+
+
+
+        <?php if (($details->admin_role == "Admin") || ($details->admin_role =="Moderator")) { ?>
         <div class="col-lg-3 col-md-6">
             <div class="panel panel-green">
                 <div class="panel-heading">
@@ -62,6 +71,11 @@
                 </a>
             </div>
         </div>
+        <?php } ?>
+
+
+
+        <?php if (($details->admin_role == "Admin") || ($details->admin_role =="Moderator")) { ?>
         <div class="col-lg-3 col-md-6">
             <div class="panel panel-yellow">
                 <div class="panel-heading">
@@ -84,6 +98,11 @@
                 </a>
             </div>
         </div>
+        <?php } ?>
+
+
+
+        <?php if (($details->admin_role == "Admin") || ($details->admin_role =="Moderator")) { ?>
         <div class="col-lg-3 col-md-6">
             <div class="panel panel-red">
                 <div class="panel-heading">
@@ -106,7 +125,10 @@
                 </a>
             </div>
         </div>
+        <?php } ?>
 
+
+        <?php if (($details->admin_role == "Admin") || ($details->admin_role =="Moderator")) { ?>
         <div class="col-lg-3 col-md-6">
             <div class="panel panel-yellow">
                 <div class="panel-heading">
@@ -129,6 +151,8 @@
                 </a>
             </div>
         </div>
+        <?php } ?>
+
 
 
     </div>

@@ -6,8 +6,7 @@ class Doctor extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        if(!isset($this->session->admin_id) && ($this->session->admin_status !==1))
-        {
+        if (!isset($this->session->admin_id) && ($this->session->admin_status !== 1)) {
 
             redirect('admin');
         }
@@ -63,10 +62,7 @@ class Doctor extends CI_Controller
                 //redirect('doctor/doc_login_check');
                 $this->load->view('pages/doc_login_signup', $data);
             }
-        }
-
-
-         else {
+        } else {
             echo 'Data not found! Please register';
 
         }
@@ -102,12 +98,11 @@ class Doctor extends CI_Controller
         $this->load->view('admin/admin_master', $data);
     }
 
-    public function change_dept_status($dept_id,$status)
+    public function change_dept_status($dept_id, $status)
     {
-        $this->doctor_model->change_dept_status($dept_id,$status);
+        $this->doctor_model->change_dept_status($dept_id, $status);
         redirect('doctor/manage_department');
     }
-
 
 
     public function edit_dept($dept_id)
@@ -123,11 +118,11 @@ class Doctor extends CI_Controller
     {
         $this->doctor_model->update_dept();
 
-        $sdata =array();
+        $sdata = array();
         $sdata['message'] = "Update Department Information Successfully !";
         $this->session->set_userdata($sdata);
-        $dept_id = $this->input->post('deptId',true);
-        redirect('edit-dept/'.$dept_id);
+        $dept_id = $this->input->post('deptId', true);
+        redirect('edit-dept/' . $dept_id);
     }
 
 
@@ -143,23 +138,24 @@ class Doctor extends CI_Controller
         $this->load->view('admin/admin_master', $data);
     }
 
-    private function upload_doctor_image(){
+    private function upload_doctor_image()
+    {
 
-        $config['upload_path']   = './uploads/';
+        $config['upload_path'] = './uploads/';
         $config['allowed_types'] = 'gif|jpg|png';
-        $config['max_size']      = '10000';//kb
-        $config['max_width']     = '2024';
-        $config['max_height']    = '1000';
+        $config['max_size'] = '10000';//kb
+        $config['max_width'] = '2024';
+        $config['max_height'] = '1000';
 
 
-        $this->load->library('upload',$config);
-        if($this->upload->do_upload('docImage')){
+        $this->load->library('upload', $config);
+        if ($this->upload->do_upload('docImage')) {
             $data = $this->upload->data();
-            $image_path= "uploads/$data[file_name]";
+            $image_path = "uploads/$data[file_name]";
             return $image_path;
 
-        }else{
-            $error=  $this->upload->display_errors();
+        } else {
+            $error = $this->upload->display_errors();
             print_r($error);
         }
     }
@@ -167,7 +163,8 @@ class Doctor extends CI_Controller
     public function save_doctor()
     {
         $doctor_image = $this->upload_doctor_image();
-        $this->doctor_model->save_doctor($doctor_image);
+        $insert_id = $this->doctor_model->save_doctor($doctor_image);
+        $this->doctor_model->save_doctor_for_login($insert_id, $doctor_image);
         $this->session->set_userdata('message', "<div class='alert alert-success'>Record Insert Successfully</div>");
         redirect('add-doctor');
 
@@ -177,13 +174,15 @@ class Doctor extends CI_Controller
     {
 
         $role = $this->session->userdata('admin_role');
-        $id = $this->session->userdata('admin_id');
+        $id = $this->session->userdata('insert_id');
+//        echo $role;
+//        echo $id;
+//        exit();
         $data = array();
 
-        if(($role == "Admin") || ($role == "Moderator")) {
+        if (($role == "Admin") || ($role == "Moderator")) {
             $data['doctor_data'] = $this->doctor_model->select_all_doctors();
-        }
-        else{
+        } else {
 
             $data['doctor_data'] = $this->doctor_model->get_data_by_user($id);
         }
@@ -195,9 +194,9 @@ class Doctor extends CI_Controller
 
     }
 
-    public function change_doctor_status($doctor_id,$status)
+    public function change_doctor_status($doctor_id, $status)
     {
-        $this->doctor_model->change_doctor_status($doctor_id,$status);
+        $this->doctor_model->change_doctor_status($doctor_id, $status);
         redirect('manage-doctor');
 
     }
@@ -224,27 +223,25 @@ class Doctor extends CI_Controller
 //        echo '<pre>';
 //        print_r($_FILES);
 
-        if ($_FILES['docImage']['name'] ==  '' || $_FILES['docImage']['size'] == 0)
-        {
-            $doctor_image =$this->input->post('docOldImage',true);
+        if ($_FILES['docImage']['name'] == '' || $_FILES['docImage']['size'] == 0) {
+            $doctor_image = $this->input->post('docOldImage', true);
             $this->doctor_model->update_doctor($doctor_image);
-            $sdata =array();
+            $sdata = array();
             $sdata['message'] = "Update Doctor Information Successfully !";
             $this->session->set_userdata($sdata);
-            $doctor_id = $this->input->post('docId',true);
-            redirect('edit-doctor/'.$doctor_id);
+            $doctor_id = $this->input->post('docId', true);
+            redirect('edit-doctor/' . $doctor_id);
 
-        }
-        else{
+        } else {
 
             $doctor_image = $this->upload_doctor_image();
             $this->doctor_model->update_doctor($doctor_image);
-            unlink($this->input->post('docOldImage',true));
-            $sdata =array();
+            unlink($this->input->post('docOldImage', true));
+            $sdata = array();
             $sdata['message'] = "Update Doctor Information Successfully !";
             $this->session->set_userdata($sdata);
-            $doctor_id = $this->input->post('docId',true);
-            redirect('edit-doctor/'.$doctor_id);
+            $doctor_id = $this->input->post('docId', true);
+            redirect('edit-doctor/' . $doctor_id);
         }
     }
 

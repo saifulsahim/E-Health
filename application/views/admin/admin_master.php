@@ -48,6 +48,8 @@ $details = $this->admin_model->get_record($id);
     <!-- Morris Charts CSS -->
     <link href="<?php echo base_url()?>asset/admin_asset/vendor/morrisjs/morris.css" rel="stylesheet">
 
+    <link href="<?php echo base_url()?>asset/css/star-rating-svg.css" rel="stylesheet">
+
     <!-- Custom Fonts -->
     <link href="<?php echo base_url()?>asset/admin_asset/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -57,6 +59,10 @@ $details = $this->admin_model->get_record($id);
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <!-- jQuery -->
+    <script src="<?php echo base_url()?>asset/admin_asset/vendor/jquery/jquery.min.js"></script>
+    <script src="<?php echo base_url()?>asset/js/jquery.star-rating-svg.min.js"></script>
 
 </head>
 
@@ -116,6 +122,7 @@ $details = $this->admin_model->get_record($id);
                         <a href="<?php echo base_url('admin-dashboard')?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
 
+                    <?php if (($details->admin_role == "Admin") || ($details->admin_role == "Moderator")) { ?>
                     <li>
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Admin<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
@@ -128,12 +135,17 @@ $details = $this->admin_model->get_record($id);
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
+                    <?php } ?>
+
 
 <!--                    <li>-->
 <!--                        <a href="--><?php //echo base_url('register-admin')?><!--"><i class="fa fa-table fa-fw"></i>Register Admin</a>-->
 <!--                    </li>-->
 
+
+                    <?php if (($details->admin_role == "Admin") || ($details->admin_role == "Moderator")) { ?>
                     <li>
+
 
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Departments<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
@@ -146,10 +158,11 @@ $details = $this->admin_model->get_record($id);
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
+                    <?php } ?>
 
 
+                    <?php if (($details->admin_role == "Admin") || ($details->admin_role == "Doctor")) { ?>
 
-                    <?php if (($details->admin_role == "Admin") || ($details->admin_role == "Moderator")) { ?>
                     <li>
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Doctors<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
@@ -279,6 +292,40 @@ $details = $this->admin_model->get_record($id);
                     </li>
 
                     <?php } ?>
+
+
+
+                    <?php if (($details->admin_role == "Admin") || ($details->admin_role == "Doctor")) { ?>
+
+                    <li>
+                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Appointment<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="<?php echo base_url('patient/manage_patient')?>">Appointment List</a>
+                            </li>
+
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                    <?php } ?>
+
+
+
+
+                    <?php if (($details->admin_role == "Admin") || ($details->admin_role == "Patient")) { ?>
+                    <li>
+                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Appointment<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="<?php echo base_url('patient/manage_patient_individual')?>">Appointment History</a>
+                            </li>
+
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                    <?php } ?>
+
+
                 </ul>
             </div>
             <!-- /.sidebar-collapse -->
@@ -296,7 +343,11 @@ $details = $this->admin_model->get_record($id);
 <!-- /#wrapper -->
 
 <!-- jQuery -->
-<script src="<?php echo base_url()?>asset/admin_asset/vendor/jquery/jquery.min.js"></script>
+<!--<script src="--><?php //echo base_url()?><!--asset/admin_asset/vendor/jquery/jquery.min.js"></script>-->
+
+<!--<script src="--><?php //echo base_url()?><!--asset/js/jquery.star-rating-svg.min.js"></script>-->
+
+
 
 <!-- Bootstrap Core JavaScript -->
 <script src="<?php echo base_url()?>asset/admin_asset/vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -312,9 +363,9 @@ $details = $this->admin_model->get_record($id);
 <script src="<?php echo base_url()?>asset/timepicker/jquery.timepicker.min.js"></script>
 
 <!-- Morris Charts JavaScript -->
-<script src="<?php echo base_url()?>asset/admin_asset/vendor/raphael/raphael.min.js"></script>
-<script src="<?php echo base_url()?>asset/admin_asset/vendor/morrisjs/morris.min.js"></script>
-<script src="<?php echo base_url()?>asset/admin_asset/data/morris-data.js"></script>
+<!--<script src="--><?php //echo base_url()?><!--asset/admin_asset/vendor/raphael/raphael.min.js"></script>-->
+<!--<script src="--><?php //echo base_url()?><!--asset/admin_asset/vendor/morrisjs/morris.min.js"></script>-->
+<!--<script src="--><?php //echo base_url()?><!--asset/admin_asset/data/morris-data.js"></script>-->
 
 <!-- Custom Theme JavaScript -->
 <script src="<?php echo base_url()?>asset/admin_asset/dist/js/sb-admin-2.js"></script>

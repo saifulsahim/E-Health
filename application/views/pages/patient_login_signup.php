@@ -179,9 +179,8 @@ $details = $this->admin_model->get_record($id);
                                     </form>
 
 
-                                    <form id="register-form" action="<?php echo base_url('welcome/save_doctor') ?>"
-                                          method="post" role="form"
-                                          enctype="multipart/form-data" style="display: none;">
+                                    <form id="register-form" action="<?php echo base_url('welcome/save_patient') ?>"
+                                          method="post" role="form" style="display: none;">
 
 
                                         <?php
@@ -200,13 +199,19 @@ $details = $this->admin_model->get_record($id);
 
                                         <div class="form-group">
 
-                                            <input type="text" name="docName" id="username" tabindex="1"
-                                                   class="form-control" placeholder="Doctor Name" value="">
+                                            <input type="text" name="patientName" id="username" tabindex="1"
+                                                   class="form-control" placeholder="Patient Name" value="">
                                         </div>
 
                                         <div class="form-group">
 
-                                            <input type="email" name="docEmail" id="email" tabindex="1"
+                                            <div class="form-group">
+
+                                                <input type="text" name="patientMobileNo" id="username" tabindex="1"
+                                                       class="form-control" placeholder="Enter Mobile No" value="">
+                                            </div>
+
+                                            <input type="email" name="patientEmail" id="email" tabindex="1"
                                                    onblur="makerequest(this.value,'res')"
                                                    class="form-control" placeholder="Email Address" value="">
                                             <span id="res" style="color: blue"></span>
@@ -214,91 +219,7 @@ $details = $this->admin_model->get_record($id);
 
 
                                         <div class="form-group">
-
-                                            <input type="file" name="docImage" id="email" tabindex="1"
-                                                   class="form-control" placeholder="Enter Image" value="">
-                                        </div>
-
-
-                                        <div class="form-group">
-
-                                            <input type="text" name="docMobileNo" id="username" tabindex="1"
-                                                   class="form-control" placeholder="Enter Mobile No" value="">
-                                        </div>
-
-
-                                        <div class="form-group">
-                                            <input type="text" name="docQual" class="form-control"
-                                                   placeholder="Enter Qualification">
-                                        </div>
-
-
-                                        <div class="form-group">
-
-                                            <input type="text" name="docDesignation" id="username" tabindex="1"
-                                                   class="form-control" placeholder="Enter Designation" value="">
-                                        </div>
-
-
-                                        <div class="form-group">
-
-                                            <select class="form-control select2" name="docCategory" id="selectError3">
-
-                                                <option>--Select Speciality---</option>
-
-                                                <?php foreach ($dept_info as $dept) { ?>
-
-                                                    <option value="<?php echo $dept->dept_id ?>"><?php echo $dept->dept_name; ?></option>
-
-
-                                                <?php } ?>
-
-                                                ?>
-
-                                            </select>
-
-                                        </div>
-
-
-                                        <div class="form-group">
-
-                                            <select class="form-control select2" name="hosName" id="selectError3">
-
-                                                <option>--Select Hospital Name---</option>
-
-                                                <?php foreach ($hospital_info as $hospital) { ?>
-
-                                                    <option value="<?php echo $hospital->hospital_id ?>"><?php echo $hospital->hospital_name; ?></option>
-
-
-                                                <?php } ?>
-
-
-                                            </select>
-
-                                        </div>
-
-
-                                        <div class="form-group">
-                                            <input type="text" name="docBirthDate" placeholder="Enter Birth Date"
-                                                   class="form-control datepicker">
-                                        </div>
-
-
-                                        <div class="form-group">
-                                            <input type="text" name="docJoinDate" placeholder="Enter Joining Date"
-                                                   class="form-control datepicker">
-                                        </div>
-
-
-                                        <div class="form-group">
-                                            <input type="text" name="docFees" id="username" tabindex="1"
-                                                   class="form-control" placeholder="Enter Fees" value="">
-                                        </div>
-
-
-                                        <div class="form-group">
-                                            <input type="password" name="docPassword" id="password" tabindex="2"
+                                            <input type="password" name="patientPassword" id="password" tabindex="2"
                                                    class="form-control" placeholder="Password">
                                         </div>
 

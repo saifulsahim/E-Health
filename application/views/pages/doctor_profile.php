@@ -219,31 +219,31 @@
 
                         <div class="validation"></div>
                     </div>
-                    <div class="form-group">
-                        <input type="text" name="patientName" class="form-control br-radius-zero" id="name"
-                               placeholder="Your Name" >
-                        <div class="validation"></div>
-                    </div>
-
-                    <div class="form-group">
-
-                        <input type="tel" class="form-control br-radius-zero" name="phoneNo" id="phone"
-                               placeholder="Your phone number">
-                    </div>
-
-
-
-                    <div class="form-group">
-                        <label>Gender</label>
-                        <select class="form-control select2" name="appGender" id="selectError3">
-
-                            <option>--Select Gender---</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-
-                        </select>
-
-                    </div>
+<!--                    <div class="form-group">-->
+<!--                        <input type="text" name="patientName" class="form-control br-radius-zero" id="name"-->
+<!--                               placeholder="Your Name" >-->
+<!--                        <div class="validation"></div>-->
+<!--                    </div>-->
+<!---->
+<!--                    <div class="form-group">-->
+<!---->
+<!--                        <input type="tel" class="form-control br-radius-zero" name="phoneNo" id="phone"-->
+<!--                               placeholder="Your phone number">-->
+<!--                    </div>-->
+<!---->
+<!---->
+<!---->
+<!--                    <div class="form-group">-->
+<!--                        <label>Gender</label>-->
+<!--                        <select class="form-control select2" name="appGender" id="selectError3">-->
+<!---->
+<!--                            <option>--Select Gender---</option>-->
+<!--                            <option value="Male">Male</option>-->
+<!--                            <option value="Female">Female</option>-->
+<!---->
+<!--                        </select>-->
+<!---->
+<!--                    </div>-->
 
 
                     <div class="form-group">

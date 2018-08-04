@@ -222,9 +222,18 @@ class Welcome extends CI_Controller {
     public function save_doctor()
     {
         $doctor_image = $this->upload_doctor_image();
-        $this->doctor_model->save_doctor($doctor_image);
+        $insert_id = $this->doctor_model->save_doctor($doctor_image);
+        $this->doctor_model->save_doctor_for_login($insert_id, $doctor_image);
         $this->session->set_userdata('message', "<div class='alert alert-success'>Record Insert Successfully</div>");
         redirect('welcome/add_login_signup');
+    }
+
+    public function save_patient()
+    {
+        $insert_id = $this->patient_model->save_patient();
+        $this->patient_model->save_patient_for_login($insert_id);
+        $this->session->set_userdata('message', "<div class='alert alert-success'>Record Insert Successfully</div>");
+        redirect('welcome/add_patient_login');
     }
 
 
@@ -243,6 +252,12 @@ class Welcome extends CI_Controller {
 
             echo "Available";
         }
+    }
+
+    public function add_patient_login()
+    {
+        $data = array();
+        $this->load->view('pages/patient_login_signup',$data);
     }
 
 

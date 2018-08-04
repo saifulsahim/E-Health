@@ -45,14 +45,15 @@ class Admin_login extends CI_Controller {
         $admin_details = $this->admin_model->get_admin_details($admin_email);
 
         if($admin_details) {
-
             if (password_verify($admin_password, $admin_details->admin_password)) {
 
                 if ($admin_details->admin_status == 1) {
 
                     $session_data['admin_email'] = $admin_details->admin_email;
                     $session_data['admin_id'] = $admin_details->admin_id;
+                    $session_data['insert_id'] = $admin_details->insert_id;
                     $session_data['admin_status'] = $admin_details->admin_status;
+                    $session_data['admin_role'] = $admin_details->admin_role;
 
 
                     $this->session->set_userdata($session_data);

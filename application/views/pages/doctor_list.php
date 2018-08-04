@@ -12,6 +12,8 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>asset/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>asset/css/style.css">
 
+    <link href="<?php echo base_url()?>asset/css/star-rating-svg.css" rel="stylesheet">
+
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -93,7 +95,11 @@
             <tr>
 
                 <th scope="row"><?php echo $i++?></th>
-                <td><?php echo $doctor->doc_name?></td>
+                <td>
+                    <?php echo $doctor->doc_name ?>
+                    <span class="my-rating" data-rating="<?= number_format($doctor->rating, 1)?>"
+                          data-doc-id="<?= number_format($doctor->rating, 1) ?>"></span>
+                </td>
                 <td>
                     <img src="<?php echo base_url().$doctor->doc_image?>" width="100" height="100">
                 </td>
@@ -136,7 +142,9 @@
                 <tr>
 
                     <th scope="row"><?php echo $i++?></th>
-                    <td><?php echo $doctor->doc_name?></td>
+                    <td><?php echo $doctor->doc_name?>
+                        <span class="my-rating" data-rating="<?= number_format($doctor->rating, 1)?>"
+                              data-doc-id="<?= number_format($doctor->rating, 1) ?>"></span></td>
                     <td>
                         <img src="<?php echo base_url().$doctor->doc_image?>" width="100" height="100">
                     </td>
@@ -178,7 +186,9 @@
                 ?>
                 <tr>
                     <th scope="row"><?php echo $i++?></th>
-                    <td><?php echo $doctor->doc_name?></td>
+                    <td><?php echo $doctor->doc_name?>
+                        <span class="my-rating" data-rating="<?= number_format($doctor->rating, 1)?>"
+                              data-doc-id="<?= number_format($doctor->rating, 1) ?>"></span></td>
                     <td>
                         <img src="<?php echo base_url().$doctor->doc_image?>" width="100" height="100">
                     </td>
@@ -223,7 +233,9 @@
                 <tr>
 
                     <th scope="row"><?php echo $i++?></th>
-                    <td><?php echo $doctor->doc_name?></td>
+                    <td><?php echo $doctor->doc_name?>
+                        <span class="my-rating" data-rating="<?= number_format($doctor->rating, 1)?>"
+                              data-doc-id="<?= number_format($doctor->rating, 1) ?>"></span></td>
                     <td>
                         <img src="<?php echo base_url().$doctor->doc_image?>" width="100" height="100">
                     </td>
@@ -250,6 +262,19 @@
 <script src="<?php echo base_url()?>asset/js/custom.js"></script>
 <script src="<?php echo base_url()?>asset/contactform/contactform.js"></script>
 
+<script src="<?php echo base_url()?>asset/js/jquery.star-rating-svg.min.js"></script>
+
+<script>
+    $(function(){
+        $(".my-rating").starRating({
+            starShape: 'rounded',
+            strokeColor: '#894A00',
+            strokeWidth: 10,
+            starSize: 15,
+            readOnly: true
+        });
+    });
+</script>
 
 </body>
 
