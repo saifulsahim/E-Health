@@ -1,8 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome_model extends CI_Model{
-
+class Welcome_model extends CI_Model
+{
 
 
     public function ajax_email_address_check($email_address)
@@ -48,7 +48,7 @@ ORDER BY rating DESC")->result();
 
         $result = $this->db->select('*')
             ->from('tbl_doctor')
-            ->where('doc_id',$doc_id)
+            ->where('doc_id', $doc_id)
             ->get()
             ->row();
         return $result;
@@ -59,7 +59,7 @@ ORDER BY rating DESC")->result();
     {
         $result = $this->db->select('*')
             ->from('tbl_ambulance')
-            ->where('amb_status',1)
+            ->where('amb_status', 1)
             ->get()
             ->result();
         return $result;
@@ -70,7 +70,7 @@ ORDER BY rating DESC")->result();
     {
         $result = $this->db->select('*')
             ->from('tbl_hospital')
-            ->where('hospital_status',1)
+            ->where('hospital_status', 1)
             ->get()
             ->result();
         return $result;
@@ -81,8 +81,8 @@ ORDER BY rating DESC")->result();
     {
         $result = $this->db->select('*')
             ->from('tbl_hospital')
-            ->join('tbl_doctor','tbl_hospital.hospital_id = tbl_doctor.hospital_id')
-            ->where('tbl_doctor.hospital_id',$id)
+            ->join('tbl_doctor', 'tbl_hospital.hospital_id = tbl_doctor.hospital_id')
+            ->where('tbl_doctor.hospital_id', $id)
             ->get()
             ->result();
 
@@ -131,7 +131,6 @@ ORDER BY rating DESC")->result();
 
         return $result;
     }
-
 
 
     public function all_active_b_negative_donors($donor_blood_group)

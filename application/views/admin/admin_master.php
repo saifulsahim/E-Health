@@ -295,7 +295,25 @@ $details = $this->admin_model->get_record($id);
 
 
 
-                    <?php if (($details->admin_role == "Admin") || ($details->admin_role == "Doctor")) { ?>
+
+
+
+                    <?php if (($details->admin_role == "Admin") || ($details->admin_role == "Patient")) { ?>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Patient<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="<?php echo base_url('patient/patient_list')?>">Patient List</a>
+                                </li>
+
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                    <?php } ?>
+
+
+
+                    <?php if (($details->admin_role == "Moderator") || ($details->admin_role == "Doctor")) { ?>
 
                     <li>
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Appointment<span class="fa arrow"></span></a>
@@ -312,7 +330,7 @@ $details = $this->admin_model->get_record($id);
 
 
 
-                    <?php if (($details->admin_role == "Admin") || ($details->admin_role == "Patient")) { ?>
+                    <?php if (($details->admin_role == "Moderator") || ($details->admin_role == "Patient")) { ?>
                     <li>
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Appointment<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">

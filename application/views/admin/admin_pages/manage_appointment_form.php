@@ -59,9 +59,9 @@
 
                             <td>
 
-                                <a href="<?php echo base_url("appointment/edi_appointment/$v_app->appointment_id") ?>"
-                                   class="btn btn-success" title="Edit"><span
-                                            class="glyphicon glyphicon-edit"></span></a>
+<!--                                <a href="--><?php //echo base_url("appointment/edi_appointment/$v_app->appointment_id") ?><!--"-->
+<!--                                   class="btn btn-success" title="Edit"><span-->
+<!--                                            class="glyphicon glyphicon-edit"></span></a>-->
                                 <a href="<?php echo base_url("appointment/delete_appointment/$v_app->appointment_id") ?>"
                                    class="btn btn-danger" title="Delete"
                                    onclick="return confirm('Are you sure want to delete!!')"><span

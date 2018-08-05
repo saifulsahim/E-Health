@@ -35,7 +35,7 @@
 
                             <th>Appointment Date</th>
                             <th>Appointment Time</th>
-                            <th>Action Buttons</th>
+<!--                            <th>Action Buttons</th>-->
 
 
                         </tr>
@@ -69,18 +69,18 @@
                                 <td><?php echo date('h:i A', strtotime($v_app->appointment_time)) ?></td>
 
 
-                                <td>
-
-                                    <a href="<?php echo base_url("appointment/edi_appointment/$v_app->appointment_id") ?>"
-                                       class="btn btn-success" title="Edit"><span
-                                                class="glyphicon glyphicon-edit"></span></a>
-                                    <a href="<?php echo base_url("appointment/delete_appointment/$v_app->appointment_id") ?>"
-                                       class="btn btn-danger" title="Delete"
-                                       onclick="return confirm('Are you sure want to delete!!')"><span
-                                                class="glyphicon glyphicon-trash"></span></a>
-
-
-                                </td>
+<!--                                <td>-->
+<!---->
+<!--                                    <a href="--><?php //echo base_url("appointment/edi_appointment/$v_app->appointment_id") ?><!--"-->
+<!--                                       class="btn btn-success" title="Edit"><span-->
+<!--                                                class="glyphicon glyphicon-edit"></span></a>-->
+<!--                                    <a href="--><?php //echo base_url("appointment/delete_appointment/$v_app->appointment_id") ?><!--"-->
+<!--                                       class="btn btn-danger" title="Delete"-->
+<!--                                       onclick="return confirm('Are you sure want to delete!!')"><span-->
+<!--                                                class="glyphicon glyphicon-trash"></span></a>-->
+<!---->
+<!---->
+<!--                                </td>-->
                             </tr>
 
 

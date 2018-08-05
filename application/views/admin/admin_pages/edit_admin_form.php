@@ -61,14 +61,17 @@
                                     <option value="Admin" selected>Admin</option>
                                     <option value="Doctor">Doctor</option>
                                     <option value="Moderator">Moderator</option>
+                                    <option value="Patient">Patient</option>
                                 <?php } else if($admin_data->admin_role == 'Doctor') { ?>
                                     <option value="Admin">Admin</option>
                                     <option value="Doctor" selected>Doctor</option>
                                     <option value="Moderator">Moderator</option>
-                                <?php }else{ ?>
+                                    <option value="Patient">Patient</option>
+                                <?php }else if($admin_data->admin_role == 'Patient'){ ?>
                                     <option value="Admin">Admin</option>
                                     <option value="Doctor">Doctor</option>
-                                    <option value="Moderator" selected>Moderator</option>
+                                    <option value="Moderator">Moderator</option>
+                                    <option value="Patient" selected>Patient</option>
                                 <?php } ?>
                             </select>
                         </div>

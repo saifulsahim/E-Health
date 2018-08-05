@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Patient extends CI_Controller{
+class Patient extends CI_Controller
+{
 
     public function __construct()
     {
@@ -97,5 +98,47 @@ class Patient extends CI_Controller{
 
         $data['dashboard'] = $this->load->view('admin/admin_pages/manage_patient_individual_form', $data, true);
         $this->load->view('admin/admin_master', $data);
+    }
+
+    public function patient_list()
+    {
+
+        $data = array();
+        $data['patient_data'] = $this->patient_model->select_all_patients();
+        $data['dashboard'] = $this->load->view('admin/admin_pages/manage_patient_list', $data, true);
+        $this->load->view('admin/admin_master', $data);
+    }
+
+    public function change_patient_status($patient_id,$status)
+    {
+        $this->patient_model->change_patient_status($patient_id,$status);
+        redirect('patient/patient_list');
+    }
+
+
+    public function edit_patient($patient_id)
+    {
+
+        $data = array();
+        $data['patient_info'] =$this->patient_model->edit_patient_info($patient_id);
+        $data['dashboard'] = $this->load->view('admin/admin_pages/edit_patient_form', $data, true);
+        $this->load->view('admin/admin_master', $data);
+    }
+
+    public function update_patient()
+    {
+        $this->patient_model->update_patient_by_id();
+        $sdata =array();
+        $sdata['message'] = "Update Patient Information Successfully !";
+        $this->session->set_userdata($sdata);
+        $patient_id = $this->input->post('patientId',true);
+        redirect('patient/edit_patient/'.$patient_id);
+    }
+
+
+    public function delete_patient($patient_id)
+    {
+        $this->patient_model->delete_patient_by_id($patient_id);
+        redirect('patient/patient_list');
     }
 }

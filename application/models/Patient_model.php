@@ -69,4 +69,47 @@ class Patient_model extends CI_Model{
 
         return $result;
     }
+
+    public function change_patient_status($patient_id,$status)
+    {
+
+        $data['status'] = $status;
+        $this->db->where('patient_id',$patient_id);
+        $this->db->update('tbl_patient',$data);
+    }
+
+
+    public function edit_patient_info($patient_id)
+    {
+
+        $result= $this->db->select('*')
+            ->from('tbl_patient')
+            ->where('patient_id', $patient_id)
+            ->get()
+            ->row();
+
+        return $result;
+    }
+
+
+    public function update_patient_by_id()
+    {
+        $data['patient_name'] = $this->input->post('patientName',true);
+        $data['mobile_no'] = $this->input->post('patientMobileNo',true);
+        $data['email_address'] = $this->input->post('patientEmail',true);
+
+        $patient_id = $this->input->post('patientId',true);
+
+        $this->db->where('patient_id',$patient_id)
+            ->update('tbl_patient',$data);
+    }
+
+    public function delete_patient_by_id($patient_id)
+    {
+
+        $this->db->where('patient_id',$patient_id)
+            ->delete('tbl_patient');
+
+    }
+
 }
