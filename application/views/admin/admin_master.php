@@ -344,6 +344,25 @@ $details = $this->admin_model->get_record($id);
                     <?php } ?>
 
 
+
+                    <?php if (($details->admin_role == "Moderator") || ($details->admin_role == "Admin")) { ?>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Blog<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="<?php echo base_url('blog/add_blog')?>">Add Blog</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo base_url('blog/manage_blog')?>">Manage Blog</a>
+                                </li>
+
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                    <?php } ?>
+
+
+
                 </ul>
             </div>
             <!-- /.sidebar-collapse -->

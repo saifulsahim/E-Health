@@ -14,10 +14,14 @@
 
 
     <!--Datepicker CSS-->
-    <link rel="stylesheet" href="<?php echo base_url()?>asset/datepicker/css/bootstrap-datepicker3.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>asset/datepicker/css/bootstrap-datepicker3.css">
 
     <!--Timepicker-->
-    <link rel="stylesheet" href="<?php echo base_url()?>asset/timepicker/jquery.timepicker.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>asset/timepicker/jquery.timepicker.min.css">
+
+    <script src="<?php echo base_url() ?>asset/js/jquery.min.js"></script>
+
+    <link href="<?php echo base_url() ?>asset/css/star-rating-svg.css" rel="stylesheet">
 
 </head>
 
@@ -40,9 +44,10 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="<?php echo base_url()?>"><img src="<?php echo base_url() ?>asset/img/logo.png"
-                                                              class="img-responsive"
-                                                              style="width: 140px; margin-top: -16px;"></a>
+                        <a class="navbar-brand" href="<?php echo base_url() ?>"><img
+                                    src="<?php echo base_url() ?>asset/img/logo.png"
+                                    class="img-responsive"
+                                    style="width: 140px; margin-top: -16px;"></a>
                     </div>
                     <div class="collapse navbar-collapse navbar-right" id="myNavbar">
                         <ul class="nav navbar-nav">
@@ -70,7 +75,8 @@
                         <h1 class="white">Healthcare at your desk!!</h1>
                         <p>Find your doctor, hospital or blood donor easily with a minimum of effort. We've kept
                             everything organised for you..</p>
-                        <a href="<?php echo base_url('welcome/add_doctor_master')?>" class="btn btn-appoint">Make an Appointment.</a>
+                        <a href="<?php echo base_url('welcome/add_doctor_master') ?>" class="btn btn-appoint">Make an
+                            Appointment.</a>
                     </div>
                     <div class="overlay-detail text-center">
                         <a href="#cta-3"><i class="fa fa-angle-down"></i></a>
@@ -195,12 +201,10 @@
                 <div class="contact-info">
                     <h3 class="cnt-ttl">Book an appointment</h3>
                     <div class="space"></div>
-                    <div id="sendmessage">Your message has been sent. Thank you!</div>
+                    <!--                    <div id="sendmessage">Your message has been sent. Thank you!</div>-->
                     <div id="errormessage"></div>
 
-
                     <?php
-
 
                     $message = $this->session->message;
 
@@ -212,6 +216,14 @@
 
                     ?>
 
+                    <?php
+
+                    if (isset($this->session->admin_id)) {
+
+                        //echo $this->session->admin_id;
+
+                    ?>
+
                     <?php echo form_open('appointment/save_appointment') ?>
 
 
@@ -219,31 +231,6 @@
 
                         <div class="validation"></div>
                     </div>
-<!--                    <div class="form-group">-->
-<!--                        <input type="text" name="patientName" class="form-control br-radius-zero" id="name"-->
-<!--                               placeholder="Your Name" >-->
-<!--                        <div class="validation"></div>-->
-<!--                    </div>-->
-<!---->
-<!--                    <div class="form-group">-->
-<!---->
-<!--                        <input type="tel" class="form-control br-radius-zero" name="phoneNo" id="phone"-->
-<!--                               placeholder="Your phone number">-->
-<!--                    </div>-->
-<!---->
-<!---->
-<!---->
-<!--                    <div class="form-group">-->
-<!--                        <label>Gender</label>-->
-<!--                        <select class="form-control select2" name="appGender" id="selectError3">-->
-<!---->
-<!--                            <option>--Select Gender---</option>-->
-<!--                            <option value="Male">Male</option>-->
-<!--                            <option value="Female">Female</option>-->
-<!---->
-<!--                        </select>-->
-<!---->
-<!--                    </div>-->
 
 
                     <div class="form-group">
@@ -254,19 +241,67 @@
 
 
                     <div class="form-group">
-                        <label for="title"> Time:</label>
+                        <label for="title">Time:</label>
                         <input class="form-control timepicker" type="text" name="appTime" placeholder="Set Time">
                     </div>
 
 
                 </div>
 
-                <input type="hidden" name="docId" value="<?=$doc_info->doc_id;?>">
+                <input type="hidden" name="docId" value="<?= $doc_info->doc_id; ?>">
 
                 <div class="form-action">
                     <button type="submit" class="btn btn-form">Submit</button>
                 </div>
                 </form>
+
+                <?php } else { ?>
+
+                    <p>You are not login. To login click <a href="<?php echo base_url('welcome/add_patient_login') ?>">here</a>.</p>
+
+                <?php } ?>
+
+
+                <h3 class="text-center">Recommended Other Doctors</h3>
+
+                <table class="table table-dark">
+                    <thead>
+                    <tr>
+
+                        <th scope="col">Serial No</th>
+                        <th scope="col">Name</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <?php
+
+                    $i = 1;
+                    foreach ($recommended_doctors as $recommended_doctor) {
+                        ?>
+
+                        <tr>
+                            <th scope="row"><?php echo $i++ ?></th>
+                            <td>
+                                <?php echo $recommended_doctor->doc_name; ?>
+                                <span class="my-rating"
+                                      data-rating="<?= number_format($recommended_doctor->rating, 1) ?>"
+                                      data-doc-id="<?= number_format($recommended_doctor->rating, 1) ?>"></span>
+                                (<?php echo $recommended_doctor->rating_count ?>)
+                            </td>
+                            <td>
+                                <a href="<?php echo base_url("welcome/add_doc_profile/$recommended_doctor->doc_id"); ?>">
+                                    View Details
+                                </a>
+                            </td>
+                        </tr>
+
+
+                    <?php } ?>
+
+                    </tbody>
+                </table>
+
             </div>
         </div>
     </div>
@@ -280,19 +315,18 @@
     });
 </script>
 
-
-<script src="<?php echo base_url() ?>asset/js/jquery.min.js"></script>
 <script src="<?php echo base_url() ?>asset/js/jquery.easing.min.js"></script>
 <script src="<?php echo base_url() ?>asset/js/bootstrap.min.js"></script>
 <script src="<?php echo base_url() ?>asset/js/custom.js"></script>
 <script src="<?php echo base_url() ?>asset/contactform/contactform.js"></script>
 
 <!--Datepicker JS-->
-<script src="<?php echo base_url()?>asset/datepicker/js/bootstrap-datepicker.js"></script>
+<script src="<?php echo base_url() ?>asset/datepicker/js/bootstrap-datepicker.js"></script>
 
 <!-- TimePicker JS-->
-<script src="<?php echo base_url()?>asset/timepicker/jquery.timepicker.min.js"></script>
+<script src="<?php echo base_url() ?>asset/timepicker/jquery.timepicker.min.js"></script>
 
+<script src="<?php echo base_url() ?>asset/js/jquery.star-rating-svg.min.js"></script>
 
 <script>
     $(function () {
@@ -309,6 +343,17 @@
 
 </script>
 
+<script>
+    $(function () {
+        $(".my-rating").starRating({
+            starShape: 'rounded',
+            strokeColor: '#894A00',
+            strokeWidth: 10,
+            starSize: 15,
+            readOnly: true
+        });
+    });
+</script>
 <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>-->
 <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet"/>-->
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>-->
@@ -317,7 +362,6 @@
 <!--<script>-->
 <!--    $(".select2").select2();-->
 <!--</script>-->
-
 
 
 </body>

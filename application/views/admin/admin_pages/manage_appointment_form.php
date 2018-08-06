@@ -59,6 +59,10 @@
 
                             <td>
 
+                                <a href="<?php echo base_url("appointment/done_appointment/$v_app->appointment_id")?>" class='btn btn-primary btn-sm' title="Update Status">
+                                    <i class=" fa fa-check "></i>
+                                </a>
+
 <!--                                <a href="--><?php //echo base_url("appointment/edi_appointment/$v_app->appointment_id") ?><!--"-->
 <!--                                   class="btn btn-success" title="Edit"><span-->
 <!--                                            class="glyphicon glyphicon-edit"></span></a>-->

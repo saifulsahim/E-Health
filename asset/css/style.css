@@ -564,7 +564,7 @@ footer
     margin: 0px auto;
     overflow: hidden;
     padding: 8px;
-    width: 450px;
+    width: 650px;
 }
 
 .form-wrapper #search {
@@ -580,7 +580,7 @@ footer
     font: 16px Lucida Sans, Trebuchet MS, Tahoma, sans-serif;
     height: 43px;
     padding: 10px;
-    width: 320px;
+    width: 520px;
 }
 
 .form-wrapper #search:focus {

@@ -63,5 +63,12 @@ class Appointment extends CI_Controller
         redirect('appointment/manage_appointment');
     }
 
+    public function done_appointment($id)
+    {
+        $this->appointment_model->done_appointment_by_id($id);
+
+        redirect('patient/manage_patient');
+    }
+
 
 }

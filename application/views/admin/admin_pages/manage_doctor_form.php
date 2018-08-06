@@ -33,6 +33,8 @@
                         <th>Doctor Qualification</th>
                         <th>Doctor Designation</th>
                         <th>Doctor Category</th>
+                        <th>Doctor Symptoms</th>
+                        <th>Doctor disease</th>
                         <th>Doctor Chamber</th>
                         <th>Hospital Name</th>
                         <th>Birth Date</th>
@@ -70,6 +72,9 @@
                             <td><?php echo $v_doctor->doc_qualification ?></td>
                             <td><?php echo $v_doctor->doc_designation ?></td>
                             <td><?php echo $dept->dept_name?></td>
+
+                            <td><?php echo $v_doctor->symptoms ?></td>
+                            <td><?php echo $v_doctor->disease ?></td>
                             <td><?php echo $v_doctor->doc_chamber ?></td>
                             <td><?php echo $hospital->hospital_name ?></td>
                             <td><?php echo $v_doctor->doc_birth_date ?></td>

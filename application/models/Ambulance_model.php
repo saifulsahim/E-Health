@@ -20,6 +20,7 @@ class Ambulance_model extends CI_Model
     {
         $result= $this->db->select('*')
             ->from('tbl_ambulance')
+
             ->get()
             ->result();
 
@@ -61,5 +62,8 @@ class Ambulance_model extends CI_Model
         $this->db->where('amb_id',$amb_id)
             ->delete('tbl_ambulance');
     }
+
+
+
 
 }

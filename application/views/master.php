@@ -37,7 +37,7 @@
 <!--                            <li class=""><a href="#service">Services</a></li>-->
 
                             <li class=""><a href="<?php echo base_url('welcome/hospital_master') ?>">Hospital</a></li>
-                            <li class=""><a href="#blog">Blog</a></li>
+                            <li class=""><a href="<?php echo base_url('welcome/manage_blog')?>">Blog</a></li>
                             <li class=""><a href="http://localhost/E-commerce/" target="_blank">Shop</a></li>
                             <li class=""><a href="#contact">Contact</a></li>
                             <li class=""><a href="<?php echo base_url('welcome/add_donor_master') ?>">Blood</a></li>
@@ -64,8 +64,8 @@
                             everything organised for you..</p>
 
 
-                        <form class="form-wrapper">
-                            <input type="text" id="search" placeholder="Search for..." required>
+                        <form class="form-wrapper" action="<?php echo base_url('welcome/omnisearch')?>" method="GET">
+                            <input name="q" type="text" id="search" placeholder="Search for doctor name, symptoms, disease, blood donor..." required>
                             <input type="submit" value="go" id="submit">
                         </form>
 

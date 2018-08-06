@@ -57,6 +57,7 @@ class Appointment_model extends CI_Model
     {
         $result = $this->db->select('*')
             ->from('tbl_appointment')
+
             ->order_by('appointment_date asc', 'appointment_time desc')
             ->get()
             ->result();
@@ -112,6 +113,7 @@ GROUP BY
         $result = $this->db->select('*')
             ->from('tbl_appointment')
             ->order_by('appointment_date asc', 'appointment_time desc')
+            ->where('appointment_status',1)
             ->where('doc_id', $doc_id)
             ->get()
             ->result();
@@ -153,5 +155,14 @@ GROUP BY
     {
         $this->db->where('appointment_id', $id)
             ->delete('tbl_appointment');
+    }
+
+    public function done_appointment_by_id($id)
+    {
+        $data['appointment_status'] = false;
+
+        $this->db->where('appointment_id', $id)
+            ->update('tbl_appointment', $data);
+
     }
 }

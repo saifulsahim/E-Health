@@ -1,38 +1,38 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Admin_login extends CI_Controller {
+class Admin_login extends CI_Controller
+{
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
-	public function index()
-	{
+    /**
+     * Index Page for this controller.
+     *
+     * Maps to the following URL
+     *        http://example.com/index.php/welcome
+     *    - or -
+     *        http://example.com/index.php/welcome/index
+     *    - or -
+     * Since this controller is set as the default controller in
+     * config/routes.php, it's displayed at http://example.com/
+     *
+     * So any other public methods not prefixed with an underscore will
+     * map to /index.php/welcome/<method_name>
+     * @see https://codeigniter.com/user_guide/general/urls.html
+     */
+    public function index()
+    {
 
-	    if(isset($this->session->admin_id)){
-	        redirect('admin-dashboard');
-        }
-        else{
+        if (isset($this->session->admin_id)) {
+            redirect('admin-dashboard');
+        } else {
             $this->load->view('admin/admin_login');
         }
 
 
-	}
+    }
 
 
-	public function check_admin_login()
+    public function check_admin_login()
     {
         $admin_email = $this->input->post('adminEmail', true);
         $admin_password = $this->input->post('adminPassword', true);
@@ -44,7 +44,7 @@ class Admin_login extends CI_Controller {
 
         $admin_details = $this->admin_model->get_admin_details($admin_email);
 
-        if($admin_details) {
+        if ($admin_details) {
             if (password_verify($admin_password, $admin_details->admin_password)) {
 
                 if ($admin_details->admin_status == 1) {
@@ -71,19 +71,17 @@ class Admin_login extends CI_Controller {
                 $this->load->view('admin/admin_login', $data);
 
             }
+        } else {
+            $data['error_message'] = 'Incorrect Email or Password';
+            $this->load->view('master', $data);
         }
-        else {
-                $data['error_message'] = 'Incorrect Email or Password';
-                $this->load->view('master', $data);
-            }
-        }
-
+    }
 
 
     public function check_admin_logout()
     {
-         $this->session->sess_destroy();
-         redirect('admin');
+        $this->session->sess_destroy();
+        redirect('admin');
     }
 
 
@@ -97,8 +95,8 @@ class Admin_login extends CI_Controller {
     public function doctors()
     {
         $data = array();
-        $data['dashboard'] = $this->load->view('admin/admin_pages/form','',true);
-        $this->load->view('admin/admin_master',$data);
+        $data['dashboard'] = $this->load->view('admin/admin_pages/form', '', true);
+        $this->load->view('admin/admin_master', $data);
 
 
     }
@@ -106,8 +104,8 @@ class Admin_login extends CI_Controller {
     public function manage_doctor()
     {
         $data = array();
-        $data['dashboard'] = $this->load->view('admin/admin_pages/manage_doctor','',true);
-        $this->load->view('admin/admin_master',$data);
+        $data['dashboard'] = $this->load->view('admin/admin_pages/manage_doctor', '', true);
+        $this->load->view('admin/admin_master', $data);
 
     }
 

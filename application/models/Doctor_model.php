@@ -118,6 +118,8 @@ class Doctor_model extends CI_Model
         $doctor_data['doc_qualification'] = $this->input->post('docQual', true);
         $doctor_data['doc_designation'] = $this->input->post('docDesignation', true);
         $doctor_data['doc_category'] = $this->input->post('docCategory', true);
+        $doctor_data['symptoms'] = $this->input->post('symptoms', true);
+        $doctor_data['disease'] = $this->input->post('disease', true);
         //$doctor_data['doc_chamber']=$this->input->post('docChamber',true);
         $doctor_data['doc_birth_date'] = $this->input->post('docBirthDate', true);
         $doctor_data['hospital_id'] = $this->input->post('hosName', true);
@@ -181,6 +183,71 @@ class Doctor_model extends CI_Model
         $result = $this->db->select('*')
             ->from('tbl_doctor')
             ->get()
+            ->result();
+
+        return $result;
+    }
+
+    public function get_doctors_for_query($query)
+    {
+        $result = $this->db->query("SELECT
+    IFNULL(AVG(tbl_rating.value),
+    0) AS rating,
+    COUNT(tbl_rating.rating_id) AS rating_count,
+    tbl_doctor.*
+FROM
+    tbl_doctor
+LEFT JOIN tbl_rating ON tbl_rating.doc_id = tbl_doctor.doc_id
+WHERE tbl_doctor.doc_name LIKE '%$query%' OR tbl_doctor.symptoms LIKE '%$query%' OR tbl_doctor.disease LIKE '%$query%'
+GROUP BY
+    tbl_doctor.doc_id
+ORDER BY
+    rating
+DESC
+LIMIT 5")
+            ->result();
+
+        return $result;
+    }
+
+    public function get_recommended_doctors()
+    {
+        $result = $this->db->query('SELECT
+    IFNULL(AVG(tbl_rating.value),
+    0) AS rating,
+    COUNT(tbl_rating.rating_id) AS rating_count,
+    tbl_doctor.*
+FROM
+    tbl_doctor
+LEFT JOIN tbl_rating ON tbl_rating.doc_id = tbl_doctor.doc_id
+GROUP BY
+    tbl_doctor.doc_id
+ORDER BY
+    rating
+DESC
+LIMIT 5')
+            ->result();
+
+        return $result;
+    }
+
+    public function get_recommended_doctors_by_category($category_id)
+    {
+        $result = $this->db->query("SELECT
+    IFNULL(AVG(tbl_rating.value),
+    0) AS rating,
+    COUNT(tbl_rating.rating_id) AS rating_count,
+    tbl_doctor.*
+FROM
+    tbl_doctor
+LEFT JOIN tbl_rating ON tbl_rating.doc_id = tbl_doctor.doc_id
+WHERE tbl_doctor.doc_category = $category_id
+GROUP BY
+    tbl_doctor.doc_id
+ORDER BY
+    rating
+DESC
+LIMIT 5")
             ->result();
 
         return $result;

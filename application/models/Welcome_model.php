@@ -28,6 +28,7 @@ class Welcome_model extends CI_Model
 
         $result = $this->db->query("SELECT
     IFNULL(AVG(tbl_rating.value), 0) AS rating,
+    COUNT(tbl_rating.rating_id) AS rating_count,
     tbl_doctor.*
 FROM
     tbl_doctor
@@ -37,7 +38,6 @@ WHERE
 GROUP BY
     tbl_doctor.doc_id
 ORDER BY rating DESC")->result();
-
 
         return $result;
     }
@@ -79,13 +79,30 @@ ORDER BY rating DESC")->result();
 
     public function get_all_active_hospital_doctors($id)
     {
-        $result = $this->db->select('*')
-            ->from('tbl_hospital')
-            ->join('tbl_doctor', 'tbl_hospital.hospital_id = tbl_doctor.hospital_id')
-            ->where('tbl_doctor.hospital_id', $id)
-            ->get()
-            ->result();
+//        $result = $this->db->select('*')
+//            ->from('tbl_hospital')
+//            ->join('tbl_doctor', 'tbl_hospital.hospital_id = tbl_doctor.hospital_id')
+//            ->where('tbl_doctor.hospital_id', $id)
+//            ->get()
+//            ->result();
 
+        $result = $this->db->query("SELECT
+    IFNULL(AVG(tbl_rating.value),
+    0) AS rating,
+    COUNT(tbl_rating.rating_id) AS rating_count,
+    tbl_hospital.*,
+    tbl_doctor.*
+FROM
+    tbl_hospital
+LEFT JOIN tbl_doctor ON tbl_hospital.hospital_id = tbl_doctor.hospital_id
+LEFT JOIN tbl_rating ON tbl_rating.doc_id = tbl_doctor.doc_id
+WHERE tbl_doctor.hospital_id = $id
+GROUP BY
+    tbl_doctor.doc_id
+ORDER BY
+    rating
+DESC")
+            ->result();
 
         return $result;
 

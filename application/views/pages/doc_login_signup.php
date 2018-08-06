@@ -279,9 +279,16 @@ $details = $this->admin_model->get_record($id);
                                         </div>
 
 
+
                                         <div class="form-group">
-                                            <input type="text" name="docBirthDate" placeholder="Enter Birth Date"
-                                                   class="form-control datepicker">
+                                            <input type="text" name="symptoms" placeholder="Enter Symptoms"
+                                                   class="form-control">
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <input type="text" name="disease" placeholder="Enter Disease"
+                                                   class="form-control">
                                         </div>
 
 

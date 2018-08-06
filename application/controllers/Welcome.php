@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Welcome extends CI_Controller
+{
 
     public function __construct()
     {
@@ -9,40 +10,99 @@ class Welcome extends CI_Controller {
         $this->load->model('welcome_model');
     }
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
-	public function index()
-	{
-		$this->load->view('master');
-	}
+    /**
+     * Index Page for this controller.
+     *
+     * Maps to the following URL
+     *        http://example.com/index.php/welcome
+     *    - or -
+     *        http://example.com/index.php/welcome/index
+     *    - or -
+     * Since this controller is set as the default controller in
+     * config/routes.php, it's displayed at http://example.com/
+     *
+     * So any other public methods not prefixed with an underscore will
+     * map to /index.php/welcome/<method_name>
+     * @see https://codeigniter.com/user_guide/general/urls.html
+     */
+    public function index()
+    {
+        $this->load->view('master');
+    }
+
+    public function manage_blog()
+    {
+        $data['posts'] = $this->blog_model->select_all_blogs();
+
+        $this->load->view('pages/blog_list', $data);
+    }
+
+    public function view_blog($blog_id)
+    {
+
+        $data['post'] = $this->blog_model->select_blog($blog_id);
+
+        $this->blog_model->inc_blog_view($blog_id, $data['post']->blog_view);
+
+        $this->load->view('pages/blog_page', $data);
+    }
+
+
+    public function omnisearch()
+    {
+        $data = array();
+        $data['query_string'] = $this->input->get('q', true);
+
+        $query_string = strtolower($data['query_string']);
+
+        /**
+         * 1. doctor name -> tbl_doctor.name
+         * 2. Symptoms -> tbl_doctor.symptoms
+         * 3. Disease -> tbl_doctor.disease
+         * 4. Blood_Group -> tbl_donor.blood_group (completed)
+         */
+
+        if ($query_string == 'a+' || $query_string == 'a-' || $query_string == 'b+' || $query_string == 'b-'
+            || $query_string == 'o+' || $query_string == 'o-' || $query_string == 'ab+' || $query_string == 'ab-'
+        ) {
+
+            $data['category'] = 1;
+
+            $data['result_title'] = "Blood Donor Results for " . strtoupper($query_string);
+            $data['results'] = $this->blood_donor->get_donors_by_blood_group($query_string);
+
+        } else {
+
+            $data['category'] = 2;
+
+            $data['result_title'] = "Doctor List";
+            $data['results'] = $this->doctor_model->get_doctors_for_query($query_string);
+
+            $data['recommended_doctors'] = $this->doctor_model->get_recommended_doctors();
+
+        }
+
+//        echo '<pre>';
+//        var_dump($data);
+
+        $this->load->view('pages/search_results_list', $data);
+
+    }
 
 
     public function add_donor_master()
     {
         $data = array();
-        $data['blood_donor_list'] =$this->load->view('pages/blood_donor_list','',true);
-        $this->load->view('pages/blood_donor_form',$data);
+        $data['blood_donor_list'] = $this->load->view('pages/blood_donor_list', '', true);
+        $this->load->view('pages/blood_donor_form', $data);
 
     }
 
     public function hospital_master()
     {
         $data = array();
-        $data['hospital_list'] =$this->welcome_model->get_all_active_hospitals();
-        $this->load->view('pages/hospital_master',$data);
+        $data['hospital_list'] = $this->welcome_model->get_all_active_hospitals();
+        $this->load->view('pages/hospital_master', $data);
     }
 
 
@@ -50,11 +110,11 @@ class Welcome extends CI_Controller {
     {
 
         $data = array();
-        $data['hospital_doctor_list'] =$this->welcome_model->get_all_active_hospital_doctors($id);
+        $data['hospital_doctor_list'] = $this->welcome_model->get_all_active_hospital_doctors($id);
 //        echo '<pre>';
 //        print_r($data);
 //        exit();
-        $this->load->view('pages/hospital_doctor_master',$data);
+        $this->load->view('pages/hospital_doctor_master', $data);
     }
 
     public function a_positive()
@@ -66,7 +126,7 @@ class Welcome extends CI_Controller {
 //        print_r($data);
 //        exit();
 
-        $this->load->view('pages/a_positive',$data);
+        $this->load->view('pages/a_positive', $data);
     }
 
     public function a_negative()
@@ -78,7 +138,7 @@ class Welcome extends CI_Controller {
 //        print_r($data);
 //        exit();
 
-        $this->load->view('pages/a_negative',$data);
+        $this->load->view('pages/a_negative', $data);
 
     }
 
@@ -92,7 +152,7 @@ class Welcome extends CI_Controller {
 //        print_r($data);
 //        exit();
 
-        $this->load->view('pages/b_positive',$data);
+        $this->load->view('pages/b_positive', $data);
     }
 
     public function b_negative()
@@ -104,7 +164,7 @@ class Welcome extends CI_Controller {
 //        print_r($data);
 //        exit();
 
-        $this->load->view('pages/b_negative',$data);
+        $this->load->view('pages/b_negative', $data);
 
     }
 
@@ -118,7 +178,7 @@ class Welcome extends CI_Controller {
 //        print_r($data);
 //        exit();
 
-        $this->load->view('pages/o_positive',$data);
+        $this->load->view('pages/o_positive', $data);
     }
 
 
@@ -131,10 +191,9 @@ class Welcome extends CI_Controller {
 //        print_r($data);
 //        exit();
 
-        $this->load->view('pages/o_negative',$data);
+        $this->load->view('pages/o_negative', $data);
 
     }
-
 
 
     public function ab_positive()
@@ -142,7 +201,7 @@ class Welcome extends CI_Controller {
         $data = array();
         $data['all_ab_positive_donor'] = $this->welcome_model->all_active_ab_positive_donors('AB+');
 
-        $this->load->view('pages/ab_positive',$data);
+        $this->load->view('pages/ab_positive', $data);
     }
 
     public function ab_negative()
@@ -150,7 +209,7 @@ class Welcome extends CI_Controller {
         $data = array();
         $data['all_ab_negative_donor'] = $this->welcome_model->all_active_ab_negative_donors('AB-');
 
-        $this->load->view('pages/ab_negative',$data);
+        $this->load->view('pages/ab_negative', $data);
 
     }
 
@@ -162,17 +221,19 @@ class Welcome extends CI_Controller {
         $data['all_active_doctors_pathology'] = $this->welcome_model->all_active_doctors(1);
         $data['all_active_doctors_orthopedics'] = $this->welcome_model->all_active_doctors(4);
 
-        $this->load->view('pages/doctor_list',$data);
+        $this->load->view('pages/doctor_list', $data);
     }
 
-    public function add_doc_profile($doc_id)
+    public function add_doc_profile($doc_id)  # ----------------------------------------------------------------
     {
         $data = array();
         $data['doc_info'] = $this->welcome_model->all_active_doctors_profile($doc_id);
+
+        $data['recommended_doctors'] = $this->doctor_model->get_recommended_doctors_by_category($data['doc_info']->doc_category);
 //        echo '<pre>';
 //        print_r($data);
 //        exit();
-        $this->load->view('pages/doctor_profile',$data);
+        $this->load->view('pages/doctor_profile', $data);
     }
 
     public function add_ambulance_master()
@@ -182,7 +243,7 @@ class Welcome extends CI_Controller {
 //        echo '<pre>';
 //        print_r($data);
 //        exit();
-        $this->load->view('pages/ambulance_master',$data);
+        $this->load->view('pages/ambulance_master', $data);
 
     }
 
@@ -194,27 +255,28 @@ class Welcome extends CI_Controller {
 //        echo '<pre>';
 //        print_r($data);
 //        exit();
-        $this->load->view('pages/doc_login_signup',$data);
+        $this->load->view('pages/doc_login_signup', $data);
     }
 
 
-    private function upload_doctor_image(){
+    private function upload_doctor_image()
+    {
 
-        $config['upload_path']   = './uploads/';
+        $config['upload_path'] = './uploads/';
         $config['allowed_types'] = 'gif|jpg|png';
-        $config['max_size']      = '10000';//kb
-        $config['max_width']     = '2024';
-        $config['max_height']    = '1000';
+        $config['max_size'] = '10000';//kb
+        $config['max_width'] = '2024';
+        $config['max_height'] = '1000';
 
 
-        $this->load->library('upload',$config);
-        if($this->upload->do_upload('docImage')){
+        $this->load->library('upload', $config);
+        if ($this->upload->do_upload('docImage')) {
             $data = $this->upload->data();
-            $image_path= "uploads/$data[file_name]";
+            $image_path = "uploads/$data[file_name]";
             return $image_path;
 
-        }else{
-            $error=  $this->upload->display_errors();
+        } else {
+            $error = $this->upload->display_errors();
             print_r($error);
         }
     }
@@ -257,7 +319,7 @@ class Welcome extends CI_Controller {
     public function add_patient_login()
     {
         $data = array();
-        $this->load->view('pages/patient_login_signup',$data);
+        $this->load->view('pages/patient_login_signup', $data);
     }
 
 

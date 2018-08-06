@@ -48,6 +48,17 @@ class Blood_donor extends CI_Model
         return $result;
     }
 
+    public function get_donors_by_blood_group($blood_group)
+    {
+
+        $result = $this->db->select('*')
+            ->from('tbl_donor')
+            ->where('donor_blood_group', $blood_group)
+            ->get()
+            ->result();
+        return $result;
+    }
+
     public function update_donor()
     {
         $data = array();

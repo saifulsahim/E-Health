@@ -99,6 +99,7 @@
                     <?php echo $doctor->doc_name ?>
                     <span class="my-rating" data-rating="<?= number_format($doctor->rating, 1)?>"
                           data-doc-id="<?= number_format($doctor->rating, 1) ?>"></span>
+                    (<?php echo $doctor->rating_count ?>)
                 </td>
                 <td>
                     <img src="<?php echo base_url().$doctor->doc_image?>" width="100" height="100">
@@ -144,7 +145,8 @@
                     <th scope="row"><?php echo $i++?></th>
                     <td><?php echo $doctor->doc_name?>
                         <span class="my-rating" data-rating="<?= number_format($doctor->rating, 1)?>"
-                              data-doc-id="<?= number_format($doctor->rating, 1) ?>"></span></td>
+                              data-doc-id="<?= number_format($doctor->rating, 1) ?>"></span>
+                        (<?php echo $doctor->rating_count ?>)</td>
                     <td>
                         <img src="<?php echo base_url().$doctor->doc_image?>" width="100" height="100">
                     </td>
@@ -188,7 +190,8 @@
                     <th scope="row"><?php echo $i++?></th>
                     <td><?php echo $doctor->doc_name?>
                         <span class="my-rating" data-rating="<?= number_format($doctor->rating, 1)?>"
-                              data-doc-id="<?= number_format($doctor->rating, 1) ?>"></span></td>
+                              data-doc-id="<?= number_format($doctor->rating, 1) ?>"></span>
+                        (<?php echo $doctor->rating_count ?>)</td>
                     <td>
                         <img src="<?php echo base_url().$doctor->doc_image?>" width="100" height="100">
                     </td>
@@ -235,7 +238,8 @@
                     <th scope="row"><?php echo $i++?></th>
                     <td><?php echo $doctor->doc_name?>
                         <span class="my-rating" data-rating="<?= number_format($doctor->rating, 1)?>"
-                              data-doc-id="<?= number_format($doctor->rating, 1) ?>"></span></td>
+                              data-doc-id="<?= number_format($doctor->rating, 1) ?>"></span>
+                        (<?php echo $doctor->rating_count ?>)</td>
                     <td>
                         <img src="<?php echo base_url().$doctor->doc_image?>" width="100" height="100">
                     </td>
