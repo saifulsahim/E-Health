@@ -43,9 +43,14 @@ class Admin_login extends CI_Controller
         $this->load->model('admin_model');
 
         $admin_details = $this->admin_model->get_admin_details($admin_email);
+//        print_r($admin_details);
+//        exit();
 
         if ($admin_details) {
             if (password_verify($admin_password, $admin_details->admin_password)) {
+
+//                print_r($admin_details);
+//                exit();
 
                 if ($admin_details->admin_status == 1) {
 
@@ -57,7 +62,18 @@ class Admin_login extends CI_Controller
 
 
                     $this->session->set_userdata($session_data);
-                    redirect('admin-dashboard');
+
+//                    print_r($session_data);
+//                    exit();
+
+                    if($this->session->userdata('admin_role') == "User")
+                    {
+                        redirect('welcome/manage_blog');
+                    }
+
+                    else {
+                        redirect('admin-dashboard');
+                    }
 
                 } else {
 

@@ -12,7 +12,11 @@ class Admin_model extends CI_Model{
                                   ->get()
                                   ->row();
 
+//        $query = $this->db->last_query();
+//        print_r($query);
+//        exit();
         return $admin_details;
+
 
     }
 

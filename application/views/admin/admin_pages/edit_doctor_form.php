@@ -136,9 +136,23 @@ if (isset($message)) {
 
 
                         <div class="form-group">
-                            <label>Doctor Chamber</label>
-                            <input type="text" name="docChamber" value="<?php echo $doctor_data->doc_chamber?>"  class="form-control" placeholder="Enter Chamber">
+                            <label>Symptomps</label>
+                            <input type="text" name="symptoms" placeholder="Enter Symptoms" value="<?php echo $doctor_data->symptoms?>"
+                                   class="form-control">
                         </div>
+
+
+                        <div class="form-group">
+                            <label>Disease</label>
+                            <input type="text" name="disease" placeholder="Enter Disease" value="<?php echo $doctor_data->disease?>"
+                                   class="form-control">
+                        </div>
+
+
+<!--                        <div class="form-group">-->
+<!--                            <label>Doctor Chamber</label>-->
+<!--                            <input type="text" name="docChamber" value="--><?php //echo $doctor_data->doc_chamber?><!--"  class="form-control" placeholder="Enter Chamber">-->
+<!--                        </div>-->
 
                         <div class="form-group">
                             <label>Doctor Birth Date</label>

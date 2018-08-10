@@ -258,6 +258,53 @@
 
     </div>
 
+
+    <div class="container">
+        <h3 class="text-center">Medicine Specialist</h3>
+        <table class="table table-dark">
+            <thead>
+            <tr>
+                <th scope="col">Serial No</th>
+                <th scope="col">Name</th>
+                <th scope="col">Doctor Image</th>
+                <th scope="col">Qualification</th>
+                <th scope="col">Designation</th>
+                <th scope="col">Mobile no</th>
+                <th scope="col">Address</th>
+                <th scope="col">Appoinment</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            $i = 1;
+
+            foreach ($all_active_doctors_medicine as $doctor){
+                ?>
+                <tr>
+
+                    <th scope="row"><?php echo $i++?></th>
+                    <td><?php echo $doctor->doc_name?>
+                        <span class="my-rating" data-rating="<?= number_format($doctor->rating, 1)?>"
+                              data-doc-id="<?= number_format($doctor->rating, 1) ?>"></span>
+                        (<?php echo $doctor->rating_count ?>)</td>
+                    <td>
+                        <img src="<?php echo base_url().$doctor->doc_image?>" width="100" height="100">
+                    </td>
+                    <td><?php echo $doctor->doc_qualification?></td>
+                    <td><?php echo $doctor->doc_designation?></td>
+                    <td><?php echo $doctor->doc_mobile_no?></td>
+                    <td><?php echo $doctor->doc_chamber?></td>
+                    <td><button type="button" class="btn btn-info"><a href="<?php echo base_url("welcome/add_doc_profile/$doctor->doc_id")?>" target="_blank">
+                                Appoinment</a></button></td>
+                </tr>
+
+            <?php } ?>
+            </tbody>
+        </table>
+
+
+    </div>
+
 </section>
 
 <script src="<?php echo base_url()?>asset/js/jquery.min.js"></script>

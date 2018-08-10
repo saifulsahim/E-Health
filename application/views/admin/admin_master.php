@@ -188,7 +188,7 @@ $details = $this->admin_model->get_record($id);
                                 <a href="<?php echo base_url('add-donor')?>">Add Donor</a>
                             </li>
                             <li>
-                                <a href="<?php echo base_url('manage-donor')?>">Manage Donor</a>
+                                <a href="<?php echo base_url('donor/manage_donor')?>">Manage Donor</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->

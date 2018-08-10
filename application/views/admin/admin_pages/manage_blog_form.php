@@ -37,34 +37,34 @@
                     <tbody>
 
                     <?php
-                    foreach ($blog_data as $v_cabin) {?>
+                    foreach ($blog_data as $v_blog) {?>
                         <tr>
-                            <td><?php echo $v_cabin->blog_id?></td>
-                            <td><?php echo $v_cabin->blog_title?></td>
-                            <td><?php echo $v_cabin->blog_desc?></td>
+                            <td><?php echo $v_blog->blog_id?></td>
+                            <td><?php echo $v_blog->blog_title?></td>
+                            <td><?php echo $v_blog->blog_desc?></td>
 
 <!--                            <td>-->
 <!--                                --><?php
-//                                if($v_cabin->cabin_status ==1){
+//                                if($v_blog->cabin_status ==1){
 //
 //                                    echo 'Active';
 //                                }
-//                                elseif($v_cabin->cabin_status ==2){
+//                                elseif($v_blog->cabin_status ==2){
 //                                    echo 'Inactive';
 //                                }
 //
 //                                ?>
 <!--                            </td>-->
                             <td>
-<!--                                --><?php //if($v_cabin->cabin_status ==1 ){?>
+<!--                                --><?php //if($v_blog->cabin_status ==1 ){?>
 <!---->
-<!--                                    <a href="--><?php //echo base_url("change-cabin-status/$v_cabin->cabin_id/2")?><!--" class='btn btn-primary btn-sm' title="Update Status">-->
+<!--                                    <a href="--><?php //echo base_url("change-cabin-status/$v_blog->cabin_id/2")?><!--" class='btn btn-primary btn-sm' title="Update Status">-->
 <!--                                        <i class="glyphicon glyphicon-thumbs-up"></i>-->
 <!--                                    </a>-->
 <!---->
-<!--                                --><?php //} elseif($v_cabin->cabin_status ==2) { ?>
+<!--                                --><?php //} elseif($v_blog->cabin_status ==2) { ?>
 <!---->
-<!--                                    <a href="--><?php //echo base_url("change-cabin-status/$v_cabin->cabin_id/1")?><!--" class='btn btn-primary btn-sm' title="Update Status">-->
+<!--                                    <a href="--><?php //echo base_url("change-cabin-status/$v_blog->cabin_id/1")?><!--" class='btn btn-primary btn-sm' title="Update Status">-->
 <!--                                        <i class="glyphicon glyphicon-thumbs-down"></i>-->
 <!--                                    </a>-->
 <!---->
@@ -73,9 +73,9 @@
 
 
 
-<!--                                <a href="--><?php //echo base_url("view-cabin/$v_cabin->cabin_id")?><!--" class="btn btn-warning" title="View"><span class="glyphicon glyphicon-eye-open"></span></a>-->
-                                <a href="<?php echo base_url("edit-cabin/$v_cabin->blog_id")?>" class="btn btn-success" title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
-                                <a href="<?php echo base_url("delete-cabin/$v_cabin->blog_id")?>" class="btn btn-danger" title="Delete" onclick="return confirm('Are you sure want to delete!!')"><span class="glyphicon glyphicon-trash"></span></a>
+<!--                                <a href="--><?php //echo base_url("view-cabin/$v_blog->cabin_id")?><!--" class="btn btn-warning" title="View"><span class="glyphicon glyphicon-eye-open"></span></a>-->
+                                <a href="<?php echo base_url("blog/edit_blog/$v_blog->blog_id")?>" class="btn btn-success" title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
+                                <a href="<?php echo base_url("blog/delete_blog/$v_blog->blog_id")?>" class="btn btn-danger" title="Delete" onclick="return confirm('Are you sure want to delete!!')"><span class="glyphicon glyphicon-trash"></span></a>
 
 
 

@@ -295,7 +295,9 @@ LIMIT 5")
         $doctor_data['doc_qualification'] = $this->input->post('docQual', true);
         $doctor_data['doc_designation'] = $this->input->post('docDesignation', true);
         $doctor_data['doc_category'] = $this->input->post('docCategory', true);
-        $doctor_data['doc_chamber'] = $this->input->post('docChamber', true);
+        $doctor_data['symptoms'] = $this->input->post('symptoms', true);
+        $doctor_data['disease'] = $this->input->post('disease', true);
+        //$doctor_data['doc_chamber'] = $this->input->post('docChamber', true);
         $doctor_data['hospital_id'] = $this->input->post('hosName', true);
         $doctor_data['doc_birth_date'] = $this->input->post('docBirthDate', true);
         $doctor_data['doc_fee'] = $this->input->post('docFees', true);

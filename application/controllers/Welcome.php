@@ -39,9 +39,15 @@ class Welcome extends CI_Controller
 
     public function view_blog($blog_id)
     {
-
+        $data['blog_id'] = $blog_id;
+        $data['all_comments'] = $this->blog_model->select_all_comments($blog_id);
+//        echo '<pre>';
+//        print_r($data);
+//        exit();
         $data['post'] = $this->blog_model->select_blog($blog_id);
 
+//        echo $data['blog_id'];
+//        exit();
         $this->blog_model->inc_blog_view($blog_id, $data['post']->blog_view);
 
         $this->load->view('pages/blog_page', $data);
@@ -86,6 +92,12 @@ class Welcome extends CI_Controller
 //        var_dump($data);
 
         $this->load->view('pages/search_results_list', $data);
+
+//        if($data['query_string'] == null)
+//        {
+//            echo 'Nothing Found';
+//        }
+
 
     }
 
@@ -220,6 +232,7 @@ class Welcome extends CI_Controller
         $data['all_active_doctors_neurology'] = $this->welcome_model->all_active_doctors(2);
         $data['all_active_doctors_pathology'] = $this->welcome_model->all_active_doctors(1);
         $data['all_active_doctors_orthopedics'] = $this->welcome_model->all_active_doctors(4);
+        $data['all_active_doctors_medicine'] = $this->welcome_model->all_active_doctors(7);
 
         $this->load->view('pages/doctor_list', $data);
     }
