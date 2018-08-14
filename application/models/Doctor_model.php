@@ -203,8 +203,7 @@ GROUP BY
     tbl_doctor.doc_id
 ORDER BY
     rating
-DESC
-LIMIT 5")
+DESC")
             ->result();
 
         return $result;
@@ -323,6 +322,9 @@ LIMIT 5")
     {
         $this->db->where('doc_id', $doctor_id)
             ->delete('tbl_doctor');
+        $this->db->where('insert_id', $doctor_id)
+            ->where('admin_role', 'Doctor')
+            ->delete('tbl_admin');
 
     }
 

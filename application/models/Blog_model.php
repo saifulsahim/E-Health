@@ -82,6 +82,18 @@ class Blog_model extends CI_Model
         return $result;
     }
 
+    public function select_all_blogs_for_doctor($admin_id)
+    {
+        $result = $this->db->select('*')
+            ->from('tbl_blog')
+            ->where('admin_id', $admin_id)
+            ->order_by('blog_date desc')
+            ->get()
+            ->result();
+
+        return $result;
+    }
+
     public function select_blog($blog_id)
     {
         $result = $this->db->select('*')

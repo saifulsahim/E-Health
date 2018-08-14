@@ -94,58 +94,67 @@
 ?>
                 <hr>
 
-                <?php echo form_open('blog/save_comments')?>
 
-                <div class="form-group">
-                    <label>Comments</label>
-                    <textarea name="comments" rows="2" class="form-control"></textarea>
-                </div>
+                <?php if ($this->session->userdata('admin_id')) { ?>
 
-                <input type="hidden" name="blogId" value="<?php echo $post->blog_id?>">
+                    <?php echo form_open('blog/save_comments')?>
 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                    <div class="form-group">
+                        <label>Comments</label>
+                        <textarea name="comments" rows="2" class="form-control"></textarea>
+                    </div>
 
-                <div class="comments-area">
-                    <h3 class="comments-title">Comments</h3>
-                    <?php
-                    foreach ($all_comments as $comments):
-                        $user = $this->blog_model->get_record($comments->admin_id);
+                    <input type="hidden" name="blogId" value="<?php echo $post->blog_id?>">
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+
+                    <div class="comments-area">
+                        <h3 class="comments-title">Comments</h3>
+                        <?php
+                        foreach ($all_comments as $comments):
+                            $user = $this->blog_model->get_record($comments->admin_id);
 //                        $cdate = DateTime::createFromFormat('Y-m-d', $comment->date);
 //                        $cday = $date->format('d');
 //                        $cmonth = $date->format('F');
 //                        $cyear = $date->format('Y');
-                        ?>
-                        <ol class="comment-list">
-                            <li>
-                                <article>
-                                    <div class="comment-meta">
-                                        <div class="comment-author-metadata">
-                                            <h4><a href="#"><?= $user->admin_name; ?></a></h4>
-                                            <div class="comment-metadata">
-                                                <a href="#">
-                                                    at
-                                                    <?= $comments->post_date; ?></a>
+                            ?>
+                            <ol class="comment-list">
+                                <li>
+                                    <article>
+                                        <div class="comment-meta">
+                                            <div class="comment-author-metadata">
+                                                <h4><a href="#"><?= $user->admin_name; ?></a></h4>
+                                                <div class="comment-metadata">
+                                                    <a href="#">
+                                                        at
+                                                        <?= $comments->post_date; ?></a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="comment-content">
-                                        <p>
-                                            <?= $comments->message; ?>
-                                        </p>
-                                    </div>
-                                </article>
-                            </li>
-                        </ol>
-                    <?php endforeach; ?>
+                                        <div class="comment-content">
+                                            <p>
+                                                <?= $comments->message; ?>
+                                            </p>
+                                        </div>
+                                    </article>
+                                </li>
+                            </ol>
+                        <?php endforeach; ?>
 
 
 
-                </div>
+                    </div>
+
+                    <?php echo form_close()?>
+
+                <?php } else{ ?>
+
+                    Please Login to <a href="<?php echo base_url("blog/add_user_sign_in?r=welcome/view_blog/$post->blog_id")?>">comment</a>
+
+                <?php }?>
 
 
 
-
-                <?php echo form_close()?>
 
                 <p>This Blog is viewed by total
                     <?php echo $post->blog_view;?> times

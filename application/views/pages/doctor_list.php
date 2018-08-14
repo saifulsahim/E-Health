@@ -8,11 +8,11 @@
 
 
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Candal">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>asset/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>asset/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>asset/css/style.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>asset/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>asset/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>asset/css/style.css">
 
-    <link href="<?php echo base_url()?>asset/css/star-rating-svg.css" rel="stylesheet">
+    <link href="<?php echo base_url() ?>asset/css/star-rating-svg.css" rel="stylesheet">
 
 </head>
 
@@ -29,17 +29,20 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="<?php echo base_url()?>"><img src="<?php echo base_url()?>asset/img/logo.png" class="img-responsive" style="width: 140px; margin-top: -16px;"></a>
+                        <a class="navbar-brand" href="<?php echo base_url() ?>"><img
+                                    src="<?php echo base_url() ?>asset/img/logo.png" class="img-responsive"
+                                    style="width: 140px; margin-top: -16px;"></a>
                     </div>
                     <div class="collapse navbar-collapse navbar-right" id="myNavbar">
                         <ul class="nav navbar-nav">
-                            <li class=""><a href="<?php echo base_url()?>">Home</a></li>
-                            <li class=""><a href="<?php echo base_url('welcome/hospital_master')?>">Hospital</a></li>
+                            <li class=""><a href="<?php echo base_url() ?>">Home</a></li>
+                            <li class=""><a href="<?php echo base_url('welcome/hospital_master') ?>">Hospital</a></li>
                             <li class=""><a href="#blog">Blog</a></li>
                             <li class=""><a href="#shop">Shop</a></li>
-                            <li class=""><a href="<?php echo base_url('welcome/add_donor_master')?>">Blood</a></li>
-                            <li class=""><a href="<?php echo base_url('welcome/add_ambulance_master')?>">Ambulance</a></li>
-                            <li class=""><a href="<?php echo base_url('welcome/add_doctor_master')?>">Doctor</a></li>
+                            <li class=""><a href="<?php echo base_url('welcome/add_donor_master') ?>">Blood</a></li>
+                            <li class=""><a href="<?php echo base_url('welcome/add_ambulance_master') ?>">Ambulance</a>
+                            </li>
+                            <li class=""><a href="<?php echo base_url('welcome/add_doctor_master') ?>">Doctor</a></li>
                         </ul>
                         </ul>
                     </div>
@@ -50,12 +53,31 @@
             <div class="row">
                 <div class="banner-info">
                     <div class="banner-logo text-center">
-                        <img src="<?php echo base_url()?>asset/img/logo.png" class="img-responsive">
+                        <img src="<?php echo base_url() ?>asset/img/logo.png" class="img-responsive">
                     </div>
                     <div class="banner-text text-center">
                         <h1 class="white">Healthcare at your desk!!</h1>
-                        <p>Find your doctor, hospital or blood donor easily with a minimum of effort. We've kept everything organised for you..</p>
-                        <a href="<?php echo base_url('welcome/add_doctor_master')?>" class="btn btn-appoint">Make an Appointment.</a>
+                        <p>Find your doctor, hospital or blood donor easily with a minimum of effort. We've kept
+                            everything organised for you..</p>
+                        <a href="<?php echo base_url('welcome/add_doctor_master') ?>" class="btn btn-appoint">Make an
+                            Appointment.</a>
+
+
+                            <?php
+
+                            $message = $this->session->message;
+
+                            if (isset($message)) {
+
+                                echo ' <div class="alert alert-info">';
+                                echo $message;
+                                echo ' </div>';
+                                $this->session->unset_userdata('message');
+
+
+                            } ?>
+
+
                     </div>
                     <div class="overlay-detail text-center">
                         <a href="#cta-3"><i class="fa fa-angle-down"></i></a>
@@ -90,27 +112,31 @@
             <?php
 
             $i = 1;
-            foreach ($all_active_doctors_cardiology as $doctor){
-            ?>
-            <tr>
+            foreach ($all_active_doctors_cardiology as $doctor) {
+                ?>
+                <tr>
 
-                <th scope="row"><?php echo $i++?></th>
-                <td>
-                    <?php echo $doctor->doc_name ?>
-                    <span class="my-rating" data-rating="<?= number_format($doctor->rating, 1)?>"
-                          data-doc-id="<?= number_format($doctor->rating, 1) ?>"></span>
-                    (<?php echo $doctor->rating_count ?>)
-                </td>
-                <td>
-                    <img src="<?php echo base_url().$doctor->doc_image?>" width="100" height="100">
-                </td>
-                <td><?php echo $doctor->doc_qualification?></td>
-                <td><?php echo $doctor->doc_designation?></td>
-                <td><?php echo $doctor->doc_mobile_no?></td>
-                <td><?php echo $doctor->doc_chamber?></td>
-                <td><button type="button" class="btn btn-info"><a href="<?php echo base_url("welcome/add_doc_profile/$doctor->doc_id")?>" target="_blank">
-                            Appoinment</a></button></td>
-            </tr>
+                    <th scope="row"><?php echo $i++ ?></th>
+                    <td>
+                        <?php echo $doctor->doc_name ?>
+                        <span class="my-rating" data-rating="<?= number_format($doctor->rating, 1) ?>"
+                              data-doc-id="<?= number_format($doctor->rating, 1) ?>"></span>
+                        (<?php echo $doctor->rating_count ?>)
+                    </td>
+                    <td>
+                        <img src="<?php echo base_url() . $doctor->doc_image ?>" width="100" height="100">
+                    </td>
+                    <td><?php echo $doctor->doc_qualification ?></td>
+                    <td><?php echo $doctor->doc_designation ?></td>
+                    <td><?php echo $doctor->doc_mobile_no ?></td>
+                    <td><?php echo $doctor->doc_chamber ?></td>
+                    <td>
+                        <button type="button" class="btn btn-info"><a
+                                    href="<?php echo base_url("welcome/add_doc_profile/$doctor->doc_id") ?>"
+                                    target="_blank">
+                                Appoinment</a></button>
+                    </td>
+                </tr>
 
             <?php } ?>
             </tbody>
@@ -138,24 +164,29 @@
             <?php
 
             $i = 1;
-            foreach ($all_active_doctors_neurology as $doctor){
+            foreach ($all_active_doctors_neurology as $doctor) {
                 ?>
                 <tr>
 
-                    <th scope="row"><?php echo $i++?></th>
-                    <td><?php echo $doctor->doc_name?>
-                        <span class="my-rating" data-rating="<?= number_format($doctor->rating, 1)?>"
+                    <th scope="row"><?php echo $i++ ?></th>
+                    <td><?php echo $doctor->doc_name ?>
+                        <span class="my-rating" data-rating="<?= number_format($doctor->rating, 1) ?>"
                               data-doc-id="<?= number_format($doctor->rating, 1) ?>"></span>
-                        (<?php echo $doctor->rating_count ?>)</td>
-                    <td>
-                        <img src="<?php echo base_url().$doctor->doc_image?>" width="100" height="100">
+                        (<?php echo $doctor->rating_count ?>)
                     </td>
-                    <td><?php echo $doctor->doc_qualification?></td>
-                    <td><?php echo $doctor->doc_designation?></td>
-                    <td><?php echo $doctor->doc_mobile_no?></td>
-                    <td><?php echo $doctor->doc_chamber?></td>
-                    <td><button type="button" class="btn btn-info"><a href="<?php echo base_url("welcome/add_doc_profile/$doctor->doc_id")?>" target="_blank">
-                                Appoinment</a></button></td>
+                    <td>
+                        <img src="<?php echo base_url() . $doctor->doc_image ?>" width="100" height="100">
+                    </td>
+                    <td><?php echo $doctor->doc_qualification ?></td>
+                    <td><?php echo $doctor->doc_designation ?></td>
+                    <td><?php echo $doctor->doc_mobile_no ?></td>
+                    <td><?php echo $doctor->doc_chamber ?></td>
+                    <td>
+                        <button type="button" class="btn btn-info"><a
+                                    href="<?php echo base_url("welcome/add_doc_profile/$doctor->doc_id") ?>"
+                                    target="_blank">
+                                Appoinment</a></button>
+                    </td>
                 </tr>
 
             <?php } ?>
@@ -184,23 +215,28 @@
             <?php
 
             $i = 1;
-            foreach ($all_active_doctors_pathology as $doctor){
+            foreach ($all_active_doctors_pathology as $doctor) {
                 ?>
                 <tr>
-                    <th scope="row"><?php echo $i++?></th>
-                    <td><?php echo $doctor->doc_name?>
-                        <span class="my-rating" data-rating="<?= number_format($doctor->rating, 1)?>"
+                    <th scope="row"><?php echo $i++ ?></th>
+                    <td><?php echo $doctor->doc_name ?>
+                        <span class="my-rating" data-rating="<?= number_format($doctor->rating, 1) ?>"
                               data-doc-id="<?= number_format($doctor->rating, 1) ?>"></span>
-                        (<?php echo $doctor->rating_count ?>)</td>
-                    <td>
-                        <img src="<?php echo base_url().$doctor->doc_image?>" width="100" height="100">
+                        (<?php echo $doctor->rating_count ?>)
                     </td>
-                    <td><?php echo $doctor->doc_qualification?></td>
-                    <td><?php echo $doctor->doc_designation?></td>
-                    <td><?php echo $doctor->doc_mobile_no?></td>
-                    <td><?php echo $doctor->doc_chamber?></td>
-                    <td><button type="button" class="btn btn-info"><a href="<?php echo base_url("welcome/add_doc_profile/$doctor->doc_id")?>" target="_blank">
-                                Appoinment</a></button></td>
+                    <td>
+                        <img src="<?php echo base_url() . $doctor->doc_image ?>" width="100" height="100">
+                    </td>
+                    <td><?php echo $doctor->doc_qualification ?></td>
+                    <td><?php echo $doctor->doc_designation ?></td>
+                    <td><?php echo $doctor->doc_mobile_no ?></td>
+                    <td><?php echo $doctor->doc_chamber ?></td>
+                    <td>
+                        <button type="button" class="btn btn-info"><a
+                                    href="<?php echo base_url("welcome/add_doc_profile/$doctor->doc_id") ?>"
+                                    target="_blank">
+                                Appoinment</a></button>
+                    </td>
                 </tr>
 
             <?php } ?>
@@ -209,7 +245,6 @@
 
 
     </div>
-
 
 
     <div class="container">
@@ -231,24 +266,29 @@
             <?php
             $i = 1;
 
-            foreach ($all_active_doctors_orthopedics as $doctor){
+            foreach ($all_active_doctors_orthopedics as $doctor) {
                 ?>
                 <tr>
 
-                    <th scope="row"><?php echo $i++?></th>
-                    <td><?php echo $doctor->doc_name?>
-                        <span class="my-rating" data-rating="<?= number_format($doctor->rating, 1)?>"
+                    <th scope="row"><?php echo $i++ ?></th>
+                    <td><?php echo $doctor->doc_name ?>
+                        <span class="my-rating" data-rating="<?= number_format($doctor->rating, 1) ?>"
                               data-doc-id="<?= number_format($doctor->rating, 1) ?>"></span>
-                        (<?php echo $doctor->rating_count ?>)</td>
-                    <td>
-                        <img src="<?php echo base_url().$doctor->doc_image?>" width="100" height="100">
+                        (<?php echo $doctor->rating_count ?>)
                     </td>
-                    <td><?php echo $doctor->doc_qualification?></td>
-                    <td><?php echo $doctor->doc_designation?></td>
-                    <td><?php echo $doctor->doc_mobile_no?></td>
-                    <td><?php echo $doctor->doc_chamber?></td>
-                    <td><button type="button" class="btn btn-info"><a href="<?php echo base_url("welcome/add_doc_profile/$doctor->doc_id")?>" target="_blank">
-                                Appoinment</a></button></td>
+                    <td>
+                        <img src="<?php echo base_url() . $doctor->doc_image ?>" width="100" height="100">
+                    </td>
+                    <td><?php echo $doctor->doc_qualification ?></td>
+                    <td><?php echo $doctor->doc_designation ?></td>
+                    <td><?php echo $doctor->doc_mobile_no ?></td>
+                    <td><?php echo $doctor->doc_chamber ?></td>
+                    <td>
+                        <button type="button" class="btn btn-info"><a
+                                    href="<?php echo base_url("welcome/add_doc_profile/$doctor->doc_id") ?>"
+                                    target="_blank">
+                                Appoinment</a></button>
+                    </td>
                 </tr>
 
             <?php } ?>
@@ -278,24 +318,29 @@
             <?php
             $i = 1;
 
-            foreach ($all_active_doctors_medicine as $doctor){
+            foreach ($all_active_doctors_medicine as $doctor) {
                 ?>
                 <tr>
 
-                    <th scope="row"><?php echo $i++?></th>
-                    <td><?php echo $doctor->doc_name?>
-                        <span class="my-rating" data-rating="<?= number_format($doctor->rating, 1)?>"
+                    <th scope="row"><?php echo $i++ ?></th>
+                    <td><?php echo $doctor->doc_name ?>
+                        <span class="my-rating" data-rating="<?= number_format($doctor->rating, 1) ?>"
                               data-doc-id="<?= number_format($doctor->rating, 1) ?>"></span>
-                        (<?php echo $doctor->rating_count ?>)</td>
-                    <td>
-                        <img src="<?php echo base_url().$doctor->doc_image?>" width="100" height="100">
+                        (<?php echo $doctor->rating_count ?>)
                     </td>
-                    <td><?php echo $doctor->doc_qualification?></td>
-                    <td><?php echo $doctor->doc_designation?></td>
-                    <td><?php echo $doctor->doc_mobile_no?></td>
-                    <td><?php echo $doctor->doc_chamber?></td>
-                    <td><button type="button" class="btn btn-info"><a href="<?php echo base_url("welcome/add_doc_profile/$doctor->doc_id")?>" target="_blank">
-                                Appoinment</a></button></td>
+                    <td>
+                        <img src="<?php echo base_url() . $doctor->doc_image ?>" width="100" height="100">
+                    </td>
+                    <td><?php echo $doctor->doc_qualification ?></td>
+                    <td><?php echo $doctor->doc_designation ?></td>
+                    <td><?php echo $doctor->doc_mobile_no ?></td>
+                    <td><?php echo $doctor->doc_chamber ?></td>
+                    <td>
+                        <button type="button" class="btn btn-info"><a
+                                    href="<?php echo base_url("welcome/add_doc_profile/$doctor->doc_id") ?>"
+                                    target="_blank">
+                                Appoinment</a></button>
+                    </td>
                 </tr>
 
             <?php } ?>
@@ -307,16 +352,16 @@
 
 </section>
 
-<script src="<?php echo base_url()?>asset/js/jquery.min.js"></script>
-<script src="<?php echo base_url()?>asset/js/jquery.easing.min.js"></script>
-<script src="<?php echo base_url()?>asset/js/bootstrap.min.js"></script>
-<script src="<?php echo base_url()?>asset/js/custom.js"></script>
-<script src="<?php echo base_url()?>asset/contactform/contactform.js"></script>
+<script src="<?php echo base_url() ?>asset/js/jquery.min.js"></script>
+<script src="<?php echo base_url() ?>asset/js/jquery.easing.min.js"></script>
+<script src="<?php echo base_url() ?>asset/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url() ?>asset/js/custom.js"></script>
+<script src="<?php echo base_url() ?>asset/contactform/contactform.js"></script>
 
-<script src="<?php echo base_url()?>asset/js/jquery.star-rating-svg.min.js"></script>
+<script src="<?php echo base_url() ?>asset/js/jquery.star-rating-svg.min.js"></script>
 
 <script>
-    $(function(){
+    $(function () {
         $(".my-rating").starRating({
             starShape: 'rounded',
             strokeColor: '#894A00',

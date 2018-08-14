@@ -94,6 +94,8 @@
 
                     <th scope="col">Serial No</th>
                     <th scope="col">Name</th>
+                    <th scope="col">Mobile No</th>
+                    <th scope="col">Address</th>
 
                 </tr>
                 </thead>
@@ -111,6 +113,12 @@
                         <td>
                             <?php echo $result->donor_name; ?>
                         </td>
+                        <td>
+                            <?php echo $result->donor_mobile_no; ?>
+                        </td>
+                        <td>
+                            <?php echo $result->donor_address; ?>
+                        </td>
 
                     </tr>
 
@@ -122,76 +130,118 @@
 
         <?php } else { ?>
 
-            <table class="table table-dark">
-                <thead>
-                <tr>
 
-                    <th scope="col">Serial No</th>
-                    <th scope="col">Name</th>
-                </tr>
-                </thead>
-                <tbody>
+            <?php if (empty($results)) { ?>
 
-                <?php
+                <p>No Result Found! :(</p>
 
-                $i = 1;
-                foreach ($results as $result) {
+            <?php } else { ?>
+
+
+                <table class="table table-dark">
+                    <thead>
+                    <tr>
+
+                        <th scope="col">Serial No</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Specialist</th>
+                        <th scope="col">View Details</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <?php
+
+                    $i = 1;
+
+                    foreach ($results as $result) {
+
+                        $dept = $this->doctor_model->get_dept_record($result->doc_category);
+
+
+                        ?>
+                        <a href="<?php echo base_url("welcome/add_doc_profile/$result->doc_id") ?>">
+                            <tr>
+
+                                <th scope="row"><?php echo $i++ ?></th>
+                                <td>
+                                    <?php echo $result->doc_name; ?>
+
+
+                                    <span class="my-rating" data-rating="<?= number_format($result->rating, 1) ?>"
+                                          data-doc-id="<?= number_format($result->rating, 1) ?>"></span>
+                                    (<?php echo $result->rating_count ?>)
+                                </td>
+
+                                <td> <?php echo $dept->dept_name; ?></td>
+                                <td>
+                                    <button type="button" class="btn btn-info"><a
+                                                href="<?php echo base_url("welcome/add_doc_profile/$result->doc_id") ?>"
+                                                target="_blank">
+                                            Appoinment</a></button>
+                                </td>
+
+                            </tr>
+                        </a>
+
+                    <?php }
+
                     ?>
-                    <a href="<?php echo base_url("welcome/add_doc_profile/$result->doc_id") ?>">
-                        <tr>
 
-                            <th scope="row"><?php echo $i++ ?></th>
-                            <td>
-                                <?php echo $result->doc_name; ?>
-                                <span class="my-rating" data-rating="<?= number_format($result->rating, 1) ?>"
-                                      data-doc-id="<?= number_format($result->rating, 1) ?>"></span>
-                                (<?php echo $result->rating_count ?>)
-                            </td>
-                            </td>
-                        </tr>
-                    </a>
+                    </tbody>
+                </table>
 
-                <?php } ?>
+                <h3 class="text-center">Recommended Doctors</h3>
 
-                </tbody>
-            </table>
+                <table class="table table-dark">
+                    <thead>
+                    <tr>
 
-            <h3 class="text-center">Recommended Doctors</h3>
+                        <th scope="col">Serial No</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Specialist</th>
+                        <th scope="col">View Details</th>
+                    </tr>
+                    </thead>
+                    <tbody>
 
-            <table class="table table-dark">
-                <thead>
-                <tr>
+                    <?php
 
-                    <th scope="col">Serial No</th>
-                    <th scope="col">Name</th>
-                </tr>
-                </thead>
-                <tbody>
+                    $i = 1;
+                    foreach ($recommended_doctors as $recommended_doctor) {
 
-                <?php
 
-                $i = 1;
-                foreach ($recommended_doctors as $recommended_doctor) {
-                    ?>
-                    <a href="<?php echo base_url("welcome/add_doc_profile/$recommended_doctor->doc_id") ?>">
-                        <tr>
+                        $dept = $this->doctor_model->get_dept_record($recommended_doctor->doc_category);
+                        ?>
+                        <a href="<?php echo base_url("welcome/add_doc_profile/$recommended_doctor->doc_id") ?>">
+                            <tr>
 
-                            <th scope="row"><?php echo $i++ ?></th>
-                            <td>
-                                <?php echo $recommended_doctor->doc_name; ?>
-                                <span class="my-rating"
-                                      data-rating="<?= number_format($recommended_doctor->rating, 1) ?>"
-                                      data-doc-id="<?= number_format($recommended_doctor->rating, 1) ?>"></span>
-                                (<?php echo $recommended_doctor->rating_count ?>)
-                            </td>
-                            </td>
-                        </tr>
-                    </a>
+                                <th scope="row"><?php echo $i++ ?></th>
+                                <td>
+                                    <?php echo $recommended_doctor->doc_name; ?>
+                                    <span class="my-rating"
+                                          data-rating="<?= number_format($recommended_doctor->rating, 1) ?>"
+                                          data-doc-id="<?= number_format($recommended_doctor->rating, 1) ?>"></span>
+                                    (<?php echo $recommended_doctor->rating_count ?>)
+                                </td>
+                                <td>
+                                    <?php echo $dept->dept_name ?>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-info"><a
+                                                href="<?php echo base_url("welcome/add_doc_profile/$recommended_doctor->doc_id") ?>"
+                                                target="_blank">
+                                            Appoinment</a></button>
+                                </td>
+                            </tr>
+                        </a>
 
-                <?php } ?>
+                    <?php } ?>
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+
+            <?php } ?>
 
         <?php } ?>
 

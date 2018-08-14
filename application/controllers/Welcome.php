@@ -61,6 +61,9 @@ class Welcome extends CI_Controller
 
         $query_string = strtolower($data['query_string']);
 
+
+
+
         /**
          * 1. doctor name -> tbl_doctor.name
          * 2. Symptoms -> tbl_doctor.symptoms
@@ -333,6 +336,14 @@ class Welcome extends CI_Controller
     {
         $data = array();
         $this->load->view('pages/patient_login_signup', $data);
+    }
+
+    public function main_logout()
+    {
+
+        $this->session->unset_userdata('admin_id');
+        $this->session->unset_userdata('admin_name');
+        $this->load->view('master');
     }
 
 

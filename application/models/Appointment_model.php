@@ -23,6 +23,8 @@ class Appointment_model extends CI_Model
         $data['patient_id'] = $patient->patient_id;
 
         $data['phone_number'] = $patient->mobile_no;
+        $data['doc_fee'] = $this->input->post('docFees', true);
+
         //$data['gender'] = ;
 
 //        $data['patient_name'] = $this->input->post('patientName', true);
@@ -30,6 +32,8 @@ class Appointment_model extends CI_Model
 //        $data['phone_number'] = $this->input->post('phoneNo', true);
 //        $data['gender'] = $this->input->post('appGender', true);
         $data['appointment_date'] = $this->input->post('appDate', true);
+        $data['payment_type'] = $this->input->post('paymentType', true);
+        //$data['payment_status'] = $this->input->post('appDate', true);
 
         $data['appointment_time'] = $this->input->post('appTime', true);
         $data['appointment_date'] = date('Y-m-d', strtotime($data['appointment_date']));

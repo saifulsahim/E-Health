@@ -37,7 +37,7 @@ WHERE
     tbl_doctor.doc_category = $doc_category
 GROUP BY
     tbl_doctor.doc_id
-ORDER BY rating DESC")->result();
+ORDER BY rating DESC, tbl_doctor.doc_name ASC")->result();
 
         return $result;
     }

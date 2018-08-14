@@ -38,7 +38,7 @@ class Admin_login extends CI_Controller
         $admin_password = $this->input->post('adminPassword', true);
 //        $encrypt_password =password_hash($admin_password, PASSWORD_DEFAULT);
 //        echo $encrypt_password;
-        //exit();
+//        exit();
 
         $this->load->model('admin_model');
 
@@ -59,6 +59,7 @@ class Admin_login extends CI_Controller
                     $session_data['insert_id'] = $admin_details->insert_id;
                     $session_data['admin_status'] = $admin_details->admin_status;
                     $session_data['admin_role'] = $admin_details->admin_role;
+                    $session_data['admin_name'] = $admin_details->admin_name;
 
 
                     $this->session->set_userdata($session_data);
@@ -66,12 +67,26 @@ class Admin_login extends CI_Controller
 //                    print_r($session_data);
 //                    exit();
 
-                    if($this->session->userdata('admin_role') == "User")
-                    {
-                        redirect('welcome/manage_blog');
-                    }
+                    $redirect_link = $this->session->userdata('redirect');
+                    $this->session->unset_userdata('redirect');
 
-                    else {
+                    if ($this->session->userdata('admin_role') == "User") {
+                        if ($redirect_link) {
+                            redirect($redirect_link);
+                        }
+                        redirect('welcome/manage_blog');
+                    } elseif ($this->session->userdata('admin_role') == "Patient") {
+
+                        $this->session->set_userdata('message', 'You have Successfully Logged in');
+                        if ($redirect_link) {
+                            redirect($redirect_link);
+                        }
+                        redirect('welcome/add_doctor_master');
+
+                    } else {
+                        if ($redirect_link) {
+                            redirect($redirect_link);
+                        }
                         redirect('admin-dashboard');
                     }
 
@@ -89,7 +104,7 @@ class Admin_login extends CI_Controller
             }
         } else {
             $data['error_message'] = 'Incorrect Email or Password';
-            $this->load->view('master', $data);
+            $this->load->view('admin/admin_login', $data);
         }
     }
 

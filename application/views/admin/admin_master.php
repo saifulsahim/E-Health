@@ -119,6 +119,9 @@ $details = $this->admin_model->get_record($id);
 <!--                        <!-- /input-group -->
 <!--                    </li>-->
                     <li>
+                        <a href="<?php echo base_url('')?>"><i class="fa fa-dashboard fa-fw"></i> Home</a>
+                    </li>
+                    <li>
                         <a href="<?php echo base_url('admin-dashboard')?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
 
@@ -298,7 +301,7 @@ $details = $this->admin_model->get_record($id);
 
 
 
-                    <?php if (($details->admin_role == "Admin") || ($details->admin_role == "Patient")) { ?>
+                    <?php if (($details->admin_role == "Admin") || ($details->admin_role == "Moderator")) { ?>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Patient<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -338,6 +341,8 @@ $details = $this->admin_model->get_record($id);
                                 <a href="<?php echo base_url('patient/manage_patient_individual')?>">Appointment History</a>
                             </li>
 
+
+
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
@@ -345,7 +350,7 @@ $details = $this->admin_model->get_record($id);
 
 
 
-                    <?php if (($details->admin_role == "Moderator") || ($details->admin_role == "Admin")) { ?>
+                    <?php if (($details->admin_role == "Doctor") || ($details->admin_role == "Admin")) { ?>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Blog<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">

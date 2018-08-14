@@ -67,7 +67,13 @@ class Blog extends CI_Controller
     public function manage_blog()
     {
         $data = array();
-        $data['blog_data'] = $this->blog_model->select_all_blogs();
+        if($this->session->userdata('admin_role') == 'Admin')
+        {
+            $data['blog_data'] = $this->blog_model->select_all_blogs();
+        } else {
+            $data['blog_data'] = $this->blog_model->select_all_blogs_for_doctor($this->session->userdata('admin_id'));
+        }
+
         $data['dashboard'] = $this->load->view('admin/admin_pages/manage_blog_form', $data, true);
         $this->load->view('admin/admin_master', $data);
     }
@@ -100,6 +106,11 @@ class Blog extends CI_Controller
 
     public function add_user_sign_in()
     {
+
+//        echo $this->input->get('r');
+//        exit();
+        $this->session->set_userdata('redirect', $this->input->get('r'));
+
         $this->load->view('pages/user_login_signup');
     }
 

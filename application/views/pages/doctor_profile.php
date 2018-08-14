@@ -212,6 +212,18 @@
 
                         echo $message;
                         $this->session->unset_userdata('message');
+
+
+                        ?>
+
+                        <p>You can share your expericence by give a rating of Doctor from your <a href="<?php echo base_url('patient/manage_patient_individual')?>">dashboard</a></p>
+
+
+                    <?php
+
+
+
+
                     }
 
                     ?>
@@ -220,7 +232,7 @@
 
                     if (isset($this->session->admin_id)) {
 
-                        //echo $this->session->admin_id;
+                    //echo $this->session->admin_id;
 
                     ?>
 
@@ -240,9 +252,133 @@
                     </div>
 
 
+                    <!--                    <div class="form-group">-->
+                    <!--                        <label for="title">Time:</label>-->
+                    <!--                        <input class="form-control timepicker" type="text" name="appTime" placeholder="Set Time">-->
+                    <!--                    </div>-->
+
+
+                    <div class="row">
+                        <h4>SELECT TIME</h4>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+
+                            <div class="form-inline required">
+                                <div class="form-group has-feedback">
+                                    <label class="input-group">
+                            <span class="input-group-addon">
+                                <input type="radio" name="appTime" value="4:30 PM"/>
+                            </span>
+                                        <div class="form-control form-control-static">
+                                            4:30 PM
+                                        </div>
+                                        <span class="glyphicon form-control-feedback "></span>
+                                    </label>
+                                </div>
+                                <div class="form-group has-feedback ">
+                                    <label class="input-group">
+                            <span class="input-group-addon">
+                                <input type="radio" name="appTime" value="5:00 PM"/>
+                            </span>
+                                        <div class="form-control form-control-static">
+                                            5:00 PM
+                                        </div>
+                                        <span class="glyphicon form-control-feedback "></span>
+                                    </label>
+                                </div>
+
+                                <div class="form-group has-feedback ">
+                                    <label class="input-group">
+                            <span class="input-group-addon">
+                                <input type="radio" name="appTime" value="5:30 PM"/>
+                            </span>
+                                        <div class="form-control form-control-static">
+                                            5:30 PM
+                                        </div>
+                                        <span class="glyphicon form-control-feedback "></span>
+                                    </label>
+                                </div>
+
+                                <div class="form-group has-feedback ">
+                                    <label class="input-group">
+                            <span class="input-group-addon">
+                                <input type="radio" name="appTime" value="6:00 PM"/>
+                            </span>
+                                        <div class="form-control form-control-static">
+                                            6:00 PM
+                                        </div>
+                                        <span class="glyphicon form-control-feedback "></span>
+                                    </label>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+
+                            <div class="form-inline required">
+                                <div class="form-group has-feedback">
+                                    <label class="input-group">
+                            <span class="input-group-addon">
+                                <input type="radio" name="appTime" value="4:30 PM"/>
+                            </span>
+                                        <div class="form-control form-control-static">
+                                            6:30 PM
+                                        </div>
+                                        <span class="glyphicon form-control-feedback "></span>
+                                    </label>
+                                </div>
+                                <div class="form-group has-feedback ">
+                                    <label class="input-group">
+                            <span class="input-group-addon">
+                                <input type="radio" name="appTime" value="5:00 PM"/>
+                            </span>
+                                        <div class="form-control form-control-static">
+                                            7:00 PM
+                                        </div>
+                                        <span class="glyphicon form-control-feedback "></span>
+                                    </label>
+                                </div>
+
+                                <div class="form-group has-feedback ">
+                                    <label class="input-group">
+                            <span class="input-group-addon">
+                                <input type="radio" name="appTime" value="5:30 PM"/>
+                            </span>
+                                        <div class="form-control form-control-static">
+                                            7:30 PM
+                                        </div>
+                                        <span class="glyphicon form-control-feedback "></span>
+                                    </label>
+                                </div>
+
+                                <div class="form-group has-feedback ">
+                                    <label class="input-group">
+                            <span class="input-group-addon">
+                                <input type="radio" name="appTime" value="6:00 PM"/>
+                            </span>
+                                        <div class="form-control form-control-static">
+                                            8:00 PM
+                                        </div>
+                                        <span class="glyphicon form-control-feedback "></span>
+                                    </label>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
                     <div class="form-group">
-                        <label for="title">Time:</label>
-                        <input class="form-control timepicker" type="text" name="appTime" placeholder="Set Time">
+                        <label for="title">Doctor Fee:</label>
+                        <input readonly class="form-control" type="text" name="docFees"
+                               value="<?= $doc_info->doc_fee; ?>" placeholder="Set Time">
                     </div>
 
 
@@ -250,14 +386,31 @@
 
                 <input type="hidden" name="docId" value="<?= $doc_info->doc_id; ?>">
 
+
+                <div class="step-one">
+                    <h4 class="heading">Payment Method</h4>
+                </div>
+
+                <p>
+                    <label><input type="radio" name="paymentType" value="cash_on_delivery" checked="checked"> Cash On
+                        Delivery</label>
+                </p>
+
+                <p>
+                    <label><input type="radio" name="paymentType" value="ssl_commerz"> SSL COMMERZ</label>
+                </p>
+
+
                 <div class="form-action">
                     <button type="submit" class="btn btn-form">Submit</button>
                 </div>
                 </form>
 
+
                 <?php } else { ?>
 
-                    <p>You are not login. To login click <a href="<?php echo base_url('welcome/add_patient_login') ?>">here</a>.</p>
+                    <p>You are not login. To login click <a href="<?php echo base_url('welcome/add_patient_login') ?>">here</a>.
+                    </p>
 
                 <?php } ?>
 

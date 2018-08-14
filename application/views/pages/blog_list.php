@@ -60,9 +60,23 @@
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo base_url('welcome/manage_blog') ?>">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo base_url('blog/add_user_sign_in')?>">Sign In</a>
-                </li>
+
+
+                <?php if ($this->session->userdata('admin_id')) { ?>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo base_url('welcome/main_logout')?>">Sign Out</a>
+                    </li>
+
+                <?php } else{ ?>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo base_url('blog/add_user_sign_in')?>">Sign In</a>
+                    </li>
+
+                <?php }?>
+
+
                 <li class="nav-item">
                     <a class="nav-link" href="post.html">Sample Post</a>
                 </li>
