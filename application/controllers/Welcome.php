@@ -62,8 +62,6 @@ class Welcome extends CI_Controller
         $query_string = strtolower($data['query_string']);
 
 
-
-
         /**
          * 1. doctor name -> tbl_doctor.name
          * 2. Symptoms -> tbl_doctor.symptoms
@@ -263,15 +261,26 @@ class Welcome extends CI_Controller
 
     }
 
+
+    public function show_doctor_register_form()
+    {
+        //$data = array();
+        $this->load->view('pages/doc_login_signup');
+    }
+
     public function add_login_signup()
     {
+
+
         $data = array();
         $data['dept_info'] = $this->doctor_model->get_all_active_depts();
+
         $data['hospital_info'] = $this->hospital_model->get_all_active_hospitals();
 //        echo '<pre>';
 //        print_r($data);
 //        exit();
         $this->load->view('pages/doc_login_signup', $data);
+
     }
 
 
@@ -299,19 +308,56 @@ class Welcome extends CI_Controller
 
     public function save_doctor()
     {
-        $doctor_image = $this->upload_doctor_image();
-        $insert_id = $this->doctor_model->save_doctor($doctor_image);
-        $this->doctor_model->save_doctor_for_login($insert_id, $doctor_image);
-        $this->session->set_userdata('message', "<div class='alert alert-success'>Record Insert Successfully</div>");
-        redirect('welcome/add_login_signup');
+        $this->form_validation->set_rules('docName', 'Doctor Name', 'required|max_length[20]');
+        //$this->form_validation->set_rules('adminEmail','Email Address', 'required|max_length[255]|is_unique[tbl_admin.admin_email]' );
+        $this->form_validation->set_rules('docMobileNo', 'Doctor Mobile No', 'required|max_length[11]');
+        $this->form_validation->set_rules('docPassword', 'Doctor Password', 'required|min_length[6]');
+        $this->form_validation->set_rules('confirmPassword', 'Confirm Password', 'required|min_length[6]|matches[docPassword]');
+
+
+        if ($this->form_validation->run()) {
+
+
+            $doctor_image = $this->upload_doctor_image();
+            $insert_id = $this->doctor_model->save_doctor($doctor_image);
+            $this->doctor_model->save_doctor_for_login($insert_id, $doctor_image);
+            $this->session->set_flashdata('message', "<div class='alert alert-success'>Your Information has been Taken. Please wait for Admin's Approval</div>");
+            redirect('welcome/add_login_signup');
+
+
+        } else {
+            $this->show_doctor_register_form();
+        }
+
+    }
+
+
+
+    public function show_patient_register_form()
+    {
+        $this->load->view('pages/patient_login_signup');
+
     }
 
     public function save_patient()
     {
-        $insert_id = $this->patient_model->save_patient();
-        $this->patient_model->save_patient_for_login($insert_id);
-        $this->session->set_userdata('message', "<div class='alert alert-success'>Record Insert Successfully</div>");
-        redirect('welcome/add_patient_login');
+
+        $this->form_validation->set_rules('patientName', 'Patient Name', 'required|max_length[20]');
+        //$this->form_validation->set_rules('adminEmail','Email Address', 'required|max_length[255]|is_unique[tbl_admin.admin_email]' );
+        $this->form_validation->set_rules('patientMobileNo', ' Mobile No', 'required|max_length[11]');
+        $this->form_validation->set_rules('patientPassword', 'Patient Password', 'required|min_length[6]');
+        $this->form_validation->set_rules('confirmPassword', 'Confirm Password', 'required|min_length[6]|matches[patientPassword]');
+
+        if ($this->form_validation->run()) {
+
+            $insert_id = $this->patient_model->save_patient();
+            $this->patient_model->save_patient_for_login($insert_id);
+            $this->session->set_userdata('message', "<div class='alert alert-success'>Record Insert Successfully</div>");
+            redirect('welcome/add_patient_login');
+        } else {
+
+            $this->show_patient_register_form();
+        }
     }
 
 
@@ -331,6 +377,27 @@ class Welcome extends CI_Controller
             echo "Available";
         }
     }
+
+
+
+    public function ajax_email_check_patient($email_address = null)
+    {
+
+        if ($email_address == NULL) {
+            echo "Email Address Required";
+            return;
+
+        }
+        $result = $this->welcome_model->ajax_email_address_check_patient($email_address);
+        if ($result) {
+            echo "Already Exists !";
+
+        } else {
+
+            echo "Available";
+        }
+    }
+
 
     public function add_patient_login()
     {

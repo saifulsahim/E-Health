@@ -59,13 +59,15 @@ class Blog_model extends CI_Model
     }
 
 
-    public function save_blog()
+    public function save_blog($blog_image)
     {
 
         $data = array();
         $data['admin_id'] = $this->session->userdata('admin_id');
         $data['blog_title'] = $this->input->post('blogTitle', true);
         $data['blog_desc'] = $this->input->post('blogDesc', true);
+
+        $data['blog_image'] = $blog_image;
 
         $this->db->insert('tbl_blog', $data);
 
@@ -132,12 +134,14 @@ class Blog_model extends CI_Model
         return $result;
     }
 
-    public function update_blog_by_id()
+    public function update_blog_by_id($blog_image)
     {
 
-        $data['author_id'] = $this->session->userdata('admin_id');
+        $data['admin_id'] = $this->session->userdata('admin_id');
         $data['blog_title'] = $this->input->post('blogTitle', true);
         $data['blog_desc'] = $this->input->post('blogDesc', true);
+
+        $data['blog_image'] = $blog_image;
 
         $blog_id = $this->input->post('blogId',true);
 

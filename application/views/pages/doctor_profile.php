@@ -53,12 +53,52 @@
                         <ul class="nav navbar-nav">
                             <li class=""><a href="<?php echo base_url() ?>">Home</a></li>
                             <li class=""><a href="<?php echo base_url('welcome/hospital_master') ?>">Hospital</a></li>
-                            <li class=""><a href="#blog">Blog</a></li>
-                            <li class=""><a href="#shop">Shop</a></li>
+                            <li class=""><a href="<?php echo base_url('welcome/manage_blog') ?>">Blog</a></li>
+                            <li class=""><a href="http://localhost/E-commerce/" target="_blank">Shop</a></li>
                             <li class=""><a href="<?php echo base_url('welcome/add_donor_master') ?>">Blood</a></li>
                             <li class=""><a href="<?php echo base_url('welcome/add_ambulance_master') ?>">Ambulance</a>
                             </li>
                             <li class=""><a href="<?php echo base_url('welcome/add_doctor_master') ?>">Doctor</a></li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false">
+
+                                    <?php if ($this->session->userdata('admin_id')) { ?>
+
+                                        <?php echo $this->session->userdata('admin_name') ?>
+
+
+                                    <?php } else { ?>
+
+
+                                        login/registration <span class="caret"></span>
+                                    <?php } ?>
+
+
+                                </a>
+
+                                <ul class="dropdown-menu">
+
+
+                                    <?php if ($this->session->userdata('admin_id')) { ?>
+
+                                        <li class=""><a href="<?php echo base_url('admin-dashboard') ?>">
+                                                Dashboard </a></li>
+
+                                        <li class=""><a href="<?php echo base_url('welcome/main_logout') ?>">
+                                                Logout </a></li>
+
+
+                                    <?php } else { ?>
+                                        <li class=""><a
+                                                    href="<?php echo base_url('welcome/add_login_signup') ?>">Doctor </a>
+                                        </li>
+                                        <li class=""><a href="<?php echo base_url('welcome/add_patient_login') ?>">Patient
+                                                Login</a></li>
+                                    <?php } ?>
+                                </ul>
+                            </li>
                         </ul>
                         </ul>
                     </div>
@@ -122,49 +162,44 @@
                             <div class="clearfix"></div>
                             <hr style="margin:5px 0 5px 0;">
 
+                            <div class="row margin-bottom-medium">
+                                <div class="col-md-6 tital">Doctor Name:</div>
+                                <div class="col-md-6"><strong><?php echo $doc_info->doc_name ?></strong></div>
+                            </div>
 
-                            <div class="col-sm-3 col-xs-4 tital ">Doctor Name:</div>
-                            <div class="col-sm-4 col-xs-6 "><strong><?php echo $doc_info->doc_name ?></strong></div>
-                            <div class="clearfix"></div>
-                            <div class="bot-border"></div>
-
-
-                            <div class="col-sm-5 col-xs-6 tital ">Doctor Email:</div>
-                            <div class="col-sm-7 col-xs-6 "><?php echo $doc_info->doc_email ?></div>
-                            <div class="clearfix"></div>
-                            <div class="bot-border"></div>
+                            <div class="row margin-bottom-medium">
+                                <div class="col-md-6 tital ">Doctor Email:</div>
+                                <div class="col-md-6"><?php echo $doc_info->doc_email ?></div>
+                            </div>
 
 
-                            <div class="col-sm-5 col-xs-6 tital ">Qualification:</div>
-                            <div class="col-sm-7 col-xs-6 "><?php echo $doc_info->doc_qualification ?></div>
-                            <div class="clearfix"></div>
-                            <div class="bot-border"></div>
+                            <div class="row margin-bottom-medium">
+                                <div class="col-md-6 tital">Qualification:</div>
+                                <div class="col-md-6"><?php echo $doc_info->doc_qualification ?></div>
+                            </div>
 
-                            <div class="col-sm-5 col-xs-6 tital ">Designation:</div>
-                            <div class="col-sm-7 col-xs-6 "><?php echo $doc_info->doc_designation ?></div>
-                            <div class="clearfix"></div>
-                            <div class="bot-border"></div>
-
-
-                            <div class="clearfix"></div>
-                            <div class="bot-border"></div>
-
-                            <div class="col-sm-5 col-xs-6 tital ">Date Of Birth:</div>
-                            <div class="col-sm-7"><?php echo $doc_info->doc_birth_date ?></div>
+                            <div class="row margin-bottom-medium">
+                                <div class="col-md-6 tital">Designation:</div>
+                                <div class="col-md-6"><?php echo $doc_info->doc_designation ?></div>
+                            </div>
 
 
-                            <div class="clearfix"></div>
-                            <div class="bot-border"></div>
+                            <div class="row margin-bottom-medium">
+                                <div class="col-md-6 tital">Date Of Birth:</div>
+                                <div class="col-md-6"><?php echo $doc_info->doc_birth_date ?></div>
+                            </div>
 
-                            <div class="col-sm-5 col-xs-6 tital ">Doctor Chamber:</div>
-                            <div class="col-sm-7"><?php echo $doc_info->doc_chamber ?></div>
+
+                            <div class="row margin-bottom-medium">
+                                <div class="col-md-6 tital">Doctor Chamber:</div>
+                                <div class="col-md-6"><?php echo $doc_info->doc_chamber ?></div>
+                            </div>
 
 
-                            <div class="clearfix"></div>
-                            <div class="bot-border"></div>
-
-                            <div class="col-sm-5 col-xs-6 tital ">Doctor Fees:</div>
-                            <div class="col-sm-7"><?php echo $doc_info->doc_fee ?></div>
+                            <div class="row margin-bottom-medium">
+                                <div class="col-md-6 tital">Doctor Fees:</div>
+                                <div class="col-md-6"><?php echo $doc_info->doc_fee ?></div>
+                            </div>
 
 
                             <!-- /.box-body -->
@@ -179,6 +214,24 @@
         </div>
     </div>
 </div>
+
+<?php
+$can_get_appointment = True;
+if (isset($this->session->admin_id)) {
+
+    $patient_id = $this->session->userdata('insert_id');
+//$doctor_id = $doc_info->doc_id;
+
+
+    $total_appointment = $this->appointment_model->get_total_appointment_by_patient($patient_id);
+
+
+    if ($total_appointment >= 10) {
+        $can_get_appointment = False;
+    }
+}
+
+?>
 
 <section id="contact" class="section-padding">
     <div class="container">
@@ -201,7 +254,11 @@
                 <div class="contact-info">
                     <h3 class="cnt-ttl">Book an appointment</h3>
                     <div class="space"></div>
-                    <!--                    <div id="sendmessage">Your message has been sent. Thank you!</div>-->
+
+                    <?php if ($can_get_appointment == False): ?>
+                        <div class="alert alert-danger">You have exceeded your appointment limit!</div>
+                    <?php endif; ?>
+
                     <div id="errormessage"></div>
 
                     <?php
@@ -216,15 +273,14 @@
 
                         ?>
 
-                        <p>You can share your expericence by give a rating of Doctor from your <a href="<?php echo base_url('patient/manage_patient_individual')?>">dashboard</a></p>
+                        <p>You can share your expericence by give a rating of Doctor from your <a
+                                    href="<?php echo base_url('patient/manage_patient_individual') ?>">dashboard</a></p>
 
 
-                    <?php
+                        <?php
 
 
-
-
-                    }
+                    } else {
 
                     ?>
 
@@ -247,7 +303,7 @@
 
                     <div class="form-group">
                         <label>Enter Appointment Date:</label>
-                        <input type="text" class="form-control datepicker" name="appDate"
+                        <input id="date_pick" type="text" class="form-control datepicker" name="appDate"
                                placeholder="yyyy-mm-dd">
                     </div>
 
@@ -263,6 +319,21 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
+
+                            <?php
+
+                            //                            $existing_times = $this->db->where(array(
+                            //                                'appointment_date' => 'now()',
+                            ////                                'appointment_time' => $data['appointment_time'],
+                            //                                'doc_id' => $doc_info->doc_id
+                            //                            ))->get('tbl_appointment')->result();
+                            //
+                            //                            var_dump($existing_times);
+                            //
+                            //                            exit();
+
+                            ?>
+
 
                             <div class="form-inline required">
                                 <div class="form-group has-feedback">
@@ -335,7 +406,7 @@
                                 <div class="form-group has-feedback ">
                                     <label class="input-group">
                             <span class="input-group-addon">
-                                <input type="radio" name="appTime" value="5:00 PM"/>
+                                <input type="radio" name="appTime" value="7:00 PM"/>
                             </span>
                                         <div class="form-control form-control-static">
                                             7:00 PM
@@ -347,7 +418,7 @@
                                 <div class="form-group has-feedback ">
                                     <label class="input-group">
                             <span class="input-group-addon">
-                                <input type="radio" name="appTime" value="5:30 PM"/>
+                                <input type="radio" name="appTime" value="7:30 PM"/>
                             </span>
                                         <div class="form-control form-control-static">
                                             7:30 PM
@@ -392,8 +463,8 @@
                 </div>
 
                 <p>
-                    <label><input type="radio" name="paymentType" value="cash_on_delivery" checked="checked"> Cash On
-                        Delivery</label>
+                    <label><input type="radio" name="paymentType" value="cash_on_delivery" checked="checked"> Cash
+                    </label>
                 </p>
 
                 <p>
@@ -402,15 +473,22 @@
 
 
                 <div class="form-action">
-                    <button type="submit" class="btn btn-form">Submit</button>
+                    <button type="submit"
+                            class="btn btn-form" <?php echo ($can_get_appointment == False) ? 'disabled' : '' ?>>Submit
+                    </button>
                 </div>
                 </form>
 
 
                 <?php } else { ?>
 
-                    <p>You are not login. To login click <a href="<?php echo base_url('welcome/add_patient_login') ?>">here</a>.
+
+                    <p>You are not login. To login click <a
+                                href="<?php echo base_url('welcome/add_patient_login') ?>">here</a>.
                     </p>
+
+                <?php } ?>
+
 
                 <?php } ?>
 
@@ -483,7 +561,14 @@
 
 <script>
     $(function () {
-        $(".datepicker").datepicker()
+        var date = new Date();
+        date.setDate(date.getDate());
+        var date2 = new Date();
+        date2.setDate(date.getDate() + 14);
+        $(".datepicker").datepicker({
+            startDate: date,
+            endDate: date2
+        });
 
     });
 
@@ -505,6 +590,39 @@
             starSize: 15,
             readOnly: true
         });
+    });
+</script>
+
+<script>
+    $(function () {
+
+        $('input#date_pick').on('change', function () {
+            $selected_date = $(this).val();
+
+            $data = {
+                selected_date: $selected_date,
+                doc_id: '<?=$doc_info->doc_id ?>'
+            };
+
+            $.post("<?php echo base_url()?>doctor/get_available_times", $data)
+                .done(function (data) {
+                    $all_radio_button = $('input[name=appTime]');
+
+                    $all_radio_button.each(function () {
+                        $(this).prop('disabled', false);
+                    });
+
+                    $obj = JSON.parse(data);
+
+                    $obj.forEach(function (item) {
+                        console.log(item);
+                        $('input[value="' + item + '"]').prop('disabled', true);
+                    });
+
+                });
+        });
+
+
     });
 </script>
 <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>-->

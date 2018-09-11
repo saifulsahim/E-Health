@@ -32,7 +32,7 @@
         //alert(given_text);
         //var_obj = document.getElementById (objID);
         //serverPage = 'search.php?text='given_text+ '&abc='+d23;
-        serverPage = '<?php echo base_url()?>welcome/ajax_email_check/' + given_text;
+        serverPage = '<?php echo base_url()?>welcome/ajax_email_check_patient/' + given_text;
         xmlhttp.open("GET", serverPage);
         xmlhttp.onreadystatechange = function () {
             //alert(xmlhttp.readyState);
@@ -109,6 +109,9 @@ $details = $this->admin_model->get_record($id);
 <section id="banner" class="banner">
     <div class="bg-color">
 
+        <a class="navbar-brand" href="<?php echo base_url() ?>"><img
+                    src="<?php echo base_url() ?>asset/img/logo.png" class="img-responsive"
+                    style="width: 140px; margin-top: -16px;"></a>
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
@@ -147,6 +150,11 @@ $details = $this->admin_model->get_record($id);
                                             <input type="text" name="adminEmail" id="username" tabindex="1"
                                                    class="form-control" placeholder="Username" value="">
                                         </div>
+
+
+                                        <input type="hidden" name="type" value="patient">
+
+
                                         <div class="form-group">
                                             <input type="password" name="adminPassword" id="password" tabindex="2"
                                                    class="form-control" placeholder="Password">
@@ -200,16 +208,24 @@ $details = $this->admin_model->get_record($id);
                                         <div class="form-group">
 
                                             <input type="text" name="patientName" id="username" tabindex="1"
-                                                   class="form-control" placeholder="Patient Name" value="">
+                                                   class="form-control" placeholder="Patient Name"
+                                                   value="<?php echo set_value('patientName') ?>">
                                         </div>
+
+                                        <?php echo form_error('patientName') ?>
 
                                         <div class="form-group">
 
                                             <div class="form-group">
 
                                                 <input type="text" name="patientMobileNo" id="username" tabindex="1"
-                                                       class="form-control" placeholder="Enter Mobile No" value="">
+                                                       class="form-control" placeholder="Enter Mobile No"  value="<?php echo set_value('patientMobileNo') ?>">
                                             </div>
+
+
+                                            <?php echo form_error('patientMobileNo') ?>
+
+
 
                                             <input type="email" name="patientEmail" id="email" tabindex="1"
                                                    onblur="makerequest(this.value,'res')"
@@ -220,8 +236,11 @@ $details = $this->admin_model->get_record($id);
 
                                         <div class="form-group">
                                             <input type="password" name="patientPassword" id="password" tabindex="2"
-                                                   class="form-control" placeholder="Password">
+                                                   class="form-control" placeholder="Password" value="<?php echo set_value('patientPassword') ?>">
                                         </div>
+
+
+                                        <?php echo form_error('patientPassword') ?>
 
                                         <div class="form-group">
                                             <input type="password" name="confirmPassword" id="confirm-password"

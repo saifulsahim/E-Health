@@ -35,12 +35,52 @@
 
 
                             <li class=""><a href="<?php echo base_url('welcome/hospital_master')?>">Hospital</a></li>
-                            <li class=""><a href="#blog">Blog</a></li>
+                            <li class=""><a href="<?php echo base_url('welcome/manage_blog') ?>">Blog</a></li>
                             <li class=""><a href="http://localhost/E-commerce/" target="_blank">Shop</a></li>
-                            <li class=""><a href="#contact">Contact</a></li>
+<!--                            <li class=""><a href="#contact">Contact</a></li>-->
                             <li class=""><a href="<?php echo base_url('welcome/add_donor_master')?>">Blood</a></li>
                             <li class=""><a href="<?php echo base_url('welcome/add_ambulance_master')?>">Ambulance</a></li>
                             <li class=""><a href="<?php echo base_url('welcome/add_doctor_master')?>">doctor</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false">
+
+                                    <?php if ($this->session->userdata('admin_id')) { ?>
+
+                                        <?php echo $this->session->userdata('admin_name') ?>
+
+
+                                    <?php } else { ?>
+
+
+                                        login/registration <span class="caret"></span>
+                                    <?php } ?>
+
+
+                                </a>
+
+                                <ul class="dropdown-menu">
+
+
+                                    <?php if ($this->session->userdata('admin_id')) { ?>
+
+                                        <li class=""><a href="<?php echo base_url('admin-dashboard') ?>">
+                                                Dashboard </a></li>
+
+                                        <li class=""><a href="<?php echo base_url('welcome/main_logout') ?>">
+                                                Logout </a></li>
+
+
+                                    <?php } else { ?>
+                                        <li class=""><a
+                                                    href="<?php echo base_url('welcome/add_login_signup') ?>">Doctor </a>
+                                        </li>
+                                        <li class=""><a href="<?php echo base_url('welcome/add_patient_login') ?>">Patient
+                                                Login</a></li>
+                                    <?php } ?>
+                                </ul>
+                            </li>
+
                         </ul>
                     </div>
                 </div>

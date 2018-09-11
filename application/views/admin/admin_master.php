@@ -121,6 +121,16 @@ $details = $this->admin_model->get_record($id);
                     <li>
                         <a href="<?php echo base_url('')?>"><i class="fa fa-dashboard fa-fw"></i> Home</a>
                     </li>
+
+
+                    <?php if (($details->admin_role == "Admin") || ($details->admin_role == "Doctor")) { ?>
+
+                    <li>
+                        <a href="<?php echo base_url('welcome/manage_blog')?>"><i class="fa fa-dashboard fa-fw"></i>Blog Home</a>
+                    </li>
+
+                    <?php } ?>
+
                     <li>
                         <a href="<?php echo base_url('admin-dashboard')?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
@@ -164,17 +174,31 @@ $details = $this->admin_model->get_record($id);
                     <?php } ?>
 
 
-                    <?php if (($details->admin_role == "Admin") || ($details->admin_role == "Doctor")) { ?>
+                    <?php if (($details->admin_role == "Admin") || ($details->admin_role == "Moderator")) { ?>
 
                     <li>
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Doctors<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
+
+                            <?php if (($details->admin_role == "Moderator") || ($details->admin_role == "Admin")) { ?>
                             <li>
                                 <a href="<?php echo base_url()?>add-doctor">Add Doctor</a>
                             </li>
+
+                            <?php } ?>
+
+
                             <li>
                                 <a href="<?php echo base_url('manage-doctor')?>">Manage Doctor</a>
                             </li>
+
+
+                            <?php if ($details->admin_role == "Admin") { ?>
+                            <li>
+                                <a href="<?php echo base_url('doctor/pending_doctor_list')?>">Pending Doctor</a>
+                            </li>
+                            <?php } ?>
+
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
@@ -322,7 +346,11 @@ $details = $this->admin_model->get_record($id);
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Appointment<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="<?php echo base_url('patient/manage_patient')?>">Appointment List</a>
+                                <a href="<?php echo base_url('patient/manage_patient')?>"> Pending Appointment List</a>
+                            </li>
+
+                            <li>
+                                <a href="<?php echo base_url('patient/upcoming_patient')?>">Upcoming  Appointments</a>
                             </li>
 
                         </ul>

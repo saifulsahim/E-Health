@@ -87,6 +87,25 @@ class Patient extends CI_Controller
     }
 
 
+
+    public function upcoming_patient()
+    {
+
+        $data = array();
+        $doc_id = $this->session->userdata('insert_id');
+//        echo $patient_id;
+//        exit();
+        //$patient_id = $this->session->userdata('insert_id');
+        $data['app_data'] = $this->appointment_model->select_all_upcoming_appointments_for_doctor($doc_id);
+
+
+        $data['dashboard'] = $this->load->view('admin/admin_pages/upcoming_appointment_form', $data, true);
+        $this->load->view('admin/admin_master', $data);
+
+    }
+
+
+
     public function manage_patient_individual()
     {
         $data = array();

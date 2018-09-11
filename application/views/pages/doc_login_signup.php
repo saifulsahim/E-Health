@@ -58,7 +58,7 @@
                 }
 
             }
-        }
+        };
 
         xmlhttp.send(null);
     }
@@ -108,6 +108,9 @@ $details = $this->admin_model->get_record($id);
 <body>
 <section id="banner" class="banner">
     <div class="bg-color">
+        <a class="navbar-brand" href="<?php echo base_url() ?>"><img
+                    src="<?php echo base_url() ?>asset/img/logo.png" class="img-responsive"
+                    style="width: 140px; margin-top: -16px;"></a>
 
         <div class="container">
             <div class="row">
@@ -141,7 +144,10 @@ $details = $this->admin_model->get_record($id);
                                             }
 
                                             ?>
+
                                         </div>
+
+                                        <input type="hidden" name="type" value="doctor">
 
                                         <div class="form-group">
                                             <input type="text" name="adminEmail" id="username" tabindex="1"
@@ -197,12 +203,18 @@ $details = $this->admin_model->get_record($id);
 
                                         ?>
 
+                                        <?php //echo validation_errors()?>
+
 
                                         <div class="form-group">
 
                                             <input type="text" name="docName" id="username" tabindex="1"
-                                                   class="form-control" placeholder="Doctor Name" value="">
+                                                   class="form-control" placeholder="Doctor Name" value="<?php echo set_value('docName')?>">
                                         </div>
+
+
+                                        <?php echo form_error('docName')?>
+
 
                                         <div class="form-group">
 
@@ -223,8 +235,11 @@ $details = $this->admin_model->get_record($id);
                                         <div class="form-group">
 
                                             <input type="text" name="docMobileNo" id="username" tabindex="1"
-                                                   class="form-control" placeholder="Enter Mobile No" value="">
+                                                   class="form-control" placeholder="Enter Mobile No" value="<?php echo set_value('docMobileNo')?>">
                                         </div>
+
+
+                                        <?php echo form_error('docMobileNo')?>
 
 
                                         <div class="form-group">
@@ -238,6 +253,13 @@ $details = $this->admin_model->get_record($id);
                                             <input type="text" name="docDesignation" id="username" tabindex="1"
                                                    class="form-control" placeholder="Enter Designation" value="">
                                         </div>
+
+
+                                        <div class="form-group">
+
+                                            <input type="text" name="docBMDC"  class="form-control" placeholder="Enter BMDC No">
+                                        </div>
+
 
 
                                         <div class="form-group">
@@ -281,6 +303,13 @@ $details = $this->admin_model->get_record($id);
 
 
                                         <div class="form-group">
+
+                                            <input type="text" name="docChamber"  class="form-control" placeholder="Enter Chamber Location">
+                                        </div>
+
+
+
+                                        <div class="form-group">
                                             <input type="text" name="symptoms" placeholder="Enter Symptoms"
                                                    class="form-control">
                                         </div>
@@ -290,6 +319,13 @@ $details = $this->admin_model->get_record($id);
                                             <input type="text" name="disease" placeholder="Enter Disease"
                                                    class="form-control">
                                         </div>
+
+
+                                        <div class="form-group">
+
+                                            <input  type="text" name="docBirthDate" placeholder="Enter Birth Date"  class="form-control datepicker">
+                                        </div>
+
 
 
                                         <div class="form-group">

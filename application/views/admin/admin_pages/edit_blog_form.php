@@ -27,7 +27,7 @@ if (isset($message)) {
                 <div class="row">
                     <div class="col-lg-6">
                         <!--                        <form role="form">-->
-                        <?php echo form_open('blog/update_blog')?>
+                        <?php echo form_open_multipart('blog/update_blog')?>
 
                         <div class="form-group">
                             <label>Blog Title</label>
@@ -35,6 +35,13 @@ if (isset($message)) {
                             <input type="hidden" name="blogId" value="<?php echo $blog_info->blog_id?>" >
                         </div>
 
+
+                        <div class="form-group">
+                            <label>Blog Image</label>
+                            <input type="file" name="blogImage" value="" class="form-control input-file uniform_on" id="fileInput">
+                            <input type="hidden" name="blogOldImage" class="input-file uniform_on" id="fileInput" value="<?php echo $blog_info->blog_image?>">
+                            <img src="<?php echo base_url().$blog_info->blog_image?>" width="50" height="50">
+                        </div>
 
 
 

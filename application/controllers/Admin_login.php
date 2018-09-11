@@ -36,9 +36,11 @@ class Admin_login extends CI_Controller
     {
         $admin_email = $this->input->post('adminEmail', true);
         $admin_password = $this->input->post('adminPassword', true);
+        $type = $this->input->post('type', true);
 //        $encrypt_password =password_hash($admin_password, PASSWORD_DEFAULT);
 //        echo $encrypt_password;
 //        exit();
+
 
         $this->load->model('admin_model');
 
@@ -53,6 +55,16 @@ class Admin_login extends CI_Controller
 //                exit();
 
                 if ($admin_details->admin_status == 1) {
+
+                    if ($admin_details->admin_role == "Doctor") {
+                        $doctor_info = $this->doctor_model->edit_doctor_details($admin_details->insert_id);
+
+                        if ($doctor_info->doc_status == 2) {
+                            $data['error_message'] = 'You are banned or not approved by Authority.';
+                            $this->load->view('admin/admin_login', $data);
+                            return;
+                        }
+                    }
 
                     $session_data['admin_email'] = $admin_details->admin_email;
                     $session_data['admin_id'] = $admin_details->admin_id;
@@ -69,6 +81,7 @@ class Admin_login extends CI_Controller
 
                     $redirect_link = $this->session->userdata('redirect');
                     $this->session->unset_userdata('redirect');
+
 
                     if ($this->session->userdata('admin_role') == "User") {
                         if ($redirect_link) {
@@ -93,18 +106,52 @@ class Admin_login extends CI_Controller
                 } else {
 
                     $data['error_message'] = 'Not a Valid User';
-                    $this->load->view('admin/admin_login', $data);
+                    if ($type == "doctor") {
+
+                        $this->load->view('pages/doc_login_signup', $data);
+
+                    } elseif ($type == "patient") {
+
+                        $this->load->view('pages/patient_login_signup', $data);
+
+                    } else {
+
+                        $this->load->view('admin/admin_login', $data);
+                    }
+
                 }
             } else {
 
                 //redirect('admin');
                 $data['error_message'] = 'Incorrect Email or Password';
-                $this->load->view('admin/admin_login', $data);
+                if ($type == "doctor") {
+
+                    $this->load->view('pages/doc_login_signup', $data);
+
+                } elseif ($type == "patient") {
+
+                    $this->load->view('pages/patient_login_signup', $data);
+
+                } else {
+
+                    $this->load->view('admin/admin_login', $data);
+                }
 
             }
         } else {
             $data['error_message'] = 'Incorrect Email or Password';
-            $this->load->view('admin/admin_login', $data);
+            if ($type == "doctor") {
+
+                $this->load->view('pages/doc_login_signup', $data);
+
+            } elseif ($type == "patient") {
+
+                $this->load->view('pages/patient_login_signup', $data);
+
+            } else {
+
+                $this->load->view('admin/admin_login', $data);
+            }
         }
     }
 

@@ -27,13 +27,18 @@ if (isset($message)) {
                 <div class="row">
                     <div class="col-lg-6">
                         <!--                        <form role="form">-->
-                        <?php echo form_open('blog/save_blog')?>
+                        <?php echo form_open_multipart('blog/save_blog')?>
 
 
 
                         <div class="form-group">
                             <label>Blog Title</label>
                             <input type="text" name="blogTitle"  class="form-control" placeholder="Enter Title" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Blog Image</label>
+                            <input type="file" class="form-control" name="blogImage" value="" class="input-file uniform_on" id="fileInput">
                         </div>
 
 

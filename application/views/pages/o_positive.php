@@ -33,8 +33,8 @@
                         <ul class="nav navbar-nav">
                             <li class=""><a href="<?php echo base_url() ?>">Home</a></li>
                             <li class=""><a href="<?php echo base_url('welcome/hospital_master') ?>">Hospital</a></li>
-                            <li class=""><a href="#blog">Blog</a></li>
-                            <li class=""><a href="#shop">Shop</a></li>
+                            <li class=""><a href="<?php echo base_url('welcome/manage_blog') ?>">Blog</a></li>
+                            <li class=""><a href="http://localhost/E-commerce/" target="_blank">Shop</a></li>
                             <li class=""><a href="<?php echo base_url('welcome/add_donor_master') ?>">Blood</a></li>
                             <li class=""><a href="<?php echo base_url('welcome/add_ambulance_master') ?>">Ambulance</a>
                             </li>

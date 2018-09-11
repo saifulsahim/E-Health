@@ -49,16 +49,11 @@
                     <?php
                     foreach ($doctor_data as $v_doctor) {
 
-
-
-
                         $dept = $this->doctor_model->get_dept_record($v_doctor->doc_category);
                         $hospital = $this->hospital_model->get_hospital_record($v_doctor->hospital_id);
 
-                        //print_r($hospital);
-                        //exit();
-
                         ?>
+
                         <tr>
                             <td><?php echo $v_doctor->doc_id ?></td>
                             <td><?php echo $v_doctor->doc_name ?></td>
@@ -71,7 +66,7 @@
                             <td><?php echo $v_doctor->doc_mobile_no ?></td>
                             <td><?php echo $v_doctor->doc_qualification ?></td>
                             <td><?php echo $v_doctor->doc_designation ?></td>
-                            <td><?php echo $dept->dept_name?></td>
+                            <td><?php echo $dept->dept_name ?></td>
 
                             <td><?php echo $v_doctor->symptoms ?></td>
                             <td><?php echo $v_doctor->disease ?></td>
@@ -110,9 +105,172 @@
                                 <?php } ?>
 
 
-                                <a href="<?php echo base_url("view-doctor/$v_doctor->doc_id") ?>"
-                                   class="btn btn-warning" title="View"><span
-                                            class="glyphicon glyphicon-eye-open"></span></a>
+                                <!--                                <a href="-->
+                                <?php //echo base_url("view-doctor/$v_doctor->doc_id") ?><!--"-->
+                                <!--                                   class="btn btn-warning" title="View"><span-->
+                                <!--                                            class="glyphicon glyphicon-eye-open"></span></a>-->
+                                <button
+                                        class="btn btn-warning"
+                                        data-toggle="modal" data-target="#modal-default-<?= $v_doctor->doc_id ?>"
+                                        title="View"><span
+                                            class="glyphicon glyphicon-eye-open"></span></button>
+
+                                <!-- Modal start -->
+                                <div class="modal fade" id="modal-default-<?= $v_doctor->doc_id ?>">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title">Single Doctor Information</h4>
+                                            </div>
+                                            <div class="modal-body">
+
+
+                                                <table width="100%"
+                                                       class="table table-striped table-bordered table-hover">
+
+
+                                                    <?php
+
+
+                                                    $dept = $this->doctor_model->get_dept_record($v_doctor->doc_category);
+                                                    $hospital = $this->hospital_model->get_hospital_record($v_doctor->hospital_id);
+
+                                                    ?>
+
+                                                    <tr>
+
+                                                        <th>ID</th>
+                                                        <td><?php echo $v_doctor->doc_id ?></td>
+
+                                                    </tr>
+
+                                                    <tr>
+
+                                                        <th>Doctor Name</th>
+                                                        <td><?php echo $v_doctor->doc_name ?></td>
+
+                                                    </tr>
+
+                                                    <tr>
+
+                                                        <th>Doctor Image</th>
+                                                        <td>
+                                                            <img src="<?php echo base_url() . $v_doctor->doc_image ?>"
+                                                                 width="100" height="100"></td>
+                                                    </tr>
+
+                                                    <tr>
+
+                                                        <th>Doctor E-mail</th>
+                                                        <td><?php echo $v_doctor->doc_email ?></td>
+
+                                                    </tr>
+
+                                                    <tr>
+
+                                                        <th>Mobile No</th>
+                                                        <td><?php echo $v_doctor->doc_mobile_no ?></td>
+
+                                                    </tr>
+
+                                                    <tr>
+
+                                                        <th>Doctor Qualification</th>
+                                                        <td><?php echo $v_doctor->doc_qualification ?></td>
+
+                                                    </tr>
+
+
+                                                    <tr>
+
+                                                        <th>Doctor Designation</th>
+                                                        <td><?php echo $v_doctor->doc_designation ?></td>
+
+                                                    </tr>
+
+                                                    <tr>
+
+                                                        <th>Doctor Category</th>
+                                                        <td><?php echo $dept->dept_name ?></td>
+
+                                                    </tr>
+
+                                                    <tr>
+
+                                                        <th>Doctor Chamber</th>
+                                                        <td><?php echo $v_doctor->doc_chamber ?></td>
+
+                                                    </tr>
+
+
+                                                    <tr>
+
+                                                        <th>Hospital Name</th>
+                                                        <td><?php echo $hospital->hospital_name ?></td>
+
+                                                    </tr>
+
+                                                    <tr>
+
+                                                        <th>Birth Date</th>
+                                                        <td><?php echo $v_doctor->doc_birth_date ?></td>
+
+                                                    </tr>
+
+
+                                                    <tr>
+
+                                                        <th>Join Date</th>
+                                                        <td><?php echo $v_doctor->doc_join_date ?></td>
+
+                                                    </tr>
+
+
+                                                    <tr>
+
+                                                        <th>Doctor Fees</th>
+                                                        <td><?php echo $v_doctor->doc_fee ?></td>
+
+                                                    </tr>
+
+
+                                                    <tr>
+
+                                                        <th>Doctor Status</th>
+                                                        <td> <?php
+                                                            if ($v_doctor->doc_status == 1) {
+
+                                                                echo 'Active';
+                                                            } elseif ($v_doctor->doc_status == 2) {
+                                                                echo 'Inactive';
+                                                            }
+
+                                                            ?></td>
+
+                                                    </tr>
+
+
+                                                </table>
+
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default pull-left"
+                                                        data-dismiss="modal">Close
+                                                </button>
+                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                    <!-- /.modal-dialog -->
+                                </div>
+                                <!-- Modal end -->
+
+
                                 <a href="<?php echo base_url("edit-doctor/$v_doctor->doc_id") ?>"
                                    class="btn btn-success" title="Edit"><span
                                             class="glyphicon glyphicon-edit"></span></a>

@@ -17,6 +17,18 @@ class Welcome_model extends CI_Model
     }
 
 
+    public function ajax_email_address_check_patient($email_address)
+    {
+
+        $this->db->select('*');
+        $this->db->from('tbl_patient');
+        $this->db->where('email_address', $email_address);
+        $query_result = $this->db->get();
+        $result = $query_result->result();
+        return $result;
+    }
+
+
     public function all_active_doctors($doc_category)
     {
 
@@ -35,6 +47,8 @@ FROM
 LEFT JOIN tbl_rating ON tbl_rating.doc_id = tbl_doctor.doc_id
 WHERE
     tbl_doctor.doc_category = $doc_category
+    AND 
+    tbl_doctor.doc_status = 1
 GROUP BY
     tbl_doctor.doc_id
 ORDER BY rating DESC, tbl_doctor.doc_name ASC")->result();

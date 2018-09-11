@@ -48,6 +48,10 @@
                     }?>
                     <form  action="<?php echo base_url()?>admin-login" method="post">
                         <fieldset>
+
+
+                            <input type="hidden" name="type" value="admin">
+
                             <div class="form-group">
                                 <input class="form-control" placeholder="E-mail" name="adminEmail" type="email"  required>
                             </div>

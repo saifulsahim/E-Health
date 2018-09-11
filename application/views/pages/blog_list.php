@@ -62,28 +62,33 @@
                 </li>
 
 
-                <?php if ($this->session->userdata('admin_id')) { ?>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?php echo base_url('welcome/main_logout')?>">Sign Out</a>
-                    </li>
+                    <?php if ($this->session->userdata('admin_id')) { ?>
 
-                <?php } else{ ?>
+                        <li class="nav-item"><a class="nav-link" href="<?php echo base_url('admin-dashboard') ?>">
+                                Dashboard </a></li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?php echo base_url('blog/add_user_sign_in')?>">Sign In</a>
-                    </li>
+                        <li class="nav-item"><a class="nav-link" href="<?php echo base_url('welcome/main_logout') ?>">
+                                Logout </a></li>
 
-                <?php }?>
+                    <?php } else { ?>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php echo base_url('blog/add_user_sign_in') ?>">Sign In</a>
+                        </li>
+
+                    <?php } ?>
 
 
-                <li class="nav-item">
-                    <a class="nav-link" href="post.html">Sample Post</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contact</a>
-                </li>
-            </ul>
+
+
+                    <!--                <li class="nav-item">-->
+                    <!--                    <a class="nav-link" href="post.html">Sample Post</a>-->
+                    <!--                </li>-->
+                    <!--                <li class="nav-item">-->
+                    <!--                    <a class="nav-link" href="contact.html">Contact</a>-->
+                    <!--                </li>-->
+                </ul>
         </div>
     </div>
 </nav>
@@ -95,8 +100,8 @@
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="site-heading">
-                    <h1>Clean Blog</h1>
-                    <span class="subheading">A Blog Theme by Start Bootstrap</span>
+                    <h1>Health Blog</h1>
+                    <!--                    <span class="subheading">A Blog Theme by Start Bootstrap</span>-->
                 </div>
             </div>
         </div>
@@ -121,9 +126,7 @@
                     ?>
 
 
-
                     <br>
-
 
 
                     <h2 class="post-title">
@@ -134,8 +137,8 @@
                     </h3>
                     </a>
                     <p class="post-meta">Posted by
-                        <a href="#"><?php echo $user->admin_name?></a>
-                        <?php echo $post->blog_date?></p>
+                        <a href="#"><?php echo $user->admin_name ?></a>
+                        <?php echo $post->blog_date ?></p>
 
                     <?php
                 }

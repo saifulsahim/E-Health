@@ -69,6 +69,11 @@ if (isset($message)) {
                             <input type="text" name="docDesignation"  class="form-control" placeholder="Enter Designation">
                         </div>
 
+                        <div class="form-group">
+                            <label>BMDC No</label>
+                            <input type="text" name="docBMDC"  class="form-control" placeholder="Enter BMDC No">
+                        </div>
+
 
                         <div class="form-group">
                             <label>Doctor Category</label>
@@ -90,10 +95,10 @@ if (isset($message)) {
                         </div>
 
 
-<!--                        <div class="form-group">-->
-<!--                            <label>Doctor Chamber</label>-->
-<!--                            <input type="text" name="docChamber"  class="form-control" placeholder="Enter Chamber Location">-->
-<!--                        </div>-->
+                        <div class="form-group">
+                            <label>Doctor Location</label>
+                            <input type="text" name="docChamber"  class="form-control" placeholder="Enter Chamber Location">
+                        </div>
 
 
                         <div class="form-group">
@@ -113,6 +118,20 @@ if (isset($message)) {
 
                             </select>
 
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Doctor Sympytoms</label>
+                            <input type="text" name="symptoms" placeholder="Enter Symptoms"
+                                   class="form-control">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Doctor Disease</label>
+                            <input type="text" name="disease" placeholder="Enter Disease"
+                                   class="form-control">
                         </div>
 
 

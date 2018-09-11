@@ -117,15 +117,16 @@ class Doctor_model extends CI_Model
         $doctor_data['doc_mobile_no'] = $this->input->post('docMobileNo', true);
         $doctor_data['doc_qualification'] = $this->input->post('docQual', true);
         $doctor_data['doc_designation'] = $this->input->post('docDesignation', true);
+        $doctor_data['doc_bmdc'] = $this->input->post('docBMDC', true);
         $doctor_data['doc_category'] = $this->input->post('docCategory', true);
         $doctor_data['symptoms'] = $this->input->post('symptoms', true);
         $doctor_data['disease'] = $this->input->post('disease', true);
-        //$doctor_data['doc_chamber']=$this->input->post('docChamber',true);
+        $doctor_data['doc_chamber'] = $this->input->post('docChamber', true);
         $doctor_data['doc_birth_date'] = $this->input->post('docBirthDate', true);
         $doctor_data['hospital_id'] = $this->input->post('hosName', true);
         $doctor_data['doc_fee'] = $this->input->post('docFees', true);
         $doctor_data['doc_join_date'] = $this->input->post('docJoinDate', true);
-        $doctor_data['doc_status'] = 1;
+        $doctor_data['doc_status'] = 2;
 
         $doctor_data['doc_birth_date'] = date('Y-m-d', strtotime($doctor_data['doc_birth_date']));
         $doctor_data['doc_join_date'] = date('Y-m-d', strtotime($doctor_data['doc_join_date']));
@@ -163,7 +164,7 @@ class Doctor_model extends CI_Model
         $doctor_data['admin_password'] = $encrypted_password;
         $doctor_data['admin_image'] = $doctor_image;
         $doctor_data['admin_role'] = "Doctor";
-        $doctor_data['admin_status'] = 1;
+        $doctor_data['admin_status'] = 1;  //for inactive doctors
         $doctor_data['insert_id'] = $insert_id;
         $this->db->insert('tbl_admin', $doctor_data);
     }
@@ -177,6 +178,33 @@ class Doctor_model extends CI_Model
 
         return $result;
     }
+
+
+    public function select_all_pending_doctors()
+    {
+        $result = $this->db->select('*')
+            ->from('tbl_doctor')
+            ->where('doc_status', 2)
+            ->get()
+            ->result();
+
+        return $result;
+    }
+
+
+    public function get_all_pending_doctors()
+    {
+
+        $result = $this->db->select('count(*) as count')
+            ->from('tbl_doctor')
+            ->where('doc_status', 2)
+            ->get()
+            ->result();
+
+        return $result;
+
+    }
+
 
     public function select_all_doctors()
     {

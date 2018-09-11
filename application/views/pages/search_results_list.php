@@ -14,6 +14,13 @@
 
     <link href="<?php echo base_url() ?>asset/css/star-rating-svg.css" rel="stylesheet">
 
+    <!-- DataTables CSS -->
+    <link href="<?php echo base_url() ?>asset/admin_asset/vendor/datatables-plugins/dataTables.bootstrap.css"
+          rel="stylesheet">
+    <!-- DataTables Responsive CSS -->
+    <link href="<?php echo base_url() ?>asset/admin_asset/vendor/datatables-responsive/dataTables.responsive.css"
+          rel="stylesheet">
+
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -37,8 +44,8 @@
                         <ul class="nav navbar-nav">
                             <li class=""><a href="<?php echo base_url() ?>">Home</a></li>
                             <li class=""><a href="<?php echo base_url('welcome/hospital_master') ?>">Hospital</a></li>
-                            <li class=""><a href="#blog">Blog</a></li>
-                            <li class=""><a href="#shop">Shop</a></li>
+                            <li class=""><a href="<?php echo base_url('welcome/manage_blog') ?>">Blog</a></li>
+                            <li class=""><a href="http://localhost/E-commerce/" target="_blank">Shop</a></li>
                             <li class=""><a href="<?php echo base_url('welcome/add_donor_master') ?>">Blood</a></li>
                             <li class=""><a href="<?php echo base_url('welcome/add_ambulance_master') ?>">Ambulance</a>
                             </li>
@@ -88,7 +95,7 @@
             # Blood
             ?>
 
-            <table class="table table-dark">
+            <table width="100%" class="table table-striped table-bordered table-hover dataTables-example">
                 <thead>
                 <tr>
 
@@ -109,7 +116,7 @@
                     ?>
                     <tr>
 
-                        <th scope="row"><?php echo $i++ ?></th>
+                        <td scope="row"><?php echo $i++ ?></td>
                         <td>
                             <?php echo $result->donor_name; ?>
                         </td>
@@ -138,7 +145,7 @@
             <?php } else { ?>
 
 
-                <table class="table table-dark">
+                <table width="100%" class="table table-striped table-bordered table-hover dataTables-example">
                     <thead>
                     <tr>
 
@@ -163,7 +170,7 @@
                         <a href="<?php echo base_url("welcome/add_doc_profile/$result->doc_id") ?>">
                             <tr>
 
-                                <th scope="row"><?php echo $i++ ?></th>
+                                <td scope="row"><?php echo $i++ ?></td>
                                 <td>
                                     <?php echo $result->doc_name; ?>
 
@@ -193,7 +200,7 @@
 
                 <h3 class="text-center">Recommended Doctors</h3>
 
-                <table class="table table-dark">
+                <table width="100%" class="table table-striped table-bordered table-hover dataTables-example">
                     <thead>
                     <tr>
 
@@ -216,7 +223,7 @@
                         <a href="<?php echo base_url("welcome/add_doc_profile/$recommended_doctor->doc_id") ?>">
                             <tr>
 
-                                <th scope="row"><?php echo $i++ ?></th>
+                                <td scope="row"><?php echo $i++ ?></td>
                                 <td>
                                     <?php echo $recommended_doctor->doc_name; ?>
                                     <span class="my-rating"
@@ -257,6 +264,20 @@
 <script src="<?php echo base_url() ?>asset/contactform/contactform.js"></script>
 
 <script src="<?php echo base_url() ?>asset/js/jquery.star-rating-svg.min.js"></script>
+
+<!-- DataTables JavaScript -->
+<script src="<?php echo base_url() ?>asset/admin_asset/vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url() ?>asset/admin_asset/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+<script src="<?php echo base_url() ?>asset/admin_asset/vendor/datatables-responsive/dataTables.responsive.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        $('.dataTables-example').DataTable({
+            responsive: true
+        });
+    });
+</script>
 
 <script>
     $(function () {

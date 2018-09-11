@@ -14,6 +14,27 @@ class Doctor extends CI_Controller
     }
 
 
+    public function get_available_times()
+    {
+        $selected_date = $this->input->post('selected_date', true);
+        $doc_id = $this->input->post('doc_id', true);
+
+        $query = $this->db->select('appointment_time')
+            ->where(array(
+                'appointment_date' => date('Y-m-d', strtotime($selected_date)),
+                'doc_id' => $doc_id
+            ))->get('tbl_appointment')->result();
+
+        $result = array();
+        foreach ($query as $item)
+        {
+            $result[] = date('g:i A', strtotime($item->appointment_time));
+        }
+
+        echo json_encode($result);
+    }
+
+
     public function doc_login_check()
     {
 
@@ -123,6 +144,29 @@ class Doctor extends CI_Controller
         $this->session->set_userdata($sdata);
         $dept_id = $this->input->post('deptId', true);
         redirect('edit-dept/' . $dept_id);
+    }
+
+
+    public function pending_doctor_list()
+    {
+        $role = $this->session->userdata('admin_role');
+        $id = $this->session->userdata('insert_id');
+//        echo $role;
+//        echo $id;
+//        exit();
+        $data = array();
+
+        if (($role == "Admin") || ($role == "Moderator")) {
+            $data['doctor_data'] = $this->doctor_model->select_all_pending_doctors();
+        } else {
+
+            $data['doctor_data'] = $this->doctor_model->get_data_by_user($id);
+        }
+//        echo '<pre>';
+//        print_r($data);
+//        exit();
+        $data['dashboard'] = $this->load->view('admin/admin_pages/manage_pending_doctor_form', $data, true);
+        $this->load->view('admin/admin_master', $data);
     }
 
 

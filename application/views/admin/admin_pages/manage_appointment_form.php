@@ -29,9 +29,9 @@
                         <th>Patient Name</th>
                         <th>Doctor Name</th>
                         <th>Phone Number</th>
-                        <th>Gender</th>
                         <th>Appointment Date</th>
                         <th>Appointment Time</th>
+                        <th>Payment Type</th>
                         <th>Action Buttons</th>
 
 
@@ -52,9 +52,9 @@
                             <td><?php echo $v_app->patient_name ?></td>
                             <td><?php echo $doc_name->doc_name ?></td>
                             <td><?php echo $v_app->phone_number ?></td>
-                            <td><?php echo $v_app->gender ?></td>
                             <td><?php echo $v_app->appointment_date ?></td>
                             <td><?php echo date('h:i A', strtotime($v_app->appointment_time)) ?></td>
+                            <td><?php echo $v_app->payment_type?></td>
 
 
                             <td>

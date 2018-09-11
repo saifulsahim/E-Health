@@ -61,7 +61,6 @@ class Appointment_model extends CI_Model
     {
         $result = $this->db->select('*')
             ->from('tbl_appointment')
-
             ->order_by('appointment_date asc', 'appointment_time desc')
             ->get()
             ->result();
@@ -111,18 +110,52 @@ GROUP BY
             return 0;
     }
 
+    public function get_rating_value_by_patient($doctor_id, $patient_id)
+    {
+
+        $query = $this->db->query("SELECT
+    IFNULL(AVG(value), 0) AS rating
+FROM
+    `tbl_rating`
+WHERE
+    doc_id = $doctor_id and patient_id = $patient_id
+GROUP BY
+    doc_id")->row();
+
+        if ($query)
+            return $query->rating;
+        else
+            return 0;
+    }
 
     public function select_all_appointments_for_doctor($doc_id)
     {
         $result = $this->db->select('*')
             ->from('tbl_appointment')
             ->order_by('appointment_date asc', 'appointment_time desc')
-            ->where('appointment_status',1)
+            ->where('appointment_status', 1)
             ->where('doc_id', $doc_id)
             ->get()
             ->result();
 
         return $result;
+    }
+
+
+    public function select_all_upcoming_appointments_for_doctor($doc_id)
+    {
+
+        $result = $this->db->select('*')
+            ->from('tbl_appointment')
+            ->order_by('appointment_date asc', 'appointment_time desc')
+            ->where('appointment_status', 0)
+            ->where('appointment_date >=', date('Y-m-d'))
+            ->where('doc_id', $doc_id)
+            ->get()
+            ->result();
+
+        return $result;
+
     }
 
     public function edit_appointment_details($id)
@@ -169,4 +202,54 @@ GROUP BY
             ->update('tbl_appointment', $data);
 
     }
+
+    /**
+     * Check if max limit reached
+     *
+     * Link: https://stackoverflow.com/questions/2680501/how-can-i-find-the-first-and-last-date-in-a-month-using-php
+     */
+    function get_total_appointment_by_patient($patient_id)
+    {
+        $first_day_this_month = date('Y-m-01'); // hard-coded '01' for first day
+        $last_day_this_month = date('Y-m-t');
+
+        $total_appointment = $this->db->query("SELECT COUNT(*) AS 'count'
+  FROM `tbl_appointment`
+  WHERE patient_id = $patient_id  AND appointment_status = 1 AND appointment_date BETWEEN '$first_day_this_month' AND '$last_day_this_month'")
+            ->row();
+
+        return $total_appointment->count;
+    }
+
+
+/// if doctor has to be added
+
+//    function get_total_appointment_by_patient($patient_id, $doctor_id)
+//    {
+//        $first_day_this_month = date('Y-m-01'); // hard-coded '01' for first day
+//        $last_day_this_month = date('Y-m-t');
+//
+//        $total_appointment = $this->db->query("SELECT COUNT(*) AS 'count'
+//  FROM `tbl_appointment`
+//  WHERE patient_id = $patient_id AND doctor_id= $doctor_id AND appointment_status = 1 AND appointment_date BETWEEN '$first_day_this_month' AND '$last_day_this_month'")
+//            ->row();
+//
+////        var_dump("SELECT COUNT(*) AS 'count'
+////  FROM `tbl_appointment`
+////  WHERE patient_id = $patient_id AND appointment_status = 1 AND appointment_date BETWEEN '$first_day_this_month' AND '$last_day_this_month'");
+////
+////        exit();
+//
+//
+//
+////        SELECT COUNT(*) AS 'count'
+////  FROM `tbl_appointment`
+////  WHERE patient_id = 8 AND doc_id=84 AND appointment_status = 1 AND appointment_date BETWEEN '2018-09-01' AND '2018-09-30';
+////
+//
+//        return $total_appointment->count;
+//
+//
+//    }
+
 }

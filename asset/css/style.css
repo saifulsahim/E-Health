@@ -583,6 +583,16 @@ footer
     width: 520px;
 }
 
+@media only screen and (max-width: 600px) {
+    .form-wrapper {
+        width: 250px;
+    }
+
+    .form-wrapper #search {
+        width: 120px;
+    }
+}
+
 .form-wrapper #search:focus {
     border-color: #aaa;
     -webkit-box-shadow: 0 1px 1px #bbb inset;
@@ -644,4 +654,16 @@ footer
 
 .form-wrapper #submit::-moz-focus-inner {
     border: 0;
+}
+
+.margin-bottom-medium {
+    margin-bottom: 6px;
+}
+
+.margin-bottom-high {
+    margin-bottom: 16px;
+}
+
+.dataTables_filter {
+    overflow: auto;
 }

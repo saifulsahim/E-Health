@@ -28,6 +28,7 @@
                     <tr>
                         <th>Blog ID</th>
                         <th>Blog Title</th>
+                        <th>Blog Image</th>
                         <th>Blog Description</th>
 
                         <th>Actions</th>
@@ -41,6 +42,11 @@
                         <tr>
                             <td><?php echo $v_blog->blog_id?></td>
                             <td><?php echo $v_blog->blog_title?></td>
+                            <td>
+                                <img src="<?php echo base_url() . $v_blog->blog_image ?>" width="100" height="100">
+
+
+                            </td>
                             <td><?php echo $v_blog->blog_desc?></td>
 
 <!--                            <td>-->
